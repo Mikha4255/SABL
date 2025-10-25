@@ -20,6 +20,68 @@ main{
     overflow-x: hidden;
 }
 
+.fuga1_3{
+  position: absolute;
+  z-index: 42;
+  top: 0%;
+  left: 25%;
+  height: 100px;
+  width: 100px;
+}
+
+.modal {
+  position: fixed;
+  z-index: 42;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease; /* плавная анимация */
+}
+
+.modal.active {
+  opacity: 1;
+  pointer-events: auto; /* теперь можно кликать по окну */
+}
+
+.modal-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal.active .modal-overlay {
+  opacity: 1;
+}
+
+.modal-content {
+  position: relative;
+  background: #1d1102;
+  color: #ff6600;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  
+  transform: translateY(-30px);
+  transition: transform 0.55s ease; 
+}
+
+.modal.active .modal-content {
+  transform: translateY(0);
+}
+
+
 .fixed_header {
     position: fixed;
     background-color: #1d1102;
@@ -84,18 +146,23 @@ hr {
 }
 
 .import{
-    display: none;
-    margin-top: 200px;
-    color: #ae0606;
-    font-size: 42px;
+    display: block;
+    margin-top: 220px;
+    color: #ff6600;
+    font-size: 32px;
     text-align: center;
+}
+
+.import p{
+  color: #ff6600;
+  font-size: 55px;
+  display: none ;
 }
 
 .to_center{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 142px;
     height: 900px;
     margin-bottom: 142px;
 }
@@ -138,6 +205,7 @@ hr {
     left: 2%;
     top: 30%;
     width: 60%;
+    pointer-events: none;
     background-color: #1d1102;
 }
 
@@ -279,6 +347,8 @@ hr {
 
 .non, .non a{
   color: #ae0606;
+  position: relative;
+  z-index: 4;
   font-size: 35px;
   text-decoration: none;
 }
@@ -333,13 +403,13 @@ hr {
 }
 
 .dec_pos_1 {
-  bottom: 600px;
+  bottom: 700px;
   left: -32%;
   transform: rotate(60deg);
 }
 
 .dec_pos_2 {
-  bottom: 142px;
+  bottom: 0px;
   right: -32%;
 }
 
@@ -368,34 +438,59 @@ hr {
   flex-wrap: nowrap;
   flex-direction: row;
   justify-content: center;
-  background-color: #ff4d00;
+  background-color: #1d1102;
+  border-radius: 25%;
 }
 
 .mainnom .nomcard {
   height: 400px;
 }
 
-.mainnom div {
-    box-shadow: -8px 15px 5px 25px rgba(0, 0, 0, 0.509);
-}
-
 .nomcard{
-    width: 300px;
-    height: 500px;
+    width: 380px;
+    position: relative;
+    height: 550px;
     box-sizing: border-box;
     flex-shrink: 0;
     text-align: center;
-    border: 3px solid rgba(255, 95, 31, 0.70);
-    border-radius: 20px;
     color: #ff6f00;
-    padding: 10px;
-    box-shadow: 3px 3px 5px 15px rgba(140, 65, 12, 0.42);
-    background: linear-gradient(
-        45deg,
-      #1d1102 ,
-      #342208 50%,
-      #1d1102 100%
-    );
+    padding: 32px;
+}
+
+.border_frame {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.content {
+  padding: 12px;
+  position: relative;
+  z-index: 2;
+  color: #ff6600;
+  text-align: center;
+}
+
+.content h3{
+  font-size: 30px;
+}
+
+.content p{
+  font-size: 25px;
+}
+
+.content hr{
+  width: 75%;
+}
+
+.nom_photo {
+  width: 180px;
+  height: 180px;
+  border: 2px solid #ff6f00;
+  border-radius: 15%;
 }
 
 .nomcard:hover{
@@ -403,19 +498,8 @@ hr {
   transition: 0.42s;
 }
 
-.nomcard img{
-    width: 200px;
-    height: 200px;
-    border: 3px solid #ff6f00;
-    border-radius: 20px;
-}
-
 .mem:hover{
   background-image: url("вспомогательные_объекты/logo42.gif");
-}
-
-.nomcard h3{
-    font-size: 30px;
 }
 
 .sma{
@@ -423,7 +507,7 @@ hr {
 }
 
 .nomcard hr { 
-    border: none; border-top: 2px solid rgba(255, 95, 31, 0.4)
+    border: none; border-top: 2px solid rgba(255, 95, 31, 0.799)
 }
 
 .nomcard a{
@@ -435,11 +519,6 @@ hr {
     color: rgba(255, 95, 31, 0.8);
     cursor: pointer;
     transition: 0.6s;
-}
-
-.nomcard p{
-    font-size: 25px;
-    color: #ff6f00;
 }
 
 .nom{
@@ -528,8 +607,9 @@ hr {
 .etapi {
   font-family: Arial, sans-serif;
   display: flex;
+  position: relative;
   flex-direction: column;
-  margin-left: 242px;
+  margin-left: 25%;
   margin-top: 42px;
 }
 
@@ -601,7 +681,22 @@ hr {
 
 .answers {
   margin-top: 55px;
+  position: relative;
   overflow-x: hidden;
+}
+
+.after_before{
+  position: relative;
+}
+
+.answers::after, .after_before::after{
+  content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: radial-gradient(50% 54950% at 50% -0.01%, #ff6600 0%, #1d1102 100%);
 }
 
 .queandans{
@@ -652,6 +747,7 @@ hr {
 
 .dropdown {
   position: relative;
+  margin-bottom: 42px;
   list-style: none;
   transition: all 0.42s ease; 
 }
@@ -743,9 +839,7 @@ hr {
 /* Не ИИ */
 footer{
   text-align: center;
-  align-items: center;
   margin-top: 84px;
-  border-top: 3px solid #ff6f00;
   font-size: 25px;
   color: #d1e8e2;
 }
@@ -872,6 +966,17 @@ footer nav li:not(:last-child)::after {
     right: 30%;
   }
 
+  .rules{
+    color: #ff6600;
+    margin: auto;
+  }
+
+  .rules:hover{
+    color: #f9c99c;
+  }
+
+  
+
   /* Анимация */
   @keyframes swing {
     50% {
@@ -960,17 +1065,17 @@ footer nav li:not(:last-child)::after {
   }
  
   nav ul{
-    gap: 5px;
+    gap: 0px;
   }
 
   nav ul li{
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .info h1 img{
     height: 100px;
     top: 10%;
-    left: 25%;
+    left: 20%;
   }
 
   .to_center{
@@ -986,25 +1091,38 @@ footer nav li:not(:last-child)::after {
     display: block;
   } 
 
+  .textset{
+    text-wrap:unset;
+  }
+
+  .fuga1_3{
+    height: 75px;
+    width: 75px;
+    left: 15%;
+  }
+
   .p1, .p2{
     top: 0%;
     font-size: 21px;
   }
 
   .p1{
-    left: 21%;
+    left: 15%;
   }
   
   .p2{
-    left: 65%;
+    top: 4%;
+    left: 55%;
   }
 
   .p3{
-    left: 40%;
+    top: 60%;
+    left: 25%;
   }
 
   .p4{
-    left: 35%;
+    bottom: 15%;
+    left: 10%;
   }
 
   .p5{
@@ -1012,25 +1130,26 @@ footer nav li:not(:last-child)::after {
   }
 
   .p6{
-    left: 32%;
+    left: 20%;
   }
 
   .img1{
     top: 25%;
-    right: 20%;
+    left: 10%;
     height: 250px;
+    box-shadow: none;
   }
   
   .kong{
-    height: 70px;
+    height: 55px;
   }
 
   .sup1{
-    left: 15%;
+    left: 5%;
   }
 
   .sup2{
-    left: 35%;
+    left: 30%;
   }
 
   .sup3{
@@ -1038,7 +1157,16 @@ footer nav li:not(:last-child)::after {
   }
 
   .sup4{
-    left: 75%;
+    left: 80%;
+  }
+
+  .sabl h1{
+    font-size: 55px;
+    text-shadow: none;
+  }
+
+  .op{
+    font-size: 25px;
   }
 
   .h2nom{
@@ -1050,11 +1178,28 @@ footer nav li:not(:last-child)::after {
   }
 
   .orange{
-    height: 242vh;
+    height: 180vh;
   }
 
   .h2nom{
     font-size: 42px;
+  }
+
+  .non, .non a{
+    font-size: 25px;
+  }
+
+  .orange{
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+  }
+
+  .mainnom{
+    border-radius: 5%;
+  }
+
+  .mainnom div {
+    box-shadow: none;
   }
 
   .pnom{
@@ -1098,18 +1243,112 @@ footer nav li:not(:last-child)::after {
   }
 
   .text strong{
-    font-size: 18px;
+    font-size: 15px;
+  }
+
+  .text p{
+    font-size: 15px;
+  }
+
+  .circl_formed{
+    width: 32px;
+    height: 32px;
   }
 
   .que{
-    font-size: 32px;
+    font-size: 25px;
+  }
+
+  .quea{
+    font-size: 25px;
   }
 
   .dropdown-menu{
-    margin-left: 0%;
+    margin-left: 0px;
   }
 
   footer nav ul li{
     font-size: 20px;
+  }
+}
+
+@media(min-width: 701px) and (max-width: 767px), (min-width: 768px) and (max-width: 820px), (min-width: 821px) and (max-width: 1024px){
+  .logo img{
+    height: 55px;
+  }
+
+  .fuga1_3{
+    left: 15%;
+  }
+ 
+  nav ul{
+    gap: 5px;
+  }
+
+  nav ul li{
+    font-size: 20px;
+  }
+
+  .p1{
+    top: 0%;
+    left: 2%;
+  }
+
+  .p2{
+    top: 0%;
+    left: 50%;
+  }
+
+  .img1{
+    top: 40%;
+    height: 250px;
+    width: 250px;
+    box-shadow: none;
+  }
+
+  .info h1 img {
+    top: 15%;
+    right: 5%;
+  }
+
+  .p6{
+    left: 35%;
+  }
+
+  .sup1{
+    left: 5%;
+  }
+
+  .sup2{
+    left: 30%;
+  }
+
+  .sup3{
+    left: 60%;
+  }
+
+  .sup4{
+    left: 85%;
+  }
+
+  .decoration{
+    display: none;
+  }
+
+  .mainnom .nomcard{
+    box-shadow: none;
+    border: solid 3px #e0e6e4;
+  }
+
+  .down-left, .down-right{
+    display: none;
+  }
+
+  .squarde_for_sabl{
+    left: 22%;
+  }
+
+  .circl_formed{
+    width: 62px;
   }
 }

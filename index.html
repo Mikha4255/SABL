@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,19 +11,19 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comforter&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bellota:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap">
-    <link rel="icon" type="image/x-icon" href="вспомогательные_объекты/favicon2.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="вспомогательные_объекты/sabl_previe.png">
     <link rel="stylesheet" href="newstyle.css">
 </head>
 <body> 
     <div class="fixed_header">
         <header> 
             <div class="logo">
-                <a href="https://t.me/+uUos6pZuvI4xMWNi" target="_blank"><img src="вспомогательные_объекты/logoawards1.png" alt="SABL"></a>
+                <a href="https://t.me/+NbMpMG2mndU0YjMy" target="_blank"><img src="вспомогательные_объекты/logoawards1.png" alt="SABL"></a>
             </div>
             <nav>
                 <ul>
                     <li><a href="#about">О премии</a> </li>
-                    <li><a href="#nom">Номинации</a></li>
+                    <li><a href="#nom">Номинации</a></li> 
                     <li><a href="#etaps">Этапы премии</a></li>
                     <li><a href="#ans">Ответы</a></li>
                 </ul>
@@ -32,21 +32,37 @@
         <hr>
     </div>
     <main>
-
-        <div class="import">
-            <p>Лучше всего используйте компьютерную версию сайта!!!</p>
+        <img class="fuga1_3" src="вспомогательные_объекты/fuga_42.png" data-title="1/3" data-text="Что же ты нашёл фугу - первый ключ к получению чего интересненького (квест не закончен). Введите сюда день победы следущего года на китайкий манер без пробелов и ведущими нулями у дат." alt="42_фуга"> 
+        <div class="modal">
+            <div class="modal-overlay"></div>
+            <div class="modal-content"> 
+                <h2 class="modal-title">Заголовок</h2>
+                <p class="modal-text">Текст</p>
+                <form name="date">
+                    <input type="number" id="code" name="code" placeholder="Кодом является день победы следущего года">
+                    <input type="submit" value="Проверить">
+                </form>
+                <br>
+                <button class="close-modal">Закрыть</button>
+                <br>
+                <button id="site42" class="open-42">42</button>
+            </div>
         </div>
-    <div class="to_center">
+        <div class="import">
+            <p id="opi">Лучше всего используйте компьютерную версию сайта!!!</p>
+            <div id="timer"></div>
+        </div>
+    <div class="to_center"> 
         <div class="info">
             <h1><img src="вспомогательные_объекты/sabl_gif.gif" alt="SABL"></h1>
             <p class="textset p1">ГЛАВНАЯ ПРЕМИЯ</p>
             <p class="textset p2">3 КЛАССОВ</p>
             <p class="textset p3"><span class="data">** ****</span></p>
             <p class="textset p4">    HOSTED BY Мишаня</p>
-            <p class="textset p5">   SUPPORTED BY 57 SCHOOL</p>
+            <p class="textset p5">   SUPPORTED BY Kholina Irina Nikolaevna</p>
             <div class="textset p6"> ПРИ ПОДДЕРЖКЕ</div>
             <!-- <a href="https://rutube.ru/video/private/b8414d21b51a5f4bd421c9531c6091f6/?p=VSAcTLZGe9m9Vn6gAtQdBA"    target="_blank" class="btn-orange">Смотреть запись</a> -->
-            <a href="https://t.me/+uUos6pZuvI4xMWNi" target="_blank"><img class="img1" src="вспомогательные_объекты/Mainchat.png" alt="Спонсор"></a>
+            <a href="https://t.me/+NbMpMG2mndU0YjMy" target="_blank"><img class="img1" src="вспомогательные_объекты/Mainchat.png" alt="Chanle_of_SABL"></a>
             <a href="https://t.me/AuraPlusGameBotApiBot" target="_blank"><img class="sup1 kong" src="вспомогательные_объекты/SUPP1.jpg" alt="Спонсор"></a>
             <a href="https://t.me/slay_awards" target="_blank"><img class="sup2 kong" src="вспомогательные_объекты/slay.gif" alt="Спонсор"></a>
             <a href="https://t.me/joper5" target="_blank"><img class="sup3 kong" src="вспомогательные_объекты/SUPP3.jpg" alt="Спонсор"></a>
@@ -58,12 +74,12 @@
     <div id="about"> 
         <div class="sabl">
             <div>
-                <h1 class="ma">&reg; Strange Academics <br>
+                <h1>&reg; Strange Academics <br>
                          of Biology<br>
                           and Literature</h1>
             </div> 
             <div class="sabl2"> 
-                <p class="op">Премия, которая будет проводится когда-то. <br>
+                <p class="op">Премия, которая проводится второй год. <br>
                         Стань частью истории и выбери<br>
                         тех, кто по-настоящему достоин<br>
                         стать победителем SABL 2026.<br>
@@ -83,12 +99,18 @@
                  сразятся bomboclatы в этом году.</p>
                 <div class="mainnom">
                     <div class="nomcard">
-                        <img src="основные_номинации/king_main.png" alt="Пока нет">
-                        <h3>SABL KING</h3>
+                        <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
+                        <div class="content">
+                            <img src="основные_номинации/king_main.png" alt="Пока нет" class="nom_photo">
+                            <h3>SABL KING</h3>
+                        </div>
                     </div>
-                    <div class="nomcard mem">
-                        <img src="основные_номинации/mem_main.png" alt="Пока нет">
-                        <h3>Человек-мем года</h3>
+                    <div class="nomcard">
+                        <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
+                        <div class="content">
+                            <img src="основные_номинации/mem_main.png" alt="Пока нет" class="nom_photo">
+                            <h3>Человек-мем года</h3>
+                        </div>
                     </div>
                 </div>
                 <img class="decoration dec_pos_1" alt="Декорация" loading="lazy" src="вспомогательные_объекты/char-decoration-k.svg">
@@ -121,40 +143,58 @@
 
     <div class="most_nom">
         <div class="nomcard">
-            <img src="вспомогательные_объекты/NONE.png" alt="Пока нет">
-            <h3>SABL KING</h3>
-            <hr>
-            <p>NONE</p>
+            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
+            <div class="content">
+                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo">
+                <h3>SABL KING</h3>
+                <hr>
+                <p>NONE</p>
+            </div>
         </div>
         <div class="nomcard mem">
-            <img src="вспомогательные_объекты/NONE.png" alt="Пока нет">
-            <h3>Человек-мем года</h3>
-            <hr>
-            <p>NONE</p>
+            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
+            <div class="content">
+                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo">
+                <h3>Человек-мем года</h3>
+                <hr>
+                <p>NONE</p>
+            </div>
         </div>
         <div class="nomcard">
-            <img src="вспомогательные_объекты/NONE.png" alt="Пока нет">
-            <h3>SABL QUEEN</h3>
-            <hr>
-            <p>NONE</p>
+            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
+            <div class="content">
+                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo">
+                <h3>SABL QUEEN</h3>
+                <hr>
+                <p>NONE</p>
+            </div>
         </div>
         <div class="nomcard">
-            <img src="вспомогательные_объекты/NONE.png" alt="Пока нет">
-            <h3>Bomboclat года</h3>
-            <hr>
-            <p>NONE</p>
+            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
+            <div class="content">
+                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo">
+                <h3>Bomboclat года</h3>
+                <hr>
+                <p>NONE</p>
+            </div>
         </div>
         <div class="nomcard">
-            <img src="вспомогательные_объекты/NONE.png" alt="Пока нет">
-            <h3>Лучший завозер</h3>
-            <hr>
-            <p>NONE</p>
+            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
+            <div class="content">
+                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo">
+                <h3>Лучший завозер</h3>
+                <hr>
+                <p>NONE</p>
+            </div>
         </div>
         <div class="nomcard">
-            <img src="вспомогательные_объекты/NONE.png" alt="Пока нет">
-            <h3>Прайм года</h3>
-            <hr>
-            <p>NONE</p>
+            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
+            <div class="content">
+                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo">
+                <h3>Прайм года</h3>
+                <hr>
+                <p>NONE</p>
+            </div>
         </div>
     </div>
 
@@ -199,86 +239,119 @@
     <h2>ОСНОВНЫЕ НОМИНАЦИИ 2025</h2>
     <div class="most_nom">
         <div class="nomcard">
-            <img src="основные_номинации/king.jpg" alt="Пока нет">
-            <h3>SABL KING</h3>
-            <hr>
-            <p>Егор Насолдин Потрошитель2000</p>
-            <p><a href="https://t.me/+tzno-Fd1vqwwZGQy" target="_blank">Телеграмм &raquo;</a></p>
+            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
+            <div class="content">
+                <img src="основные_номинации/king.jpg" alt="Пока нет" class="nom_photo">
+                <h3>SABL KING</h3>
+                <hr>
+                <p>Егор Насолдин Потрошитель2000</p>
+                <p><a href="https://t.me/+tzno-Fd1vqwwZGQy" target="_blank">Телеграм &raquo;</a></p>
+            </div>
         </div>
         <div class="nomcard mem">
-            <img src="основные_номинации/mem.jpeg" alt="Пока нет">
-            <h3>Человек-мем года</h3>
-            <hr>
-            <p>ЛенскийZe</p>
-            <p><a href="https://t.me/+G6M126zelZcxMzk6" target="_blank">Телеграмм &raquo;</a></p>
+            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
+            <div class="content">
+                <img src="основные_номинации/mem.jpeg" alt="Пока нет" class="nom_photo">
+                <h3>Человек-мем года</h3>
+                <hr>
+                <p>ЛенскийZe</p>
+                <p><a href="https://t.me/+G6M126zelZcxMzk6" target="_blank">Телеграм &raquo;</a></p>
+            </div>
         </div>
         <div class="nomcard">
-            <img src="основные_номинации/queen.jpeg" alt="Пока нет">
-            <h3>SABL QUEEN</h3>
-            <hr>
-            <p>Алексей</p>
+            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
+            <div class="content">
+                <img src="основные_номинации/queen.jpeg" alt="Пока нет" class="nom_photo">
+                <h3>SABL QUEEN</h3>
+                <hr>
+                <p>Алексей</p>
+            </div>
         </div>
         <div class="nomcard">
-            <img src="основные_номинации/bomboclat.jpeg" alt="Пока нет">
-            <h3>Bomboclat года</h3>
-            <hr>
-            <p>Чак</p>
-            <p><a href="https://t.me/lyceum1535_exchange" target="_blank">Телеграмм &raquo;</a></p>
+            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
+            <div class="content">
+                <img src="основные_номинации/bomboclat.jpeg" alt="Пока нет" class="nom_photo">
+                <h3>Bomboclat года</h3>
+                <hr>
+                <p>Чак</p>
+                <p><a href="https://t.me/lyceum1535_exchange" target="_blank">Телеграм &raquo;</a></p>
+            </div>
         </div>
         <div class="nomcard">
-            <img src="основные_номинации/zavozer.png" alt="Пока нет">
-            <h3>Лучший завозер</h3>
-            <hr>
-            <p>Иван Седов</p>
+            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
+            <div class="content">
+                <img src="основные_номинации/zavozer.png" alt="Пока нет" class="nom_photo">
+                <h3>Лучший завозер</h3>
+                <hr>
+                <p>Иван Седов</p>
+            </div>
         </div>
         <div class="nomcard">
-            <img src="основные_номинации/praim.jpg" alt="Пока нет">
-            <h3>Прайм года</h3>
-            <hr>
-            <p>Егор Насолдин Потрошитель2000</p>
-            <p><a href="https://t.me/+tzno-Fd1vqwwZGQy" target="_blank">Телеграмм &raquo;</a></p>
+            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
+            <div class="content">
+                <img src="основные_номинации/praim.jpg" alt="Пока нет" class="nom_photo">
+                <h3>Прайм года</h3>
+                <hr>
+                <p>Егор Насолдин Потрошитель2000</p>
+                <p><a href="https://t.me/+tzno-Fd1vqwwZGQy" target="_blank">Телеграм &raquo;</a></p>
+            </div>
         </div>
     </div>
 
     <h2>ДОПОЛНИТЕЛЬНЫЕ НОМИНАЦИИ 2025</h2>
     <div class="extra_nom">
         <div class="nomcard">
-            <img src="дополнительные_номинации/teacher.jpg" alt="Пока нет">
-            <h3>Учитель года</h3>
-            <hr>
-            <p>Андрей Анатольевич Крылов</p>
-            <p><a href="https://t.me/lyceum1535/8863" target="_blank">Упоминание &raquo;</a></p>
+            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
+            <div class="content">
+                <img src="дополнительные_номинации/teacher.jpg" alt="Пока нет" class="nom_photo">
+                <h3>Учитель года</h3>
+                <hr>
+                <p>Андрей Анатольевич Крылов</p>
+                <p><a href="https://t.me/lyceum1535/8863" target="_blank">Упоминание &raquo;</a></p>
+            </div>
         </div>
         <div class="nomcard">
-            <img src="дополнительные_номинации/minecraft.jpg" alt="Пока нет">
-            <h3><span class="sma">Лучший майнкрафтер года</span></h3>
-            <hr>
-            <p>Егор Насолдин Потрошитель2000</p>
-            <p><a href="https://t.me/+tzno-Fd1vqwwZGQy" target="_blank">Телеграмм &raquo;</a></p>
+            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
+            <div class="content">
+                <img src="дополнительные_номинации/minecraft.jpg" alt="Пока нет" class="nom_photo">   
+                <h3><span class="sma">Лучший майнкрафтер года</span></h3>
+                <hr>
+                <p>Егор Насолдин Потрошитель2000</p>
+                <p><a href="https://t.me/+tzno-Fd1vqwwZGQy" target="_blank">Телеграм &raquo;</a></p>
+            </div>
         </div>
         <div class="nomcard">
-            <img src="дополнительные_номинации/feil.png" alt="Пока нет">
-            <h3>Фейл года</h3>
-            <hr>
-            <p>Сочинение Антона Плаксина</p>
+            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
+            <div class="content">
+                <img src="дополнительные_номинации/feil.png" alt="Пока нет" class="nom_photo">
+                <h3>Фейл года</h3>
+                <hr>
+                <p>Сочинение Антона Плаксина</p>
+            </div>
         </div>
         <div class="nomcard">
-            <img src="дополнительные_номинации/event.png" alt="Пока нет">
-            <h3>Событие года</h3>
-            <hr>
-            <p>Арсений на заключительном <br> этапе ВСОШ</p>
+            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
+            <div class="content">
+                <img src="дополнительные_номинации/event.png" alt="Пока нет" class="nom_photo">   
+                <h3>Событие года</h3>
+                <hr>
+                <p>Арсений на заключительном <br> этапе ВСОШ</p>
+            </div>
         </div>
         <div class="nomcard">
-            <img src="дополнительные_номинации/ParaGoda.jpg" alt="Пока нет">
-            <h3>Пара года</h3>
-            <hr>
-            <p>Арсений + Вика</p>
+            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
+            <div class="content">
+                <img src="дополнительные_номинации/ParaGoda.jpg" alt="Пока нет" class="nom_photo">
+                <h3>Пара года</h3>
+                <hr>
+                <p>Арсений + Вика</p>
+            </div>
         </div>
     </div>
             
             </div>
         </div>
-
+        <section class="after_before">
         <div id="etaps" class="etapi">
             <h2>Этапы премии SABL2026</h2>
 
@@ -295,16 +368,16 @@
                 <div class="circle">2</div>
                 <div class="text">
                     <strong>Прогрев</strong>
-                    <p>11 октября 2025 - ?? марта 2026</p>
+                    <p>11 октября 2025 - 23 февраля 2026</p>
                     <span class="status">Сейчас идёт</span>
                 </div>
             </div>
             
             <div class="etap">
-                <div class="circle">3</div>
+                <div class="circle circl_formed">3</div>
                 <div class="text">
-                    <strong>Голосования за доп номинации</strong>
-                    <p>?? марта 2026 - ?? марта 2026</p>
+                    <strong>Голосования за доп номинации и выдвижения организаторами</strong>
+                    <p>23 февраля 2026 - 14 марта 2026</p>
                 </div>
             </div>
             
@@ -312,20 +385,28 @@
                 <div class="circle">4</div>
                 <div class="text">
                     <strong>Приём заявок номинантов</strong>
-                    <p>?? марта 2026 - ?? апреля 2026</p>
+                    <p>15 марта 2026 - 31 марта 2026</p>
                 </div>
             </div>
 
             <div class="etap">
-                <div class="circle">5</div>
+                <div class="circle circl_formed">5</div>
                 <div class="text">
-                    <strong>Голосования за победителей</strong>
-                    <p>?? апреля 2026 - ?? мая 2026</p>
+                    <strong>Отбор 4 номинантов в различных номинациях</strong>
+                    <p>1 апреля 2026 - 24 апреля 2026</p>
                 </div>
             </div>
 
             <div class="etap">
                 <div class="circle">6</div>
+                <div class="text">
+                    <strong>Голосования за победителей</strong>
+                    <p>28 апреля 2026 - 7 мая 2026</p>
+                </div>
+            </div>
+
+            <div class="etap">
+                <div class="circle">7</div>
                 <div class="text">
                     <strong>Онлайн премия</strong>
                     <p>?? мая 2026</p>
@@ -333,17 +414,18 @@
             </div>
 
             <div class="etap">
-                <div class="circle">7</div>
+                <div class="circle">8</div>
                 <div class="text">
                     <strong>Награждение</strong>
                     <p>?? мая 2026</p>
                 </div>
             </div>
         </div>
+        </section>
 
         <section id="ans" class="answers">   
             <h2 class="que" >ВОПРОС-ОТВЕТ на самые важные вопросы</h2>
-            <p class="quea">Есть вопрос, <a href="https://t.me/+uUos6pZuvI4xMWNi" target="_blank">задай организаторам!</a></p>
+            <p class="quea">Есть вопрос, <a href="https://t.me/+NbMpMG2mndU0YjMy" target="_blank">задай организаторам!</a></p>
             <div class="queandans">
             
                 <ul class="menu">
@@ -353,8 +435,8 @@
                         <ul class="dropdown-menu">
                             <li>Они будет проходить в гугл формах, которые будут доступны на сайте или по ссылке. <br>
                                  Почему? <br>
-                                 Мне не хочется засорять память своего компа).
-                            </li>
+                                 Сервера дело небесплатное и защищать их нужно, а это сложно.
+                            </li> 
                         </ul>
                     </li>
                 
@@ -376,9 +458,9 @@
 
                     <li class="dropdown">
                         <input type="checkbox" id="dropdown-toggle-4" class="dropdown-toggle">
-                        <label for="dropdown-toggle-4">Зачем это? (Специально для Алексея Ахмадулина)</label>
+                        <label for="dropdown-toggle-4">Зачем это? Ты шиз?</label>
                         <ul class="dropdown-menu">
-                            <li>А почему нет. Всё во имя прикола и завоза!</li>
+                            <li>Да! А почему нет? Всё во имя прикола и завоза!</li>
                         </ul>
                     </li>
 
@@ -386,7 +468,7 @@
                         <input type="checkbox" id="dropdown-toggle-5" class="dropdown-toggle">
                         <label for="dropdown-toggle-5">Где-то будут оповещения?</label>
                         <ul class="dropdown-menu">
-                            <li>Есть сайт <a href="https://mikha4255.github.io/SABLNEWS/" target="_blank">с новостями премии</a>. Пока что, это всё, что есть.</a></li>
+                            <li>Есть сайт <a href="https://mikha4255.github.io/SABLNEWS/" target="_blank">с новостями премии</a>. Так же есть <a href="https://t.me/+NbMpMG2mndU0YjMy">Телеграм канал.</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -412,6 +494,7 @@
                 <li><a href="#ans">Ответы</a></li>
             </ul>
         </nav>
+        <!-- <a class="rules" href="вспомогательные_объекты/ПРАВИЛА проведения Конкурса «Strange Academics of.docx" target="_blank">Правила SABL</a> -->
          <p class="imp">SABL </p> 
           
     </footer>

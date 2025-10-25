@@ -1,27 +1,98 @@
-//function updateTimer() {
-//     const targetDate = new Date('2026-06-17T00:00:00').getTime();
-//     const now = new Date().getTime();
-//     const timeLeft = targetDate - now;
+'use strict'
 
-//     if (timeLeft < 0) {
-//         document.getElementById('timer').innerHTML = 'Время пришло!';
-//         return;
-//     }
+const first_btn = document.querySelector('.fuga1_3');
+const sxaxancjancnapijcnij = "MjAyNjA1MDk=";
+const closeBtn = document.querySelector('.close-modal');
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.modal-overlay');
+const modalTitle = document.querySelector('.modal-title');
+const modalText = document.querySelector('.modal-text');
+const bnt42 = document.getElementById('site42');
 
-//     const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-//     const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-//     const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-//     const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+first_btn.addEventListener('click', () => {
+    const title = first_btn.dataset.title; 
+    const text = first_btn.dataset.text;   
+    modalTitle.textContent = title;
+    modalText.textContent = text;
+    modal.classList.add('active');
+}); 
 
-//     document.getElementById('timer').innerHTML = 
-//         days + ' дней ' + 
-//         hours + ' часов ' + 
-//         minutes + ' минут ' + 
-//         seconds + ' секунд';
-//}
 
-//setInterval(updateTimer, 1000);
-//updateTimer();
+closeBtn.addEventListener('click', () => {
+  modal.classList.remove('active');
+});
+
+overlay.addEventListener('click', () => {
+  modal.classList.remove('active');
+});
+
+bnt42.addEventListener('click', () => {
+  window.open("https://yandex.ru/video/preview/6579578352626963874?text=42%20клип%20пятерка&path=yandex_search&parent-reqid=1761407840961505-17418252129132845094-balancer-l7leveler-kubr-yp-sas-20-BAL&from_type=vast").focus();
+});
+
+var first_link = false;
+
+document.forms.date.onsubmit = function(){
+    var message = this.code.value;
+    if (btoa(message) == sxaxancjancnapijcnij){
+        first_link = true;
+        modal.style.display = 'none';
+        first_btn.style.display = 'none';
+        console.log("Вот первая часть ссылки: https://d");
+    } else{
+        alert("Попробуй ещё раз!");
+    }
+    return false;
+}
+
+if(first_link){
+    console.log("Вот первая часть ссылки");
+}
+
+function updateTimer() {
+    const targetDate = new Date('2026-05-11T00:00:00').getTime();
+    const now = new Date().getTime();
+    const timeLeft = targetDate - now;
+
+    if (timeLeft < 0) {
+        document.getElementById('timer').innerHTML = 'Время пришло!';
+        return;
+    }
+
+    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+    document.getElementById('timer').innerHTML = 
+        days + ' дней ' + 
+        hours + ' часов ' + 
+        minutes + ' минут ' +  
+        seconds + ' секунд';
+}
+
+setInterval(updateTimer, 1000);
+updateTimer();
+
+
+function updateMessage() {
+    const message = document.getElementById('opi');
+    message.style.display = 'block';
+    if (window.innerWidth > 700) {
+        message.innerHTML = 'До приблизительной даты премии осталось:';
+        message.style.color = '#ff6600'
+        document.getElementById('timer').style.display = 'block';
+    } else {
+        message.innerHTML = 'Лучше используйте компьютерную версию сайта';
+        message.style.fontSize = '55px';
+        message.style.color = '#ae0606'
+        document.getElementById('timer').style.display = 'none';
+    }
+}
+
+updateMessage();
+
+window.addEventListener('resize', updateMessage);
 
 function showYear(event, year) {
     document.getElementById('year2025').style.display = 'none';
