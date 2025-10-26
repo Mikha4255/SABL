@@ -90,7 +90,7 @@ main{
 }
 
 .logo img{
-    height: 90px;
+    height: 120px;
 }
 
 .logo img:hover{
@@ -101,7 +101,8 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 42px;
+    padding: 25px;
+    padding-top: 32px;
     box-sizing: border-box;
     position: static;
     height: 125px;
@@ -189,11 +190,11 @@ hr {
 
 .img1{
     position: absolute;
-    height: 370px;
-    right: 2%;
+    height: 460px;
+    right: 5%;
     top: 140px;
-    box-shadow: 0px 0px 42px rgba(218, 4, 4, 0.599),
-                inset 0px 0px 42px rgba(218, 4, 4, 0.599);
+    box-shadow: 0px 0px 42px #ff6f00,
+                inset 0px 0px 42px #ff6600;
 }
 
 .img1:hover{
@@ -1135,7 +1136,7 @@ footer nav li:not(:last-child)::after {
 
   .img1{
     top: 25%;
-    left: 10%;
+    left: 25%;
     height: 250px;
     box-shadow: none;
   }
@@ -1274,7 +1275,7 @@ footer nav li:not(:last-child)::after {
 
 @media(min-width: 701px) and (max-width: 767px), (min-width: 768px) and (max-width: 820px), (min-width: 821px) and (max-width: 1024px){
   .logo img{
-    height: 55px;
+    height: 85px;
   }
 
   .fuga1_3{
@@ -1301,8 +1302,7 @@ footer nav li:not(:last-child)::after {
 
   .img1{
     top: 40%;
-    height: 250px;
-    width: 250px;
+    height: 300px;
     box-shadow: none;
   }
 
@@ -1334,10 +1334,18 @@ footer nav li:not(:last-child)::after {
   .decoration{
     display: none;
   }
+  
+  .orange{
+    height: 220vh;
+  }
+
+  .mainnom{
+    flex-direction: column;
+    align-items: center;
+  }
 
   .mainnom .nomcard{
     box-shadow: none;
-    border: solid 3px #e0e6e4;
   }
 
   .down-left, .down-right{
@@ -1345,7 +1353,7 @@ footer nav li:not(:last-child)::after {
   }
 
   .squarde_for_sabl{
-    left: 22%;
+    left: 26%;
   }
 
   .circl_formed{
