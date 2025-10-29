@@ -13,7 +13,7 @@ first_btn.addEventListener('click', () => {
     const title = first_btn.dataset.title; 
     const text = first_btn.dataset.text;   
     modalTitle.textContent = title;
-    modalText.textContent = text;
+    modalText.textContent = text; 
     modal.classList.add('active');
 }); 
 
@@ -109,3 +109,47 @@ function showYear(event, year) {
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.archive-btn').classList.add('active');
 });
+
+
+const images = [
+    "вспомогательные_объекты/SABL_1.png",
+    "вспомогательные_объекты/SABL_2.png",
+    "вспомогательные_объекты/SABL_3.png",
+    "вспомогательные_объекты/SABL_4.png",
+    "вспомогательные_объекты/SABL_5.png",
+    "вспомогательные_объекты/SABL_6.png",
+    "вспомогательные_объекты/SABL_7.png",
+    "вспомогательные_объекты/SABL_8.png",
+    "вспомогательные_объекты/SABL_9.png",
+    "вспомогательные_объекты/SABL_10.png",
+    "вспомогательные_объекты/SABL_11.png",
+    "вспомогательные_объекты/SABL_12.png",
+];
+
+let imgIndex = 0;
+const imgElement = document.getElementById('rotating-image');
+
+function preloadImages() {
+    images.forEach(src => { 
+        const img = new Image();
+        img.src = src;
+    });
+}
+
+function rotateImage() {
+    imgElement.classList.remove('loaded');
+    setTimeout(() => {
+        imgIndex = (imgIndex + 1) % images.length;
+        imgElement.src = images[imgIndex];
+        imgElement.classList.add('loaded');
+    }, 1000);
+}
+
+function initSlideshow() {
+    preloadImages();
+    imgElement.src = images[0];
+    imgElement.classList.add('loaded');
+    setInterval(rotateImage, 5500);
+}
+
+document.addEventListener('DOMContentLoaded', initSlideshow);
