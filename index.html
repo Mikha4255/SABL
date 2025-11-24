@@ -13,10 +13,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap">
     <link rel="icon" type="image/png" sizes="32x32" href="вспомогательные_объекты/sabl_previe.png">
     <link rel="stylesheet" href="newstyle.css">
-</head> 
+</head>  
 <body> 
     <div class="fixed_header">
-        <header> 
+        <header>  
             <div class="logo">
                 <a href="https://t.me/+J8AarAYAgAY5ZTNi" target="_blank"><img src="вспомогательные_объекты/logo_new_2.png" alt="SABL"></a>
             </div>
@@ -32,25 +32,31 @@
         <hr>
     </div>
     <main>
-        <img class="fuga1_3" src="вспомогательные_объекты/fuga_42.png" data-title="1/3" data-text="Что же ты нашёл фугу - первый ключ к получению чего интересненького (квест не закончен). Введите сюда день победы следущего года на китайкий манер без пробелов и ведущими нулями у дат. Потом посмотри в консоль." alt="42_фуга"> 
+        <div class="quiz_finish">
+            <img src="вспомогательные_объекты/finish.png" alt="42">
+            <p id="text_finish"></p>
+        </div>
+
+        <img class="fuga1_3" src="вспомогательные_объекты/fuga_42.png" data-title="1/3" data-text="Что же ты нашёл фугу - первый ключ к получению чего интересненького. Введите сюда день победы следущего года на китайкий манер без пробелов и ведущими нулями у дат. Потом посмотри в консоль и ищи на сайте что-то от Мишани." alt="42_фуга"> 
         <div class="modal">
             <div class="modal-overlay"></div>
             <div class="modal-content"> 
                 <h2 class="modal-title">Заголовок</h2>
                 <p class="modal-text">Текст</p>
-                <form name="date">
-                    <input type="number" id="code" name="code" placeholder="Кодом является день победы следущего года">
-                    <input type="submit" value="Проверить">
+                <form id="modal_form" name="date">
+                    <input class="goyda" type="number" id="code" name="code" placeholder="Кодом является день победы следущего года">
+                    <input class="check" type="submit" value="Проверить">
                 </form>
                 <br>
                 <button class="close-modal">Закрыть</button>
-                <br>
+                <br> 
                 <button id="site42" class="open-42">42</button>
             </div>
         </div>
         <div class="import">
             <p id="opi">Лучше всего используйте компьютерную версию сайта!!!</p>
             <div id="timer"></div>
+            <img class="a5opka2_3" src="https://5opka.ru/assets/img/5opka-slider-twitch.png" data-title="2/3" data-text="Ты нашёл 5opka - второй ключ к получению чего интересненького. Введите сюда ответ на вопрос жизни, вселенной и вообще. Потом посмотри в консоль." alt="42_5opka"> 
         </div>
     <div class="to_center"> 
         <div class="info">
@@ -83,7 +89,7 @@
                         Стань частью истории и выбери<br>
                         тех, кто по-настоящему достоин<br>
                         стать победителем SABL 2026.<br>
-                <span class="non"><a href="код/index1.html" target="_blank">&laquo;Ссылка на онлайн премию&raquo;</a> - закончена</span>
+                <span class="non"><a href="https://rutube.ru/video/private/b8414d21b51a5f4bd421c9531c6091f6/?p=VSAcTLZGe9m9Vn6gAtQdBA" target="_blank">&laquo;Ссылка на премию SABL2025&raquo;</a></span>
                 </p>
                 </div>  
             </div>
@@ -104,18 +110,10 @@
                  сразятся bomboclatы в этом году.</p>
                 <div class="mainnom">
                     <div class="nomcard">
-                        <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
-                        <div class="content">
-                            <img src="основные_номинации/king_main.png" alt="Пока нет" class="nom_photo">
-                            <h3>SABL KING</h3>
-                        </div>
+                        <img class="border_frame" src="вспомогательные_объекты/SABL_KING.png" alt="border">
                     </div>
                     <div class="nomcard">
-                        <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
-                        <div class="content">
-                            <img src="основные_номинации/mem_main.png" alt="Пока нет" class="nom_photo">
-                            <h3>Человек-мем года</h3>
-                        </div>
+                        <img class="border_frame mem_goda" src="вспомогательные_объекты/SABL_MEM.png" alt="border">
                     </div>
                 </div>
                 <img class="decoration dec_pos_1" alt="Декорация" loading="lazy" src="вспомогательные_объекты/char-decoration-k.svg">
@@ -412,7 +410,7 @@
             <div class="etap">
                 <div class="circle circl_formed">5</div>
                 <div class="text">
-                    <strong>Отбор 4 номинантов в различных номинациях</strong>
+                    <strong>Отбор 4-6 номинантов в различных номинациях</strong>
                     <p>1 апреля 2026 - 24 апреля 2026</p>
                 </div>
             </div>
@@ -477,7 +475,7 @@
 
                     <li class="dropdown">
                         <input type="checkbox" id="dropdown-toggle-4" class="dropdown-toggle">
-                        <label for="dropdown-toggle-4">Зачем это? Ты шиз?</label>
+                        <label for="dropdown-toggle-4">Зачем это?</label>
                         <ul class="dropdown-menu">
                             <li>Да! А почему нет? Всё во имя прикола и завоза!</li>
                         </ul>
@@ -495,6 +493,7 @@
         </section>
     </main>
     <footer>
+        <img class="a42_3" src="вспомогательные_объекты/42-братуха-пятерка.gif" data-title="3/3" data-text="Ты нашёл 42 движение - последний ключ к получению чего интересненького. Введите сюда год крещения Руси. Потом посмотри в консоль." alt="42_5opka"> 
         <p>Полезные ссылки: 
             <ul>
               <li><a href="https://mikha4255.github.io/SABLNEWS/" target="_blank">Сайт с новостями премии</a></li>

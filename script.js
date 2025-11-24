@@ -1,13 +1,52 @@
 'use strict'
 
+//"Вот ты сюда заглянул, чтобы не проходить квест, а ведь я старался. Он простой. Пройти его можно буквально за 5 минут. Пройди пж"
+//"Вот ты сюда заглянул, чтобы не проходить квест, а ведь я старался. Он простой. Пройти его можно буквально за 5 минут. Пройди пж"
+//"Вот ты сюда заглянул, чтобы не проходить квест, а ведь я старался. Он простой. Пройти его можно буквально за 5 минут. Пройди пж"
+//"Вот ты сюда заглянул, чтобы не проходить квест, а ведь я старался. Он простой. Пройти его можно буквально за 5 минут. Пройди пж"
+//"Вот ты сюда заглянул, чтобы не проходить квест, а ведь я старался. Он простой. Пройти его можно буквально за 5 минут. Пройди пж"
+//"Вот ты сюда заглянул, чтобы не проходить квест, а ведь я старался. Он простой. Пройти его можно буквально за 5 минут. Пройди пж"
+//"Вот ты сюда заглянул, чтобы не проходить квест, а ведь я старался. Он простой. Пройти его можно буквально за 5 минут. Пройди пж"
+//"Вот ты сюда заглянул, чтобы не проходить квест, а ведь я старался. Он простой. Пройти его можно буквально за 5 минут. Пройди пж"
+//"Вот ты сюда заглянул, чтобы не проходить квест, а ведь я старался. Он простой. Пройти его можно буквально за 5 минут. Пройди пж"
+//"Вот ты сюда заглянул, чтобы не проходить квест, а ведь я старался. Он простой. Пройти его можно буквально за 5 минут. Пройди пж"
+//"Вот ты сюда заглянул, чтобы не проходить квест, а ведь я старался. Он простой. Пройти его можно буквально за 5 минут. Пройди пж"
+//"Вот ты сюда заглянул, чтобы не проходить квест, а ведь я старался. Он простой. Пройти его можно буквально за 5 минут. Пройди пж"
+//"Вот ты сюда заглянул, чтобы не проходить квест, а ведь я старался. Он простой. Пройти его можно буквально за 5 минут. Пройди пж"
+//"Вот ты сюда заглянул, чтобы не проходить квест, а ведь я старался. Он простой. Пройти его можно буквально за 5 минут. Пройди пж"
+//"Вот ты сюда заглянул, чтобы не проходить квест, а ведь я старался. Он простой. Пройти его можно буквально за 5 минут. Пройди пж"
+//"Вот ты сюда заглянул, чтобы не проходить квест, а ведь я старался. Он простой. Пройти его можно буквально за 5 минут. Пройди пж"
+//"Вот ты сюда заглянул, чтобы не проходить квест, а ведь я старался. Он простой. Пройти его можно буквально за 5 минут. Пройди пж"
+//"Вот ты сюда заглянул, чтобы не проходить квест, а ведь я старался. Он простой. Пройти его можно буквально за 5 минут. Пройди пж"
 const first_btn = document.querySelector('.fuga1_3');
+const second_btn = document.querySelector('.a5opka2_3');
+const third_btn = document.querySelector('.a42_3');
 const sxaxancjancnapijcnij = "MjAyNjA1MDk=";
+const anjcndbcishbcihdbihkcanocjan = "NDI=";
+const qidqouhisygutfyrytufiguohiphcugyft = "OTg4";
 const closeBtn = document.querySelector('.close-modal');
+let finishing = document.querySelector('.quiz_finish');
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.modal-overlay');
 const modalTitle = document.querySelector('.modal-title');
 const modalText = document.querySelector('.modal-text');
+const bnt = document.querySelector('.goyda');
 const bnt42 = document.getElementById('site42');
+let first_link = true;
+let second_link = true;
+let third_link = true;
+let finish = "not_finish";
+
+function updateStageUI() { 
+  if(finish == "not_finish"){
+    console.log("Не закончено");
+  } else{
+    alert("Поднимись на верх");
+    finishing.style.display = 'flex';
+    finishing.style.opacity = '1';
+    document.getElementById("text_finish").innerText = "Ну что, квест завёршён теперь тебе открыт папка с правилами премии SABL2026, а также видосик, который и так будет запощен в ТГ канале.";
+  }
+}
 
 first_btn.addEventListener('click', () => {
     const title = first_btn.dataset.title; 
@@ -17,6 +56,32 @@ first_btn.addEventListener('click', () => {
     modal.classList.add('active');
 }); 
 
+second_btn.addEventListener('click', () => {
+    const title = second_btn.dataset.title; 
+    const text = second_btn.dataset.text;   
+    modalTitle.textContent = title;
+    modalText.textContent = text; 
+    document.querySelector('.goyda').placeholder = "Введите ответ на вопрос жизни, вселенной и вообще";
+    modal.classList.add('active');
+});
+
+third_btn.addEventListener('click', () => {
+    const title = third_btn.dataset.title; 
+    const text = third_btn.dataset.text;   
+    modalTitle.textContent = title;
+    modalText.textContent = text; 
+    document.querySelector('.goyda').placeholder = "Введите год крещения Руси";
+    modal.classList.add('active');
+});
+
+bnt.addEventListener('focus', () => {
+  bnt.style.borderColor = "#ffd500ff";
+  bnt.style.outline = 'none';
+});
+
+bnt.addEventListener('blur', () => {
+  bnt.style.borderColor = '';
+});
 
 closeBtn.addEventListener('click', () => {
   modal.classList.remove('active');
@@ -30,32 +95,46 @@ bnt42.addEventListener('click', () => {
   window.open("https://yandex.ru/video/preview/6579578352626963874?text=42%20клип%20пятерка&path=yandex_search&parent-reqid=1761407840961505-17418252129132845094-balancer-l7leveler-kubr-yp-sas-20-BAL&from_type=vast").focus();
 });
 
-var first_link = false;
+let form = document.querySelector("#modal_form");
+form.addEventListener("submit", function(event){
+  event.preventDefault();
+  let data = new FormData(form);
+  let user_answ = data.get("code");
+  if(btoa(user_answ) == sxaxancjancnapijcnij && first_link){
+      console.log("Вот первая часть ссылки: https://d");
+      first_btn.style.display = 'none';
+      second_btn.style.display = 'block';
+      form.reset(); 
+      modal.classList.remove('active');
+      first_link = false;
+  } else if(btoa(user_answ) == anjcndbcishbcihdbihkcanocjan && second_link){
+      console.log("Вот вторая часть ссылки: isk.yandex.ru/");
+      second_btn.style.display = 'none';
+      third_btn.style.display = 'block';
+      form.reset();
+      modal.classList.remove('active');
+      second_link = false;
+  } else if(btoa(user_answ) == qidqouhisygutfyrytufiguohiphcugyft && third_link){
+      console.log("Вот третья часть ссылки: d/MdR_dvpZVhAwLA");
+      third_btn.style.display = 'none';
+      modal.classList.remove('active');
+      third_link = false;
+      form.reset();
+      finish = "finished";
+      updateStageUI();
+  } else{
+      alert("Попробуй ещё раз")
+  }
+});
 
-document.forms.date.onsubmit = function(){
-    var message = this.code.value;
-    if (btoa(message) == sxaxancjancnapijcnij){
-        first_link = true;
-        modal.style.display = 'none';
-        first_btn.style.display = 'none';
-        console.log("Вот первая часть ссылки: https://d");
-    } else{
-        alert("Попробуй ещё раз!");
-    }
-    return false;
-}
-
-if(first_link){
-    console.log("Вот первая часть ссылки");
-}
 
 function updateTimer() {
-    const targetDate = new Date('2026-05-11T00:00:00').getTime();
+    const targetDate = new Date('2026-05-11T19:00:00').getTime();
     const now = new Date().getTime();
     const timeLeft = targetDate - now;
 
     if (timeLeft < 0) {
-        document.getElementById('timer').innerHTML = 'Время пришло!';
+        document.getElementById('timer').innerHTML = 'ВСЕ НА ПРЕМИЮ';
         return;
     }
 
