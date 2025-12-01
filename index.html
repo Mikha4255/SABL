@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comforter&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bellota:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap">
-    <link rel="icon" type="image/png" sizes="32x32" href="вспомогательные_объекты/sabl_previe.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="вспомогательные_объекты/sabl_web.png">
     <link rel="stylesheet" href="newstyle.css">
 </head>  
 <body> 
@@ -107,14 +107,14 @@
             <div class="orange">
                 <h2 class="h2nom">НОМИНАЦИИ</h2>
                 <p class="pnom"> Основные номинации SABL, за которые <br>
-                 сразятся bomboclatы в этом году.</p>
+                 сразятся bomboclatы в этом году.</p> 
                 <div class="mainnom">
                     <div class="nomcard">
                         <img class="border_frame" src="вспомогательные_объекты/SABL_KING.png" alt="border">
                     </div>
                     <div class="nomcard">
                         <img class="border_frame mem_goda" src="вспомогательные_объекты/SABL_MEM.png" alt="border">
-                    </div>
+                    </div> 
                 </div>
                 <img class="decoration dec_pos_1" alt="Декорация" loading="lazy" src="вспомогательные_объекты/char-decoration-k.svg">
                 <img class="decoration dec_pos_2" alt="Декорация" loading="lazy" src="вспомогательные_объекты/char-decoration-2.svg">
@@ -131,6 +131,16 @@
     </div>
     </section>
 
+    <div class="modal2">
+        <div class="modal-overlay2"></div>
+        <div class="modal-content2">
+            <h2 class="modal2-title">Заголовок</h2>
+            <img src="" alt="Номинация" class="modal2-img">
+            <p class="modal2-text">Описание</p>
+            <button class="close-modal2">Закрыть</button>
+        </div>
+    </div>
+
 
     <div class="nom" id="nom">
 
@@ -139,13 +149,14 @@
             <button class="archive-btn" onclick="showYear(event, '2025')">2025</button>
         </div>
 
-<!-- 2026 год (активный по умолчанию) -->
+<!-- 2026 год -->
 <div id="year2026" class="archive-year">
     
     <h2>ОСНОВНЫЕ НОМИНАЦИИ 2026</h2>
+    <p class="disc">Нажми на карточки, чтобы посмотреть описание номинаций</p>
 
     <div class="most_nom">
-        <div class="nomcard">
+        <div class="nomcard" data-title="SABL KING" data-text="Барень из одного из трёх классов, который имеет авторитет и много делает, чтобы скрасить обычный день" data-img="основные_номинации/sabl_king_disc.png">
             <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
             <div class="content">
                 <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo">
@@ -154,16 +165,16 @@
                 <p>NONE</p>
             </div>
         </div>
-        <div class="nomcard mem">
+        <div class="nomcard" data-title="Человек-мем года" data-text="Все смешные моменты и мемы в классе, которые ты знаешь, связаны именно с ним" data-img="основные_номинации/sabl_mem_disc.png">
             <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
             <div class="content">
-                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo">
+                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo mem">
                 <h3>Человек-мем года</h3>
                 <hr>
                 <p>NONE</p>
             </div>
         </div>
-        <div class="nomcard">
+        <div class="nomcard" data-title="SABL QUEEN" data-text="Девушка из одного из трёх классов (но может и тот, кто очень на неё смахивает, не внешностью, если вы поняли о чём мы), которая имеет авторитет и много делает, чтобы скрасить обычный день" data-img="основные_номинации/sabl_queen_disc.png">
             <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
             <div class="content">
                 <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo">
@@ -172,7 +183,7 @@
                 <p>NONE</p>
             </div>
         </div>
-        <div class="nomcard">
+        <div class="nomcard" data-title="Bomboclat года" data-text="Самый «взрывной» человек, его зажигательные моменты знают все" data-img="основные_номинации/sabl_bomboclat_disc.png">
             <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
             <div class="content">
                 <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo">
@@ -181,7 +192,7 @@
                 <p>NONE</p>
             </div>
         </div>
-        <div class="nomcard">
+        <div class="nomcard" data-title="Лучший завозер" data-text="Его завозы помнят все и их можно назвать легендарными " data-img="основные_номинации/sabl_zavoz_disc.png">
             <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
             <div class="content">
                 <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo">
@@ -190,7 +201,7 @@
                 <p>NONE</p>
             </div>
         </div>
-        <div class="nomcard">
+        <div class="nomcard" data-title="Прайм года" data-text="Прайм этого человека видели или видят все" data-img="основные_номинации/sabl_praim_disc.png">
             <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
             <div class="content">
                 <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo">
@@ -395,7 +406,7 @@
                 <div class="circle circl_formed">3</div>
                 <div class="text">
                     <strong>Голосования за доп номинации или выдвижение организаторами</strong>
-                    <p>23 февраля 2026 - 14 марта 2026</p>
+                    <p>23 февраля 2026 - 8 марта 2026</p>
                 </div>
             </div>
             
@@ -403,15 +414,15 @@
                 <div class="circle">4</div>
                 <div class="text">
                     <strong>Приём заявок номинантов</strong>
-                    <p>15 марта 2026 - 31 марта 2026</p>
+                    <p>16 марта 2026 - 29 марта 2026</p>
                 </div>
             </div>
 
             <div class="etap">
                 <div class="circle circl_formed">5</div>
                 <div class="text">
-                    <strong>Отбор 4-6 номинантов в различных номинациях</strong>
-                    <p>1 апреля 2026 - 24 апреля 2026</p>
+                    <strong>Отбор нескольких номинантов в различных номинациях</strong>
+                    <p>6 апреля 2026 - 19 апреля 2026</p>
                 </div>
             </div>
 
@@ -419,7 +430,7 @@
                 <div class="circle">6</div>
                 <div class="text">
                     <strong>Голосования за победителей</strong>
-                    <p>28 апреля 2026 - 7 мая 2026</p>
+                    <p>25 апреля 2026 - 3 мая 2026</p>
                 </div>
             </div>
 
@@ -443,7 +454,7 @@
 
         <section id="ans" class="answers">   
             <h2 class="que" >ВОПРОС-ОТВЕТ на самые важные вопросы</h2>
-            <p class="quea">Есть вопрос, <a href="https://t.me/+NbMpMG2mndU0YjMy" target="_blank">задай организаторам!</a></p>
+            <p class="quea">Есть вопрос, <a href="https://t.me/+J8AarAYAgAY5ZTNi" target="_blank">задай организаторам!</a></p>
             <div class="queandans">
             
                 <ul class="menu">
@@ -475,7 +486,7 @@
 
                     <li class="dropdown">
                         <input type="checkbox" id="dropdown-toggle-4" class="dropdown-toggle">
-                        <label for="dropdown-toggle-4">Зачем это?</label>
+                        <label for="dropdown-toggle-4">Зачем это? Ты в курсе, что это никому не нужно?</label>
                         <ul class="dropdown-menu">
                             <li>Да! А почему нет? Всё во имя прикола и завоза!</li>
                         </ul>
@@ -498,11 +509,12 @@
             <ul>
               <li><a href="https://mikha4255.github.io/SABLNEWS/" target="_blank">Сайт с новостями премии</a></li>
               <li><a href="https://t.me/+J8AarAYAgAY5ZTNi">Телеграм канал</a></li> 
-              <li>Cвязь с организаторами по почте: <a href="mailto:anton2000.dom@gmail.com" target="_blank">anton2000.dom@gmail.com</a></li>
+              <li><a href="mailto:sablaward1535@gmail.com" target="_blank"></a>Cвязь с организаторами по почте: sablaward1535@gmail.com</a></li>
               <li><a href="https://t.me/AuraPlusGameBotApiBot" target="_blank">Первый Спонсор</a></li>
               <li><a href="https://t.me/slay_awards" target="_blank">Второй Спонсор</a></li>
               <li><a href="https://t.me/joper5" target="_blank">Третий Спонсор</a></li>
               <li><a href="https://t.me/+tzno-Fd1vqwwZGQy" target="_blank">Четвёртый Спонсор</a></li>
+              <li><a href="https://disk.yandex.ru/i/4OpLfF8TMFqYwA" target="_blank">Правила Премии SABL</a></li>
           </ul>
         </p>
         <nav>

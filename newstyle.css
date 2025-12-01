@@ -12,13 +12,13 @@ body {
     overflow-x: hidden;
     margin: 0;
     padding: 0; 
-    width: 100%;
+    width: 100%; 
 }
 
 main{
     overflow-y: hidden;
     overflow-x: hidden;
-}
+} 
 
 .quiz_finish{
   margin-top: 150px;
@@ -668,6 +668,12 @@ hr {
     text-align: center;
 }
 
+.disc{
+  color: #ff4d00;
+  font-size: 28px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
 .most_nom{
     display: flex;
     gap: 60px;
@@ -738,6 +744,118 @@ hr {
     color: #1d1102;
     transform: scale(1.05);
 }
+
+.modal2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.modal2.active {
+    pointer-events: all;
+}
+
+.modal2.visible {
+    opacity: 1;
+}
+
+.modal-overlay2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 1001;
+}
+
+.modal-content2 {
+    position: relative;
+    background: #1a0c03;
+    width: 60%;
+    max-height: 90%;
+    padding: 20px;
+    border-radius: 15px;
+    z-index: 1002;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    transform: translateY(-100px) scale(0.7);
+    transition: transform 0.42s ease, opacity 0.42s ease;
+}
+
+.modal2.visible .modal-content2 {
+    transform: translateY(0) scale(1);
+}
+
+.modal2-img {
+    max-width: 60%;
+    margin: 20px 0;
+    object-fit: contain;
+}
+
+.close-modal2 {
+    padding: 10px 20px;
+    background: #ff6600;
+    color: #111;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.close-modal2:hover{
+  transition: 0.55s;
+  transform: scale(1.05);
+  color: #ebdecc;
+  background-color: #e16200;
+}
+
+.modal2-title,
+.modal2-text,
+.modal2-img {
+    opacity: 0;
+    transform: translateY(-100px);
+    transition: opacity 0.55s ease, transform 0.7s ease;
+}
+
+.modal2.visible .modal2-title,
+.modal2.visible .modal2-text,
+.modal2.visible .modal2-img {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.modal2-title {
+    transition-delay: 0.1s;
+    font-size: 32px;
+    color: #ff4d00;
+}
+
+.modal2-text {
+    transition-delay: 0.2s;
+    font-size: 22px;
+    color: #ff4d00;
+}
+
+.modal2-img {
+    transition-delay: 0.3s;
+    width: 350px;
+    height: 420px;
+}
+
+
 
 .archive-year {
     margin: 20px 0;
