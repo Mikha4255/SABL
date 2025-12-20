@@ -16,19 +16,41 @@ body {
 }
 
 main{
+    margin-top: 150px;
     overflow-y: hidden;
     overflow-x: hidden;
 } 
 
-.quiz_finish{
-  margin-top: 150px;
+.hype{ 
+  display: flex;
+  justify-content: center;
+  font-size: 42px;
+  color: #ff4800;
+}
+
+#hypeIndexBox{
+  display: flex;
   text-align: center;
-  color: #ff4d00;
+}
+
+.quiz_finish{
+  text-align: center;
+  color: #00ccff;
   font-size: 35px;
   display: none;
   flex-direction: column-reverse;
   align-items: center;
   opacity: 0;
+}
+
+.quiz_finish a{
+  text-decoration: none;
+  color: #f25b50;
+}
+
+.quiz_finish a:hover{
+  color: #ddf0eb;
+  transition: 0.42s;
 }
 
 .quiz_finish img{
@@ -179,6 +201,38 @@ main{
 
 .modal.active .modal-content {
   transform: translateY(0);
+}
+
+.reset-progress, .reset-progress2{
+    min-width: 350px;
+    min-height: 32px;
+    font-size: 20px;
+    color: #9e0f0f;
+    background-color: #ff6600;
+    border: 3px solid #e16200;
+    border-radius: 21px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.reset-progress2{
+  display: none;
+  margin-bottom: 12px;
+}
+
+.reset-progress:hover, .reset-progress2:hover{
+    background-color: #ff4500;
+    transform: scale(1.05);
+}
+
+.reset-progress:active, .reset-progress2.active{
+    transform: scale(0.95);
+}
+
+/* Можно добавить иконку предупреждения перед текстом */
+.reset-progress::before, .reset-progress2::before{
+    content: "⚠️ ";
 }
 
 
@@ -857,12 +911,18 @@ hr {
     margin: 20px 0;
 }
 
+.after_before{
+  position: relative;
+  margin: 40px 0px;
+}
+
 .etapi {
   font-family: Arial, sans-serif;
   display: flex;
-  position: relative;
   flex-direction: column;
-  margin-left: 25%;
+  max-width: 800px;
+  width: 100%;
+  margin: 40px auto;
   padding-bottom: 55px;
 }
 
@@ -938,9 +998,6 @@ hr {
   overflow-x: hidden;
 }
 
-.after_before{
-  position: relative;
-}
 
 .answers::after, .after_before::after, .nom::after{
   content: "";

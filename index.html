@@ -32,9 +32,15 @@
         <hr>
     </div>
     <main>
+        <div class="hype">
+            <div id="hypeIndexBox">
+                Загружаем хайп...
+            </div>
+        </div>
         <div class="quiz_finish">
             <img src="вспомогательные_объекты/finish.png" alt="42">
-            <p id="text_finish"></p>
+            <button class="reset-progress2">Сбросить прогресс</button>
+            <div id="text_finish"></div>
         </div>
 
         <img class="fuga1_3" src="вспомогательные_объекты/fuga_42.png" data-title="1/3" data-text="Что же ты нашёл фугу - первый ключ к получению чего интересненького. Введите сюда день победы следущего года на китайкий манер без пробелов и ведущими нулями у дат. Потом посмотри в консоль и ищи на сайте что-то от Мишани." alt="42_фуга"> 
@@ -49,6 +55,7 @@
                 </form>
                 <br>
                 <button class="close-modal">Закрыть</button>
+                <button class="reset-progress">Сбросить прогресс</button>
                 <br> 
                 <button id="site42" class="open-42">42</button>
             </div>
@@ -69,10 +76,10 @@
             <div class="textset p6"> ПРИ ПОДДЕРЖКЕ</div>
             <!-- <a href="https://rutube.ru/video/private/b8414d21b51a5f4bd421c9531c6091f6/?p=VSAcTLZGe9m9Vn6gAtQdBA"    target="_blank" class="btn-orange">Смотреть запись</a> -->
             <a href="https://t.me/+J8AarAYAgAY5ZTNi" target="_blank"><img class="img1" src="вспомогательные_объекты/picture_SABL.png" alt="Chanle_of_SABL"></a>
-            <a href="https://t.me/AuraPlusGameBotApiBot" target="_blank"><img class="sup1 kong" src="вспомогательные_объекты/SUPP1.jpg" alt="Спонсор"></a>
+            <a href="mailo::dolgachev.l@liceum1535.ru" target="_blank"><img class="sup1 kong" src="вспомогательные_объекты/lev.jpg" alt="Спонсор"></a>
             <a href="https://t.me/slay_awards" target="_blank"><img class="sup2 kong" src="вспомогательные_объекты/slay.gif" alt="Спонсор"></a>
             <a href="https://t.me/joper5" target="_blank"><img class="sup3 kong" src="вспомогательные_объекты/SUPP3.jpg" alt="Спонсор"></a>
-            <a href="https://t.me/+tzno-Fd1vqwwZGQy" target="_blank"><img class="sup4 kong" src="вспомогательные_объекты/new_sup.jpg" alt="Спонсор"></a>
+            <a href="https://i.pinimg.com/originals/5e/fb/38/5efb38bb7c1c6bf87e84d39c21643c82.jpg?nii=t" target="_blank"><img class="sup4 kong" src="вспомогательные_объекты/chit.png" alt="Спонсор"></a>
         </div>  
     </div>
 
@@ -190,7 +197,7 @@
                 <h3>Bomboclat года</h3>
                 <hr>
                 <p>NONE</p>
-            </div>
+            </div> 
         </div>
         <div class="nomcard" data-title="Лучший завозер" data-text="Его завозы помнят все и их можно назвать легендарными " data-img="основные_номинации/sabl_zavoz_disc.png">
             <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border">
@@ -381,75 +388,66 @@
             </div>
         </div>
         <section class="after_before">
-        <div id="etaps" class="etapi">
-            <h2>Этапы премии SABL2026</h2>
+            <div id="etaps" class="etapi">
+                <h2>Этапы премии SABL2026</h2>
+                <div class="etap noactive">
+                    <div class="circle">1</div>
+                    <div class="text">
+                        <strong>Сидим не рыпаемся</strong>
+                        <p>26 июня 2025 - 11 октября 2025</p>
+                        <span class="status_1">Прошёл</span>
+                    </div>
+                </div>
 
-            <div class="etap noactive">
-                <div class="circle">1</div>
-                <div class="text">
-                    <strong>Сидим не рыпаемся</strong>
-                    <p>26 июня 2025 - 11 октября 2025</p>
-                    <span class="status_1">Прошёл</span>
+                <div class="etap active">
+                    <div class="circle">2</div>
+                    <div class="text">
+                        <strong>Прогрев</strong>
+                        <p>11 октября 2025 - 23 февраля 2026</p>
+                        <span class="status">Сейчас идёт</span>
+                    </div>
                 </div>
-            </div>
+                
+                <div class="etap">
+                    <div class="circle circl_formed">3</div>
+                    <div class="text">
+                        <strong>Голосования за доп номинации</strong>
+                        <p>23 февраля 2026 - 8 марта 2026</p>
+                    </div> 
+                </div>
 
-            <div class="etap active">
-                <div class="circle">2</div>
-                <div class="text">
-                    <strong>Прогрев</strong>
-                    <p>11 октября 2025 - 23 февраля 2026</p>
-                    <span class="status">Сейчас идёт</span>
+                <div class="etap">
+                    <div class="circle circl_formed">4</div>
+                    <div class="text">
+                        <strong>Отбор нескольких номинантов в различных номинациях</strong>
+                        <p>23 марта 2026 - 5 апреля 2026</p>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="etap">
-                <div class="circle circl_formed">3</div>
-                <div class="text">
-                    <strong>Голосования за доп номинации или выдвижение организаторами</strong>
-                    <p>23 февраля 2026 - 8 марта 2026</p>
-                </div>
-            </div>
-            
-            <div class="etap">
-                <div class="circle">4</div>
-                <div class="text">
-                    <strong>Приём заявок номинантов</strong>
-                    <p>16 марта 2026 - 29 марта 2026</p>
-                </div>
-            </div>
 
-            <div class="etap">
-                <div class="circle circl_formed">5</div>
-                <div class="text">
-                    <strong>Отбор нескольких номинантов в различных номинациях</strong>
-                    <p>6 апреля 2026 - 19 апреля 2026</p>
+                <div class="etap">
+                    <div class="circle">5</div>
+                    <div class="text">
+                        <strong>Голосования за победителей</strong>
+                        <p>13 апреля 2026 - 30 апреля 2026</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="etap">
-                <div class="circle">6</div>
-                <div class="text">
-                    <strong>Голосования за победителей</strong>
-                    <p>25 апреля 2026 - 3 мая 2026</p>
+                <div class="etap">
+                    <div class="circle">6</div>
+                    <div class="text">
+                        <strong>Онлайн премия</strong>
+                        <p>?? мая 2026</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="etap">
-                <div class="circle">7</div>
-                <div class="text">
-                    <strong>Онлайн премия</strong>
-                    <p>?? мая 2026</p>
+                <div class="etap">
+                    <div class="circle">7</div>
+                    <div class="text">
+                        <strong>Награждение</strong>
+                        <p>?? мая 2026</p>
+                    </div>
                 </div>
             </div>
-
-            <div class="etap">
-                <div class="circle">8</div>
-                <div class="text">
-                    <strong>Награждение</strong>
-                    <p>?? мая 2026</p>
-                </div>
-            </div>
-        </div>
         </section>
 
         <section id="ans" class="answers">   
@@ -499,6 +497,14 @@
                             <li>Есть сайт <a href="https://mikha4255.github.io/SABLNEWS/" target="_blank">с новостями премии</a>. Так же есть <a href="https://t.me/+J8AarAYAgAY5ZTNi">Телеграм канал.</a></li>
                         </ul>
                     </li>
+
+                    <li class="dropdown">
+                        <input type="checkbox" id="dropdown-toggle-6" class="dropdown-toggle">
+                        <label for="dropdown-toggle-6">Зачем нужен сайт?</label>
+                        <ul class="dropdown-menu">
+                            <li>На сайте будет проходит основные голосования. Ссылки на ПРЯМОЕ голосование в <a href="https://t.me/+J8AarAYAgAY5ZTNi">Телеграм канале</a> на будет, только на сайт в секцию "Голосование", когда она будет доступна.</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </section>
@@ -525,7 +531,6 @@
                 <li><a href="#ans">Ответы</a></li>
             </ul>
         </nav>
-        <!-- <a class="rules" href="вспомогательные_объекты/ПРАВИЛА проведения Конкурса «Strange Academics of.docx" target="_blank">Правила SABL</a> -->
          <p class="imp">SABL </p> 
           
     </footer>

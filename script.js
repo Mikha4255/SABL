@@ -25,6 +25,8 @@ const sxaxancjancnapijcnij = "MjAyNjA1MDk=";
 const anjcndbcishbcihdbihkcanocjan = "NDI=";
 const qidqouhisygutfyrytufiguohiphcugyft = "OTg4";
 const closeBtn = document.querySelector('.close-modal');
+const resetBtn = document.querySelector('.reset-progress');
+const resetBtn2 = document.querySelector('.reset-progress2');
 let finishing = document.querySelector('.quiz_finish');
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.modal-overlay');
@@ -32,21 +34,86 @@ const modalTitle = document.querySelector('.modal-title');
 const modalText = document.querySelector('.modal-text');
 const bnt = document.querySelector('.goyda');
 const bnt42 = document.getElementById('site42');
-let first_link = true;
-let second_link = true;
-let third_link = true;
-let finish = "not_finish";
 
-function updateStageUI() { 
-  if(finish == "not_finish"){ 
-    console.log("Не закончено");
-  } else{
-    alert("Поднимись на верх");
-    finishing.style.display = 'flex';
-    finishing.style.opacity = '1'; 
-    document.getElementById("text_finish").innerText = "Ну что, квест завёршён теперь тебе открыт папка с правилами премии SABL2026, а также видосик, который и так будет запощен в ТГ канале.";
-  }
+
+function showProgressInConsole() {
+    const stages = {
+        'stage1': 'Первая часть: https://d',
+        'stage2': 'Вторая часть: isk.yandex.ru/',
+        'stage3': 'Третья часть: d/MdR_dvpZVhAwLA'
+    };
+    const completedStages = [];
+    if (localStorage.getItem('stage1_completed')) completedStages.push(stages.stage1);
+    if (localStorage.getItem('stage2_completed')) completedStages.push(stages.stage2);
+    if (localStorage.getItem('stage3_completed')) completedStages.push(stages.stage3);
+    if (completedStages.length > 0) {
+        console.log('%c╔═══════════════════════════╗', 'color: #ff6600');
+        console.log('%c║   ВАШ ПРОГРЕСС В КВЕСТЕ   ║', 'color: #ff6600; font-weight: bold');
+        console.log('%c╚═══════════════════════════╝', 'color: #ff6600');
+        
+        completedStages.forEach((stage, i) => {
+            console.log(`%c✓ ${stage}`, 'color: #4CAF50; font-size: 14px');
+        });
+        
+        console.log(`%cПрогресс: ${completedStages.length}/3 этапов`, 'color: #2196F3; font-weight: bold');
+    }
 }
+
+showProgressInConsole();
+
+function getQuestStage() {
+    return localStorage.getItem("quest_stage") || "stage1";
+}
+
+function setQuestStage(stage) {
+    localStorage.setItem("quest_stage", stage);
+}
+
+if (!localStorage.getItem("quest_initialized")) {
+    localStorage.setItem("quest_initialized", "true");
+    setQuestStage("stage1");
+}
+
+let currentStage = getQuestStage();
+
+function updateStageUI() {
+    first_btn.style.display = 'none';
+    second_btn.style.display = 'none';
+    third_btn.style.display = 'none';
+    switch(currentStage) {
+        case "stage1":
+            first_btn.style.display = 'block';
+            break;
+        case "stage2":
+            second_btn.style.display = 'block';
+            break;
+        case "stage3":
+            third_btn.style.display = 'block';
+            break;
+        case "finished":
+            finishing.style.display = 'flex';
+            finishing.style.opacity = '1';
+            resetBtn2.style.display = 'block';
+            document.getElementById("text_finish").innerHTML = `<p>Ну что, квест завёршён теперь тебе открыт <a href="https://disk.yandex.ru/i/4OpLfF8TMFqYwA" target="_blank">папка с правилами премии SABL2026</a>, а также видосик, который и так будет запощен в ТГ канале.</p>`;
+            break;
+    }
+}
+
+updateStageUI();
+
+function resetProgress() {
+    if (confirm("Вы уверены, что хотите сбросить весь прогресс квеста? Страница будет перезагружена.")) {
+        localStorage.removeItem('quest_initialized');
+        localStorage.removeItem('quest_stage');
+        localStorage.removeItem('stage1_completed');
+        localStorage.removeItem('stage2_completed');
+        localStorage.removeItem('stage3_completed');
+        location.reload();
+    }
+}
+
+resetBtn.addEventListener('click', resetProgress);
+resetBtn2.addEventListener('click', resetProgress);
 
 first_btn.addEventListener('click', () => {
     const title = first_btn.dataset.title; 
@@ -97,34 +164,39 @@ bnt42.addEventListener('click', () => {
 
 let form = document.querySelector("#modal_form");
 form.addEventListener("submit", function(event){
-  event.preventDefault();
-  let data = new FormData(form);
-  let user_answ = data.get("code");
-  if(btoa(user_answ) == sxaxancjancnapijcnij && first_link){
-      console.log("Вот первая часть ссылки: https://d");
-      first_btn.style.display = 'none';
-      second_btn.style.display = 'block';
-      form.reset(); 
-      modal.classList.remove('active');
-      first_link = false;
-  } else if(btoa(user_answ) == anjcndbcishbcihdbihkcanocjan && second_link){
-      console.log("Вот вторая часть ссылки: isk.yandex.ru/");
-      second_btn.style.display = 'none';
-      third_btn.style.display = 'block';
-      form.reset();
-      modal.classList.remove('active');
-      second_link = false;
-  } else if(btoa(user_answ) == qidqouhisygutfyrytufiguohiphcugyft && third_link){
-      console.log("Вот третья часть ссылки: d/MdR_dvpZVhAwLA");
-      third_btn.style.display = 'none';
-      modal.classList.remove('active');
-      third_link = false;
-      form.reset();
-      finish = "finished";
-      updateStageUI();
-  } else{
-      alert("Попробуй ещё раз")
-  }
+    event.preventDefault();
+    let data = new FormData(form);
+    let user_answ = data.get("code");
+    if(currentStage === "stage1" && btoa(user_answ) === sxaxancjancnapijcnij) {
+        console.log(`%c✓ Вот первая часть ссылки: https://d`, 'color: #4CAF50; font-size: 14px');
+        setQuestStage("stage2");
+        localStorage.setItem('stage1_completed', 'true');
+        currentStage = "stage2";
+        form.reset(); 
+        modal.classList.remove('active');
+        updateStageUI();
+    } 
+    else if(currentStage === "stage2" && btoa(user_answ) === anjcndbcishbcihdbihkcanocjan) {
+        console.log(`%c✓ Вот вторая часть ссылки: isk.yandex.ru/`, 'color: #4CAF50; font-size: 14px');
+        setQuestStage("stage3");
+        localStorage.setItem('stage2_completed', 'true');
+        currentStage = "stage3";
+        form.reset();
+        modal.classList.remove('active');
+        updateStageUI();
+    } 
+    else if(currentStage === "stage3" && btoa(user_answ) === qidqouhisygutfyrytufiguohiphcugyft) {
+        console.log(`%c✓ Вот третья часть ссылки: d/MdR_dvpZVhAwLA`, 'color: #4CAF50; font-size: 14px');
+        setQuestStage("finished");
+        localStorage.setItem('stage3_completed', 'true');
+        currentStage = "finished";
+        form.reset();
+        modal.classList.remove('active');
+        updateStageUI();
+    } 
+    else {
+        alert("Попробуй ещё раз");
+    }
 });
 
 
@@ -197,7 +269,7 @@ const modal2Title = document.querySelector('.modal2-title');
 const modal2Text = document.querySelector('.modal2-text');
 const modal2Img = document.querySelector('.modal2-img');
 
-function openModal2(title, text, imgSrc) {
+function openModal2(title, text, imgSrc) { 
     modal2Title.textContent = title;
     modal2Text.textContent = text;
     modal2Img.src = imgSrc;
@@ -271,3 +343,55 @@ function initSlideshow() {
 }
 
 document.addEventListener('DOMContentLoaded', initSlideshow);
+
+
+function getHypeIndex() {
+    return Math.floor(Math.random() * 100) + 1;
+}
+
+function updateHypeIndex() {
+    const today = new Date().toDateString();
+    const storedData = localStorage.getItem('hypeData');
+    if (storedData) {
+        const { date, index } = JSON.parse(storedData);
+        if (date === today) {
+            if(index >= 42){
+                document.getElementById('hypeIndexBox').innerHTML = 
+                   `<p>🔥 Индекс хайпа на сегодня: ${index} <br> ✅ А ты на хайпе братуха</p>`;
+            } else{
+                document.getElementById('hypeIndexBox').innerHTML = 
+                    `<p>⚠️ Индекс хайпа на сегодня: ${index} <br> ❌ Ну маловато братуха</p>`;
+            }
+            return; 
+        }
+    }
+    const newIndex = getHypeIndex();
+    const newData = {
+        date: today,
+        index: newIndex
+    };
+    
+    localStorage.setItem('hypeData', JSON.stringify(newData));
+    if(index > 42){
+        document.getElementById('hypeIndexBox').innerHTML = 
+        `<p>🔥 Индекс хайпа на сегодня: ${newIndex} <br> ✅ А ты на хайпе братуха</p>`;
+    } else{
+        document.getElementById('hypeIndexBox').innerHTML = 
+        `<p>⚠️ Индекс хайпа на сегодня: ${newIndex} <br> ❌ Ну маловато братуха</p>`;
+    }
+}
+
+function setMidnightReset() {
+    const now = new Date();
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+    const msUntilMidnight = tomorrow - now;
+    setTimeout(() => {
+        updateHypeIndex();
+        setMidnightReset();
+    }, msUntilMidnight);
+}
+
+updateHypeIndex();
+setMidnightReset();
