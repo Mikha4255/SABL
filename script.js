@@ -201,12 +201,12 @@ form.addEventListener("submit", function(event){
 
 
 function updateTimer() {
-    const targetDate = new Date('2026-05-11T19:00:00').getTime();
+    const targetDate = new Date('2026-02-23T00:00:00').getTime();
     const now = new Date().getTime();
     const timeLeft = targetDate - now;
 
     if (timeLeft < 0) {
-        document.getElementById('timer').innerHTML = 'ВСЕ НА ПРЕМИЮ';
+        document.getElementById('timer').innerHTML = 'Голосование началось';
         return;
     }
 
@@ -230,7 +230,7 @@ function updateMessage() {
     const message = document.getElementById('opi');
     message.style.display = 'block';
     if (window.innerWidth > 700) {
-        message.innerHTML = 'До приблизительной даты премии осталось:';
+        message.innerHTML = 'До голосования за дополнительные номинации осталось:';
         message.style.color = '#ff6600'
         document.getElementById('timer').style.display = 'block';
     } else {
