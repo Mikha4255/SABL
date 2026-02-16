@@ -21,6 +21,28 @@ main{
     overflow-x: hidden;
 } 
 
+.button_vote{
+  display: flex;
+  justify-content: center;
+}
+
+.button_vote a{
+  color: #ffffff;
+  text-align: center;
+  background-color: #ff4d00;
+  border-radius: 42px;
+  font-size: 24px;
+  padding: 20px;
+  text-decoration: none;
+}
+
+.button_vote a:hover{
+  background-color: #ff3300;
+  color: #176cff;
+  transition: 0.55s;
+  transform: scale(1.05);
+}
+
 .hype{ 
   display: flex;
   justify-content: center;
@@ -100,7 +122,6 @@ hr {
 
 .import{
     display: block;
-    margin-top: 175px;
     color: #ff6600;
     font-size: 32px;
     text-align: center;
@@ -652,7 +673,7 @@ hr {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
-    z-index: 1000;
+    z-index: 1002;
 }
 
 .modal2.active {
@@ -750,7 +771,341 @@ hr {
     height: 420px;
 }
 
+.modal3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+    
+}
 
+.modal3.active {
+    pointer-events: all;
+}
+
+.modal3.visible {
+    opacity: 1;
+}
+
+.modal-overlay3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 1001;
+}
+
+.modal-content3 {
+    position: relative;
+    background: #1a0c03;
+    width: 70%;
+    padding: 42px;
+    max-width: 2420px;
+    height: calc(100vh - 80px); /* fallback */
+    height: calc(100dvh - 80px); /* современные браузеры */
+    margin: 20px auto;
+    border-radius: 15px;
+    z-index: 1002;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: scroll;
+    overflow-y: auto; 
+    overflow-x: hidden;
+    transform: translateY(-100px) scale(0.7);
+    transition: transform 0.42s ease, opacity 0.42s ease;
+}
+
+.modal-content3 > * {
+  flex-shrink: 0;
+}
+
+.modal-content3 {
+    scrollbar-width: thin;
+    scrollbar-color: #ff6600 #1a0c03;
+    border: 3px solid #ff4800;
+    border-radius: 20px;
+}
+
+/* Chrome / Edge / Safari */
+.modal-content3::-webkit-scrollbar {
+    width: 10px;
+}
+
+.modal-content3::-webkit-scrollbar-track {
+    background: #1a0c03;
+    border-radius: 10px;
+}
+
+.modal-content3::-webkit-scrollbar-thumb {
+    background-color: #ff6600;
+    border-radius: 10px;
+    border: 2px solid #1a0c03;
+    cursor: grab;
+}
+
+.modal-content3::-webkit-scrollbar-thumb:active {
+    cursor: grabbing;
+}
+.modal-content3::-webkit-scrollbar-thumb:hover {
+    background-color: #e16200;
+}
+
+.modal3.visible .modal-content3 {
+    transform: translateY(0) scale(1);
+}
+
+.nomin_photo {
+    margin: 20px 0;
+    object-fit: contain;
+}
+
+.close-modal3 {
+    padding: 10px 20px;
+    background: #ff6600;
+    color: #111;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.close-modal3:hover{
+  transition: 0.55s;
+  transform: scale(1.05);
+  color: #ebdecc;
+  background-color: #e16200;
+}
+
+/* начальное состояние */
+.modal3-title,
+.nomin_photo,
+.choose-btn {
+    opacity: 0;
+    transform: translateY(-100px);
+    transition: opacity 0.55s ease, transform 0.7s ease;
+}
+
+/* появление при открытии модалки */
+.modal3.visible .modal3-title,
+.modal3.visible .nomin_photo,
+.modal3.visible .choose-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.modal3-title {
+    transition-delay: 0.1s;
+    font-size: 32px;
+    color: #ff4d00;
+}
+
+.all_extra_nom{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.nomin_photo {
+    transition-delay: 0.3s;
+    width: 175px;
+    height: 200px;
+    border-radius: 20%;
+}
+
+.nomin_photo:hover{
+  transform: scale(1.05);
+}
+
+.nomination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.counter {
+  font-size: 24px;
+  margin: 10px 0 20px;
+  color: #ff4800;
+}
+
+.nomin_photo {
+    transition-delay: 0.3s;
+}
+
+.choose-btn {
+    transition-delay: 0.45s;
+}
+
+.choose-btn:disabled {
+  background-color: #555;
+  color: #aaa;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.choose-btn {
+  margin-top: 10px;
+  padding: 8px 18px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background-color: #ff6600;
+  color: #111;
+  transition:
+    opacity 0.55s ease,
+    transform 0.7s ease,
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.choose-btn:hover {
+  transform: scale(1.05);
+  background-color: #e16200;
+  color: #ebdecc;
+}
+
+/* Стиль для НЕВЫБРАННЫХ номинаций */
+.nomination .nomin_photo {
+    border: 4px dotted #ff4800;
+    transition: border 0.9s ease;
+}
+
+/* Стиль для ВЫБРАННЫХ номинаций */
+.nomination.selected .nomin_photo {
+    border-style: solid;
+}
+
+.nomination.selected .choose-btn {
+  background-color: #2ecc71;
+  color: #111;
+}
+
+.nomination.selected .choose-btn:hover {
+  background-color: #27ae60;
+}
+
+.extra_nom_vote{
+  font-size: 142px;
+  padding: 20px;
+  margin: 0px auto;
+  color: #ffa023;
+  border: 4px solid #ff4800;
+  border-radius: 25px;
+  background-color: #342208;
+}
+
+.confirm-vote {
+  margin: 20px 0px;
+  padding: 12px 25px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: #2ecc71;
+  cursor: pointer;
+}
+
+.confirm-vote:hover {
+  transform: scale(1.05);
+}
+
+/* Форма для ФИО */
+.fio-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+
+.fio-modal.active {
+    display: flex;
+}
+
+.fio-content {
+    background: #1a0c03;
+    border: 3px solid #ff4800;
+    padding: 30px;
+    border-radius: 15px;
+    width: 300px;
+    text-align: center;
+}
+
+.fio-content input {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 18px;
+}
+
+#lastName, #firstName {
+  background-color: #ff4800;
+  color: #1d1102;
+  border: 3px solid #2ecc71;
+  border-radius: 20px;
+}
+
+#fioConfirm {
+  background-color: #ff4800;
+  color: #1d1102;
+  border: 3px solid #2ecc71;
+  border-radius: 20px;
+}
+
+.fio-close-btn {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.fio-close-btn:hover {
+    background-color: #e16200;
+}
+
+.fio-content input {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 18px;
+    background-color: #ff4800;
+    color: #1d1102;
+    border: 3px solid #2ecc71;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+/* Стиль для сообщений об ошибках */
+.fio-error {
+    font-size: 16px;
+    color: #ff4d00;
+    min-height: 1.2em;
+}
+
+.confirm-vote {
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 20px;
+    background: #2ecc71;
+    cursor: pointer;
+}
 
 .archive-year {
     margin: 20px 0;
@@ -837,6 +1192,14 @@ hr {
   font-size: 16px;
 }
 
+.status_upcoming {
+    background: #5c5c5c;
+    color: white;
+    padding: 3px 12px;
+    border-radius: 12px;
+    font-size: 16px;
+}
+
 .answers {
   margin-top: 55px;
   position: relative;
@@ -901,76 +1264,105 @@ hr {
 }
 
 .dropdown {
-  position: relative;
-  margin-bottom: 42px;
-  list-style: none;
-  transition: all 0.42s ease; 
+    position: relative;
+    margin-bottom: 42px;
+    list-style: none;
+    transition: all 0.42s ease;
 }
 
-.dropdown label{
-  font-family: "DM Serif Text", serif;
-  font-size: 25px;
-  text-align: center;
-  display: block;
-  border: 3px solid rgba(255, 95, 31, 0.7);
-  color: #d1e8e2;
-  border-radius: 20px;
-  padding: 12px 12px;
-  box-sizing: border-box;
-  height: auto;
-  margin-top: 20px;
-  cursor: pointer; 
-  transition: all 0.42s ease; 
-  background: linear-gradient(
-        135deg,
-      #160c01 ,
-      #342208 50%,
-      #160c01 100%
-    );
-} 
+.dropdown label {
+    font-family: "DM Serif Text", serif;
+    font-size: 25px;
+    text-align: center;
+    display: block;
+    border: 3px solid rgba(255, 95, 31, 0.7);
+    color: #d1e8e2;
+    border-radius: 20px;
+    padding: 12px 12px;
+    box-sizing: border-box;
+    height: auto;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all 0.42s ease;
+    background: linear-gradient(135deg, #160c01, #342208 50%, #160c01 100%);
+    position: relative;
+    padding-right: 40px;
+}
 
-.dropdown label:hover{
-  background: none;
-  background-color: #311d04;
-  color: #e0e6e4;
-  transition: 0.42s;
+.dropdown label:hover {
+    background: none;
+    background-color: #311d04;
+    color: #e0e6e4;
+    transition: 0.42s;
+}
+
+.plus {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 42px;
+    font-weight: bold;
+    color: #ff6f00;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.dropdown-toggle:checked + label .plus {
+    transform: translateY(-50%) rotate(45deg);
 }
 
 .dropdown-menu {
-    display: none; 
     margin-top: 10px;
     margin-left: 10%;
     border-radius: 15px;
     background-color: #1d1102;
     font-size: 20px;
-    line-height: 1.5; 
-    animation: fadeIn 0.42s ease; 
+    line-height: 1.5;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: 
+        max-height 0.42s ease,
+        opacity 0.42s ease,
+        margin-top 0.42s ease;
+    box-sizing: border-box;
 }
 
 .dropdown-menu li {
-  display: block;
-  text-align: center;
-  width: 80%;
-  color: #d1e8e2;
-  font-size: 22px;
-  border: 3px solid rgba(255, 95, 31, 0.7);
-  border-radius: 30px;
-  padding: 8px 12px;
+    display: block;
+    text-align: center;
+    width: 95%;
+    color: #d1e8e2;
+    font-size: 22px;
+    border: 3px solid rgba(255, 95, 31, 0.7);
+    border-radius: 30px;
+    padding: 8px 12px;
+    margin: 0 auto;
+    position: relative;
+    left: -5%;
 }
 
-.dropdown-menu a{
-  text-decoration: none;
-  color: #f9c99c;
+.dropdown-menu a {
+    text-decoration: none;
+    color: #f9c99c;
 }
 
-.dropdown-menu a:hover{
-  transition: 0.42s;
-  color: #e0e6e4;
+.dropdown-menu a:hover {
+    color: #e0e6e4;
+    transition: 0.42s;
 }
 
 .dropdown-menu li:hover {
-  color: #ff6f00; 
-  transition: 0.42s;
+    color: #ff6f00;
+    transition: 0.42s;
+}
+
+/* Когда чекбокс отмечен — показываем ответ */
+.dropdown-toggle:checked ~ .dropdown-menu {
+    opacity: 1;
+    max-height: 320px; /* достаточно для 2–3 строк */
+    margin-top: 10px;
 }
 
 /* Сделано ИИ */
@@ -1377,6 +1769,10 @@ footer nav li:not(:last-child)::after {
     flex-direction: column;
     align-items: center;
   }
+  
+  .extra_nom_vote{
+    font-size: 42px;
+  }
 
   .nom{
     font-size: 25px;
@@ -1423,6 +1819,10 @@ footer nav li:not(:last-child)::after {
     margin-left: 0px;
   }
 
+  .dropdown-menu li{
+    left: -7%;
+  }
+
   footer nav ul li{
     font-size: 20px;
   }
@@ -1435,6 +1835,9 @@ footer nav li:not(:last-child)::after {
   .sabl{
     font-size: 20px;
   }
+  .extra_nom_vote{
+    font-size: 72px;
+  }
   .op{
     font-size: 19px;
   }
@@ -1443,6 +1846,9 @@ footer nav li:not(:last-child)::after {
 @media(min-width: 821px) and (max-width: 1024px){
   .sabl{
     font-size: 26px;
+  }
+  .extra_nom_vote{
+    font-size: 85px;
   }
   .op{
     font-size: 22px;

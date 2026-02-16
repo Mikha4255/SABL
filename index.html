@@ -32,10 +32,11 @@
         <hr>
     </div>
     <main>
+        <div class="button_vote">
+            <a href="#vote_for_dop_nom">Проголосовать за дополнительные номинации</a>
+        </div>
         <div class="hype">
-            <div id="hypeIndexBox">
-                Загружаем хайп...
-            </div>
+            <div id="hypeIndexBox"></div>
         </div>
 
         <div class="import">
@@ -103,7 +104,7 @@
             <div class="orange">
                 <h2 class="h2nom">НОМИНАЦИИ</h2>
                 <p class="pnom"> Основные номинации SABL2026, за которые <br>
-                 сразятся bomboclatы в этом году.</p> 
+                 сразятся кенты в этом году.</p> 
                 <div class="mainnom">
                     <div class="nomcard">
                         <img class="border_frame" src="основные_номинации/sabl_king_disc.png" alt="border" loading="lazy">
@@ -179,6 +180,15 @@
                 <p>NONE</p>
             </div>
         </div>
+        <div class="nomcard" data-title="Учителя года" data-text="Учителя из 3-ёх классов, которые самые смешные и завозные, о которых можно вспоминать через года" data-img="основные_номинации/sabl_teachers_disc.png">
+            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+            <div class="content">
+                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo mem" loading="lazy">
+                <h3>Учителя года</h3>
+                <hr>
+                <p>NONE</p>
+            </div>
+        </div>
         <div class="nomcard" data-title="Bomboclat года" data-text="Самый «взрывной» человек, его зажигательные моменты знают все" data-img="основные_номинации/sabl_bomboclat_disc.png">
             <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
             <div class="content">
@@ -207,7 +217,138 @@
             </div>
         </div>
     </div>
-
+    <h2 id="vote_for_dop_nom"> ГОЛОСОВАНИЕ ЗА ДОПОЛНИТЕЛЬНЫЕ НОМИНАЦИИ</h2>
+        <div class="fio-modal" id="fioModal">
+            <div class="fio-content">
+                <h2>Введите данные</h2>
+                    <input id="lastName" placeholder="Фамилия">
+                    <input id="firstName" placeholder="Имя">
+                    <input id="userClass" placeholder="Класс (например: 10В)">
+                <button id="fioConfirm">Продолжить</button>
+                <button id="fioClose" class="fio-close-btn">Закрыть</button>
+                <div id="fioError" class="fio-error" style="color: #ff4d00; margin-top: 10px; min-height: 20px;"></div>
+            </div>
+        </div>
+        <div class="modal3">
+            <div class="modal-overlay3"></div>
+            <div class="modal-content3">
+                <h2 class="modal3-title">Выберите 6 номинации. Описание можно посмотреть, нажав на картинку номинации</h2>
+                <p class="counter" id="counter"></p>
+                <div class="all_extra_nom">
+                    <div class="nomination" 
+                        data-title="Событие года"
+                        data-text="Самое запоминающее событие этого учебного года"
+                        data-img="дополнительные_номинации/sabl_dopnom_event_goda.png"
+                        data-nomination="Событие года">
+                        <img class="nomin_photo extra-info" 
+                            src="дополнительные_номинации/sabl_dopnom_event_goda.png">
+                        <button class="choose-btn">Выбрать</button>
+                    </div>
+                    <div class="nomination" 
+                        data-title="Фейл года"
+                        data-text="Самый запоминающийся фейл этого учебного года"
+                        data-img="дополнительные_номинации/sabl_dopnom_feil_goda.png"
+                        data-nomination="Фейл года">
+                        <img class="nomin_photo extra-info" 
+                            src="дополнительные_номинации/sabl_dopnom_feil_goda.png">
+                        <button class="choose-btn">Выбрать</button>
+                    </div>
+                    <div class="nomination" 
+                        data-title="Майнкрафтер года"
+                        data-text="Самый лучший игрок в Майнкрафт в этом учебном году"
+                        data-img="дополнительные_номинации/sabl_dopnom_maincraft_goda.png"
+                        data-nomination="Майнкрафтер года">
+                        <img class="nomin_photo extra-info"
+                            src="дополнительные_номинации/sabl_dopnom_maincraft_goda.png">
+                        <button class="choose-btn">Выбрать</button>
+                    </div>
+                    <div class="nomination" 
+                        data-title="Геймер года"
+                        data-text="Самый лучший игрок в различные игры в этом учебном году"
+                        data-img="дополнительные_номинации/sabl_dopnom_gamer_goda.png"
+                        data-nomination="Геймер года">
+                        <img class="nomin_photo extra-info" 
+                            src="дополнительные_номинации/sabl_dopnom_gamer_goda.png">
+                        <button class="choose-btn">Выбрать</button>
+                    </div>
+                    <div class="nomination"
+                        data-title="Пара года"
+                        data-text="Самый лучший пара этого учебного года"
+                        data-img="дополнительные_номинации/sabl_dopnom_para_goda.png"
+                        data-nomination="Пара года">
+                        <img class="nomin_photo extra-info" 
+                            src="дополнительные_номинации/sabl_dopnom_para_goda.png">
+                        <button class="choose-btn">Выбрать</button>
+                    </div>
+                    <div class="nomination" 
+                        data-title="Болтолог года"
+                        data-text="Самый говорливый человек этого учебного года"
+                        data-img="дополнительные_номинации/sabl_dopnom_boltolog_goda.png"
+                        data-nomination="Болтолог года">
+                        <img class="nomin_photo extra-info" 
+                            src="дополнительные_номинации/sabl_dopnom_boltolog_goda.png">
+                        <button class="choose-btn">Выбрать</button>
+                    </div>
+                    <div class="nomination"
+                        data-title="Забытая голова года"
+                        data-text="Самый забывчивый человек в этом учебном году"
+                        data-img="дополнительные_номинации/sabl_dopnom_forget_head_goda.png"
+                        data-nomination="Забытая голова года">
+                        <img class="nomin_photo extra-info" 
+                            src="дополнительные_номинации/sabl_dopnom_forget_head_goda.png">
+                        <button class="choose-btn">Выбрать</button>
+                    </div>
+                    <div class="nomination" 
+                        data-title="Гений года"
+                        data-text="Самый 'гениальный' человек в этом учебном году"
+                        data-img="дополнительные_номинации/sabl_dopnom_genui_gada.png"
+                        data-nomination="Гений года">
+                        <img class="nomin_photo extra-info" 
+                            src="дополнительные_номинации/sabl_dopnom_genui_gada.png">
+                        <button class="choose-btn">Выбрать</button>
+                    </div>
+                    <div class="nomination" 
+                        data-title="Человек-сюрприз года"
+                        data-text="Человек, действия которого непредсказуемы"
+                        data-img="дополнительные_номинации/sabl_dopnom_human_present_goda.png"
+                        data-nomination="Человек-сюрприз года">
+                        <img class="nomin_photo extra-info" 
+                            src="дополнительные_номинации/sabl_dopnom_human_present_goda.png">
+                        <button class="choose-btn">Выбрать</button>
+                    </div>
+                    <div class="nomination" 
+                        data-title="Шип года"
+                        data-text="Люди, шип которых запомнился в этом году. Не то же, что пара года. Здесь люди не встречались до шипа"
+                        data-img="дополнительные_номинации/sabl_dopnom_ship_goda.png"
+                        data-nomination="Шип года">
+                        <img class="nomin_photo extra-info" 
+                            src="дополнительные_номинации/sabl_dopnom_ship_goda.png">
+                        <button class="choose-btn">Выбрать</button>
+                    </div>
+                    <div class="nomination" 
+                        data-title="Стиль года"
+                        data-text="Человек, раздающий стиль в этом учебном году"
+                        data-img="дополнительные_номинации/sabl_dopnom_style_goda.png"
+                        data-nomination="Стиль года">
+                        <img class="nomin_photo extra-info" 
+                            src="дополнительные_номинации/sabl_dopnom_style_goda.png">
+                        <button class="choose-btn">Выбрать</button>
+                    </div>
+                    <div class="nomination" 
+                        data-title="Харизма года"
+                        data-text="Самый харизматичный человек этого года"
+                        data-img="дополнительные_номинации/sabl_dopnom_xarizma_goda.png"
+                        data-nomination="Харизма года">
+                        <img class="nomin_photo extra-info" 
+                            src="дополнительные_номинации/sabl_dopnom_xarizma_goda.png">
+                        <button class="choose-btn">Выбрать</button>
+                    </div>
+                </div>
+                <button class="confirm-vote" id="confirmVote">Подтвердить голос</button>
+                <button class="close-modal3">Закрыть</button>
+            </div>
+        </div>
+        <h3 class="extra_nom_vote" id="extra_nom_vote">Выбери 6 дополнительных номинаций премии</h3>
     <!-- <h2>ДОПОЛНИТЕЛЬНЫЕ НОМИНАЦИИ 2026</h2>
 
     <div class="extra_nom">
@@ -447,7 +588,7 @@
                 <ul class="menu">
                     <li class="dropdown">
                         <input type="checkbox" id="dropdown-toggle-1" class="dropdown-toggle">
-                        <label for="dropdown-toggle-1">Где будет проходить голосование?</label>
+                        <label for="dropdown-toggle-1" class="question-label">Где будет проходить голосование? <span class="plus">+</span></label>
                         <ul class="dropdown-menu">
                             <li>Они будет проходить в гугл или яндекс формах (может быть на сайте), которые будут доступны на сайте или по ссылке.
                             </li> 
@@ -456,7 +597,7 @@
                 
                     <li class="dropdown">
                         <input type="checkbox" id="dropdown-toggle-2" class="dropdown-toggle">
-                        <label for="dropdown-toggle-2">Кто может участвовать?</label>
+                        <label for="dropdown-toggle-2" class="question-label">Кто может участвовать?<span class="plus">+</span></label>
                         <ul class="dropdown-menu">
                             <li>Все учащиеся 3-ёх классов могут принять участие. Но кандидаты могут предложить людей, которые уже ушли из Лицея, если их кандидатура не является спорной.
                             </li>
@@ -465,7 +606,7 @@
  
                     <li class="dropdown">
                         <input type="checkbox" id="dropdown-toggle-3" class="dropdown-toggle">
-                        <label for="dropdown-toggle-3">Кто может участвовать в голосовании?</label>
+                        <label for="dropdown-toggle-3" class="question-label">Кто может участвовать в голосовании?<span class="plus">+</span></label>
                         <ul class="dropdown-menu">
                             <li>Все, у кого будет ссылка на голосование или ссылка на сайт, все, кто имеют подтверждённый аккаунт и будут соблюдать правила проведения, могут принять участие в голосовании.</li>
                         </ul>
@@ -473,7 +614,7 @@
 
                     <li class="dropdown">
                         <input type="checkbox" id="dropdown-toggle-4" class="dropdown-toggle">
-                        <label for="dropdown-toggle-4">Зачем это? Ты в курсе, что это никому не нужно?</label>
+                        <label for="dropdown-toggle-4" class="question-label">Зачем это? Ты в курсе, что это никому не нужно?<span class="plus">+</span></label>
                         <ul class="dropdown-menu">
                             <li>Да! А почему нет? Всё во имя прикола и завоза!</li>
                         </ul>
@@ -481,7 +622,7 @@
 
                     <li class="dropdown">
                         <input type="checkbox" id="dropdown-toggle-5" class="dropdown-toggle">
-                        <label for="dropdown-toggle-5">Где-то будут оповещения?</label>
+                        <label for="dropdown-toggle-5" class="question-label">Где-то будут оповещения?<span class="plus">+</span></label>
                         <ul class="dropdown-menu">
                             <li>Есть сайт <a href="https://mikha4255.github.io/SABLNEWS/" target="_blank">с новостями премии</a>. Так же есть <a href="https://t.me/+J8AarAYAgAY5ZTNi">Телеграм канал.</a></li>
                         </ul>
@@ -489,7 +630,7 @@
 
                     <li class="dropdown">
                         <input type="checkbox" id="dropdown-toggle-6" class="dropdown-toggle">
-                        <label for="dropdown-toggle-6">Зачем нужен сайт?</label>
+                        <label for="dropdown-toggle-6" class="question-label">Зачем нужен сайт?<span class="plus">+</span></label>
                         <ul class="dropdown-menu">
                             <li>На сайте будет проходит основные голосования. Ссылки на ПРЯМОЕ голосование в <a href="https://t.me/+J8AarAYAgAY5ZTNi">Телеграм канале</a> не будет, только на сайт в секцию "Голосование", когда она будет доступна.</a></li>
                         </ul>
@@ -527,5 +668,70 @@
     <script src="aosajsnciilcnqknoqwoijdnbnkicbw.js"></script>
     <script src="jnxbhvgcquughcfhgqgyuhjghkjkh.js"></script>
     <script src="vnojtrejhbhbcdhbhjadgquuiebbcc.js"></script>
+    <script>
+        (function() {
+            const now = new Date();
+            const stages = [
+                {
+                    el: document.querySelector('.etap:nth-child(2)'),
+                    start: new Date('2025-06-26'),
+                    end: new Date('2025-10-11')
+                },
+                {
+                    el: document.querySelector('.etap:nth-child(3)'),
+                    start: new Date('2025-10-11'),
+                    end: new Date('2026-02-23')
+                },
+                {
+                    el: document.querySelector('.etap:nth-child(4)'),
+                    start: new Date('2026-02-23'),
+                    end: new Date('2026-03-08')
+                },
+                {
+                    el: document.querySelector('.etap:nth-child(5)'),
+                    start: new Date('2026-03-23'),
+                    end: new Date('2026-04-05')
+                },
+                {
+                    el: document.querySelector('.etap:nth-child(6)'),
+                    start: new Date('2026-04-13'),
+                    end: new Date('2026-04-30')
+                }
+            ];
+            stages.forEach(stage => {
+                if (!stage.el) return;
+                const circle = stage.el.querySelector('.circle');
+                const textContainer = stage.el.querySelector('.text');
+                const oldStatus = textContainer.querySelector('.status, .status_1, .status_upcoming');
+                if (oldStatus) oldStatus.remove();
+                let statusText = '';
+                let statusClass = '';
+                let circleBg = '#e0e0e0';
+                let circleColor = '#000';
+                if (now < stage.start) {
+                    statusText = 'Скоро';
+                    statusClass = 'status_upcoming';
+                } else if (now <= stage.end) {
+                    statusText = 'Сейчас идёт';
+                    statusClass = 'status';
+                    circleBg = '#4CAF50';
+                    circleColor = '#fff';
+                } else {
+                    statusText = 'Прошёл';
+                    statusClass = 'status_1';
+                    circleBg = '#af4c4c';
+                    circleColor = '#fff';
+                }
+                const statusEl = document.createElement('span');
+                statusEl.className = statusClass;
+                statusEl.textContent = statusText;
+                textContainer.appendChild(statusEl);
+                if (circle) {
+                    circle.style.background = circleBg;
+                    circle.style.color = circleColor;
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
