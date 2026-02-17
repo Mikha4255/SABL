@@ -1,20 +1,21 @@
 'use strict'
 
 function updateTimer() {
-    const targetDate = new Date('2026-02-8T00:00:00').getTime();
-    const endDate = new Date('2026-03-08T23:59:59').getTime();
+    const targetDate = new Date('2026-02-23T00:00:00+03:00').getTime();
+    const endDate = new Date('2026-03-08T23:59:59+03:00').getTime();
     const message = document.getElementById('opi');
     const now = new Date().getTime();
     const timeLeft = targetDate - now;
 
-    if (timeLeft < 0) {
-        message.innerHTML = 'Голосование идёт';
-        document.getElementById('timer').innerHTML = 'NONE';
+    if (now > endDate) {
+        message.innerHTML = 'Голосование прошло';
+        document.getElementById('timer').innerHTML = '';
         return;
     }
-    if(now > endDate){
-        message.innerHTML = 'Голосование прошло';
-        document.getElementById('timer').innerHTML = 'NONE';
+
+    if (timeLeft < 0) {
+        message.innerHTML = 'Голосование идёт';
+        document.getElementById('timer').innerHTML = '';
         return;
     }
 
@@ -22,18 +23,16 @@ function updateTimer() {
     const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-    if(timeLeft > 0){
+
     document.getElementById('timer').innerHTML = 
         days + ' дней ' + 
         hours + ' часов ' + 
         minutes + ' минут ' +  
         seconds + ' секунд';
-    }
 }
 
 setInterval(updateTimer, 1000);
 updateTimer();
-
 
 function updateMessage() {
     const message = document.getElementById('opi');

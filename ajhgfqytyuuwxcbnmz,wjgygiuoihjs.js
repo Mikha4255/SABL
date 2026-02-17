@@ -1,3 +1,5 @@
+'use strict'
+
 const images = [
     "вспомогательные_объекты/SABL_1.png",
     "вспомогательные_объекты/SABL_2.png",

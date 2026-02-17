@@ -1,3 +1,5 @@
+'use strict'
+
 const modal2 = document.querySelector('.modal2');
 const modalOverlay2 = document.querySelector('.modal-overlay2');
 const modalClose2 = document.querySelector('.close-modal2');

@@ -1,3 +1,5 @@
+'use strict'
+
 function getHypeIndex() {
     return Math.floor(Math.random() * 100) + 1;
 }
