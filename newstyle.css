@@ -252,8 +252,20 @@ hr {
     left: 70%;
 }
 
-#timer {
-  margin-bottom: 20px;
+.timer-message {
+    font-size: 65px;
+    font-family: "DM Serif Text", serif;
+    color: #ff4800;
+    text-align: center;
+    margin: 20px 0 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.timer-countdown {
+    font-size: 32px;
+    color: #ff4800;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .btn-orange {
@@ -1651,6 +1663,13 @@ footer nav li:not(:last-child)::after {
 
   .textset{
     text-wrap:unset;
+  }
+
+  .timer-message {
+    font-size: 36px;
+  }
+  .timer-countdown {
+    font-size: 22px;
   }
 
   .p1, .p2{

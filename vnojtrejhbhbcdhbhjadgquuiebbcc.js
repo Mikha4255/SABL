@@ -27,26 +27,34 @@
     const s0 = new Date('2026-02-23T00:00:00+03:00');
     const e1 = new Date('2026-03-08T23:59:59+03:00');
     const n2 = new Date();
+    function t19() {
+        const now = new Date();
+        if (now < e1) {
+            const msUntilEnd = e1.getTime() - now.getTime();
+            setTimeout(() => {
+                location.reload();
+            }, msUntilEnd);
+        }
+    }
+    t19();
+    
     function z3() {
         const b4 = document.getElementById('extra_nom_vote');
         if (!b4) return;
         const c5 = new Date();
         if (c5 < s0) {
             b4.textContent = 'Здесь ты проголосуешь';
-            b4.style.pointerEvents = 'none';
             b4.style.opacity = '0.5';
             b4.style.cursor = 'not-allowed';
         } else if (c5 <= e1) {
             b4.textContent = 'Выбери 6 дополнительных номинаций премии';
-            b4.style.pointerEvents = '';
             b4.style.opacity = '';
-            b4.style.cursor = '';
+            b4.style.cursor = 'pointer';
         } else {
             b4.textContent = 'Голосование завершено';
-            b4.style.pointerEvents = 'none';
             b4.style.opacity = '0.5';
-            b4.style.cursor = 'not-allowed';
-        }
+            b4.style.cursor = 'pointer';
+    }
     }
     z3();
     if (n2 < s0) {
@@ -158,13 +166,17 @@
             }
         });
     }
-    
     v9?.addEventListener('click', () => {
         const n4 = new Date();
-        if (n4 < s0 || n4 > e1) {
-            alert('Голосование сейчас недоступно');
+        if (n4 > e1) {
+            window.location.href = '404.html';
             return;
         }
+        if (n4 < s0) {
+            alert('Голосование ещё не началось');
+            return;
+        }
+        
         if (u0) {
             O8();
             return;
@@ -231,13 +243,13 @@
             F0();
         });
     });
-    
     y9?.addEventListener('click', () => {
         const n4 = new Date();
-        if (n4 < s0 || n4 > e1) {
-            alert('Голосование завершено');
+        if (n4 > e1) {
+            window.location.href = '404.html';
             return;
         }
+        
         if (!u0) {
             alert('Ошибка: данные пользователя не найдены');
             return;
