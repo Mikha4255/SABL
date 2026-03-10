@@ -35,3 +35,11 @@ document.querySelectorAll('#year2026 .most_nom .nomcard').forEach(card => {
         openModal2(title, text, imgSrc);
     });
 });
+document.querySelectorAll('#year2026 .extra_nom .nomcard').forEach(card => {
+    card.addEventListener('click', () => {
+        const title = card.dataset.title;
+        const text = card.dataset.text;
+        const imgSrc = card.dataset.img;
+        openModal2(title, text, imgSrc);
+    });
+});
