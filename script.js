@@ -28,19 +28,19 @@ const stages = [
     {
         name: "Голосования за победителей",
         start: new Date('2026-04-13T00:00:00+03:00').getTime(),
-        end: new Date('2026-04-30T23:59:59+03:00').getTime(),
+        end: new Date('2026-05-05T23:59:59+03:00').getTime(),
         activeMessage: "🔥 Голосование за победителей идёт!"
     },
     {
         name: "Онлайн премия",
-        start: new Date('2026-05-15T00:00:00+03:00').getTime(),
-        end: new Date('2026-05-25T23:59:59+03:00').getTime(),
+        // start: new Date('2026-05-15T00:00:00+03:00').getTime(),
+        // end: new Date('2026-05-25T23:59:59+03:00').getTime(),
         activeMessage: "🎉 Онлайн-премия идёт!"
     },
     {
         name: "Награждение",
-        start: new Date('2026-05-30T00:00:00+03:00').getTime(),
-        end: new Date('2026-05-31T23:59:59+03:00').getTime(),
+        // start: new Date('2026-05-30T00:00:00+03:00').getTime(),
+        // end: new Date('2026-05-31T23:59:59+03:00').getTime(),
         activeMessage: "🏆 Награждение идёт!"
     }
 ];

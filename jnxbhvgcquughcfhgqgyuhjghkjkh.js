@@ -7,7 +7,6 @@ function getHypeIndex() {
 function getTwoHourWindow() {
     const now = new Date();
     const hours = now.getHours();
-    // Определяем начало 2-часового окна: 0, 2, 4, ..., 22
     const windowStart = Math.floor(hours / 2) * 2;
     return `${now.toDateString()}_${windowStart}`;
 }
@@ -66,15 +65,12 @@ function updateHypeIndex() {
     if (storedData) {
         const { window, index } = JSON.parse(storedData);
         if (window === currentWindow) {
-            // Используем сохранённый индекс
             indexToUse = index;
         } else {
-            // Новое окно — генерируем новый индекс
             indexToUse = getHypeIndex();
             localStorage.setItem('hypeData', JSON.stringify({ window: currentWindow, index: indexToUse }));
         }
     } else {
-        // Первый запуск
         indexToUse = getHypeIndex();
         localStorage.setItem('hypeData', JSON.stringify({ window: currentWindow, index: indexToUse }));
     }
@@ -95,11 +91,9 @@ function scheduleNextUpdate() {
     setTimeout(() => {
         startLoadingAnimation();
         setTimeout(updateHypeIndex, 2000);
-        scheduleNextUpdate(); // Рекурсивно планируем следующее обновление
+        scheduleNextUpdate();
     }, delay);
 }
-
-// Запуск при загрузке
 startLoadingAnimation();
 setTimeout(updateHypeIndex, 5000);
 scheduleNextUpdate();

@@ -313,6 +313,7 @@ hr {
 
 .sabl{
     padding-top: 55px;
+    margin-bottom: 42px;
     font-size: 32px;
     display: flex;
     flex-direction: column;
@@ -605,7 +606,7 @@ hr {
     display: flex;
     gap: 60px;
     flex-wrap: nowrap;
-    padding: 42px 5px;
+    padding: 42px 20px;
     overflow-x: auto; 
     overflow-y: hidden; 
 }
@@ -636,7 +637,7 @@ hr {
     display: flex;
     gap: 60px;
     flex-wrap: nowrap;
-    padding: 42px 50px;
+    padding: 42px 20px;
     overflow-x: auto; 
     overflow-y: hidden; 
 }
@@ -782,142 +783,6 @@ hr {
     height: 420px;
 }
 
-.modal3 {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    z-index: 1000;
-    
-}
-
-.modal3.active {
-    pointer-events: all;
-}
-
-.modal3.visible {
-    opacity: 1;
-}
-
-.modal-overlay3 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
-    z-index: 1001;
-}
-
-.modal-content3 {
-    position: relative;
-    background: #1a0c03;
-    width: 70%;
-    padding: 42px;
-    max-width: 2420px;
-    height: calc(100vh - 80px); /* fallback */
-    height: calc(100dvh - 80px); /* современные браузеры */
-    margin: 20px auto;
-    border-radius: 15px;
-    z-index: 1002;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    overflow-y: scroll;
-    overflow-y: auto; 
-    overflow-x: hidden;
-    transform: translateY(-100px) scale(0.7);
-    transition: transform 0.42s ease, opacity 0.42s ease;
-}
-
-.modal-content3 > * {
-  flex-shrink: 0;
-}
-
-.modal-content3 {
-    scrollbar-width: thin;
-    scrollbar-color: #ff6600 #1a0c03;
-    border: 3px solid #ff4800;
-    border-radius: 20px;
-}
-
-/* Chrome / Edge / Safari */
-.modal-content3::-webkit-scrollbar {
-    width: 10px;
-}
-
-.modal-content3::-webkit-scrollbar-track {
-    background: #1a0c03;
-    border-radius: 10px;
-}
-
-.modal-content3::-webkit-scrollbar-thumb {
-    background-color: #ff6600;
-    border-radius: 10px;
-    border: 2px solid #1a0c03;
-    cursor: grab;
-}
-
-.modal-content3::-webkit-scrollbar-thumb:active {
-    cursor: grabbing;
-}
-.modal-content3::-webkit-scrollbar-thumb:hover {
-    background-color: #e16200;
-}
-
-.modal3.visible .modal-content3 {
-    transform: translateY(0) scale(1);
-}
-
-.nomin_photo {
-    margin: 20px 0;
-    object-fit: contain;
-}
-
-.close-modal3 {
-    padding: 10px 20px;
-    background: #ff6600;
-    color: #111;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 20px;
-}
-
-.close-modal3:hover{
-  transition: 0.55s;
-  transform: scale(1.05);
-  color: #ebdecc;
-  background-color: #e16200;
-}
-
-/* начальное состояние */
-.modal3-title,
-.nomin_photo,
-.choose-btn {
-    opacity: 0;
-    transform: translateY(-100px);
-    transition: opacity 0.55s ease, transform 0.7s ease;
-}
-
-/* появление при открытии модалки */
-.modal3.visible .modal3-title,
-.modal3.visible .nomin_photo,
-.modal3.visible .choose-btn {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.modal3-title {
-    transition-delay: 0.1s;
-    font-size: 32px;
-    color: #ff4d00;
-}
 
 .all_extra_nom{
   display: flex;
@@ -927,187 +792,339 @@ hr {
   gap: 25px;
 }
 
-.nomin_photo {
-    transition-delay: 0.3s;
-    width: 175px;
-    height: 200px;
-    border-radius: 20%;
+/* Кнопка выбора номинанта */
+/* Кнопка выбора номинанта */
+.choose-nominee-btn {
+    position: relative;
+    z-index: 10;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #ff6600;
+    color: #111;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.nomin_photo:hover{
-  transform: scale(1.05);
+.choose-nominee-btn:hover {
+    background: #e16200;
+    transform: scale(1.05);
+    color: #ebdecc;
 }
 
-.nomination {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.choose-nominee-btn.partial {
+    background: #f39c12;
 }
 
-.counter {
-  font-size: 24px;
-  margin: 10px 0 20px;
-  color: #ff4800;
+.choose-nominee-btn.selected {
+    background: #2ecc71;
+    color: #111;
 }
 
-.nomin_photo {
-    transition-delay: 0.3s;
+/* Модалка номинантов */
+.nominee-modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
 }
 
-.choose-btn {
-    transition-delay: 0.45s;
+.nominee-modal.active { display: flex; }
+
+.nominee-modal-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
 }
 
-.choose-btn:disabled {
-  background-color: #555;
-  color: #aaa;
-  cursor: not-allowed;
-  transform: none;
+.nominee-modal-content {
+    position: relative;
+    background: #1a0c03;
+    width: 90%;
+    max-width: 800px;
+    max-height: 80vh;
+    padding: 30px;
+    border-radius: 20px;
+    border: 3px solid #ff4800;
+    z-index: 3001;
+    overflow-y: auto;
 }
 
-.choose-btn {
-  margin-top: 10px;
-  padding: 8px 18px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  background-color: #ff6600;
-  color: #111;
-  transition:
-    opacity 0.55s ease,
-    transform 0.7s ease,
-    background-color 0.3s,
-    color 0.3s;
+.close-nominee-modal {
+    position: absolute;
+    top: 15px; right: 15px;
+    background: #ff6600;
+    color: #111;
+    border: none;
+    border-radius: 50%;
+    width: 35px; height: 35px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.choose-btn:hover {
-  transform: scale(1.05);
-  background-color: #e16200;
-  color: #ebdecc;
+.close-nominee-modal:hover {
+    background: #e16200;
+    transform: scale(1.1);
 }
 
-/* Стиль для НЕВЫБРАННЫХ номинаций */
-.nomination .nomin_photo {
-    border: 4px dotted #ff4800;
-    transition: border 0.9s ease;
+#nomineeModalTitle {
+    color: #ff4d00;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-family: "DM Serif Text", serif;
 }
 
-/* Стиль для ВЫБРАННЫХ номинаций */
-.nomination.selected .nomin_photo {
-    border-style: solid;
+#selectionCounter {
+    text-align: center;
+    color: #f1d26c;
+    font-size: 18px;
+    margin-bottom: 20px;
 }
 
-.nomination.selected .choose-btn {
-  background-color: #2ecc71;
-  color: #111;
+#suggestNomineeBtn {
+    display: block;
+    margin: 10px auto 20px;
+    padding: 8px 16px;
+    background: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
 }
 
-.nomination.selected .choose-btn:hover {
-  background-color: #27ae60;
+#suggestNomineeBtn:hover {
+    background: #2980b9;
 }
 
-.extra_nom_vote{
-  font-size: 142px;
-  padding: 20px;
-  margin: 0px auto;
-  color: #ffa023;
-  border: 4px solid #ff4800;
-  border-radius: 25px;
-  background-color: #342208;
+.nominees-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
 }
 
-.confirm-vote {
-  margin: 20px 0px;
-  padding: 12px 25px;
-  font-size: 20px;
-  border-radius: 10px;
-  border: none;
-  background-color: #2ecc71;
-  cursor: pointer;
+.nominee-card {
+    background: #1d1102;
+    border: 2px solid #ff6f00;
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-.confirm-vote:hover {
-  transform: scale(1.05);
+.nominee-card:hover {
+    transform: scale(1.05);
+    border-color: #ff4800;
+    box-shadow: 0 0 15px rgba(255,102,0,0.5);
 }
 
-/* Форма для ФИО */
+.nominee-card.selected {
+    background: #2ecc71;
+    border-color: #27ae60;
+}
+
+.nominee-photo {
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    border: 3px solid #ff6f00;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+.nominee-card.fail-year .nominee-photo,
+.nominee-card.event-year .nominee-photo {
+    border: none !important;
+    box-shadow: none !important;
+    width: 200px; height: 200px;
+    border-radius: 0%;
+}
+
+.nominee-name {
+    color: #FFCB9A;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.nominee-class {
+    color: #f1d26c;
+    font-size: 14px;
+}
+
+.nominee-loading {
+    text-align: center;
+    color: #ff6f00;
+    font-size: 20px;
+    padding: 40px;
+    display: none;
+}
+
+.nominee-loading.active { display: block; }
+
+#submitVoteBtn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 12px 30px;
+    background: #2ecc71;
+    color: #111;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#submitVoteBtn:hover {
+    background: #27ae60;
+    transform: scale(1.05);
+}
+
+@media (max-width: 700px) {
+    .nominees-list { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+    .nominee-photo { width: 120px; height: 120px; }
+    .nominee-modal-content { padding: 17px; }
+    .nominee-card.fail-year .nominee-photo,
+    .nominee-card.event-year .nominee-photo {
+        border: none !important;
+        box-shadow: none !important;
+        width: 125px; height: 125px;
+        border-radius: 0%;
+    }
+}
+
+/* === FIO МОДАЛКА === */
 .fio-modal {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.8);
     display: none;
     align-items: center;
     justify-content: center;
     z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
-
 
 .fio-modal.active {
     display: flex;
+    opacity: 1;
 }
 
 .fio-content {
     background: #1a0c03;
     border: 3px solid #ff4800;
     padding: 30px;
-    border-radius: 15px;
-    width: 300px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
     text-align: center;
+    position: relative;
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 30px rgba(255, 102, 0, 0.3);
+}
+
+.fio-modal.active .fio-content {
+    transform: scale(1);
+}
+
+.fio-content h2 {
+    color: #ff6f00;
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-family: "DM Serif Text", serif;
 }
 
 .fio-content input {
     width: 100%;
     margin: 10px 0;
-    padding: 10px;
-    font-size: 18px;
+    padding: 12px 15px;
+    font-size: 16px;
+    background-color: #1d1102;
+    color: #FFCB9A;
+    border: 2px solid #ff6f00;
+    border-radius: 12px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
 }
 
-#lastName, #firstName {
-  background-color: #ff4800;
-  color: #1d1102;
-  border: 3px solid #2ecc71;
-  border-radius: 20px;
+.fio-content input:focus {
+    outline: none;
+    border-color: #ff4800;
+}
+
+.fio-content input::placeholder {
+    color: #b8956a;
 }
 
 #fioConfirm {
-  background-color: #ff4800;
-  color: #1d1102;
-  border: 3px solid #2ecc71;
-  border-radius: 20px;
+    background-color: #ff6600;
+    color: #111;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+#fioConfirm:hover {
+    background-color: #e16200;
+    transform: scale(1.05);
+    color: #ebdecc;
 }
 
 .fio-close-btn {
-    margin-top: 10px;
-    padding: 8px 16px;
-    background-color: #ff6600;
+    background-color: #af4c4c;
     color: #fff;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
+    padding: 10px 25px;
+    font-size: 16px;
     cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    transition: all 0.3s ease;
 }
 
 .fio-close-btn:hover {
-    background-color: #e16200;
+    background-color: #8b3a3a;
+    transform: scale(1.05);
 }
 
-.fio-content input {
-    width: 100%;
-    margin: 10px 0;
-    padding: 10px;
-    font-size: 18px;
-    background-color: #ff4800;
-    color: #1d1102;
-    border: 3px solid #2ecc71;
-    border-radius: 20px;
-    box-sizing: border-box;
-}
-
-/* Стиль для сообщений об ошибках */
 .fio-error {
-    font-size: 16px;
+    font-size: 14px;
     color: #ff4d00;
-    min-height: 1.2em;
+    min-height: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 700px) {
+    .fio-content {
+        padding: 20px;
+        width: 95%;
+    }
+    .fio-content h2 {
+        font-size: 24px;
+    }
+    .fio-content input {
+        font-size: 14px;
+        padding: 10px;
+    }
 }
 
 .confirm-vote {
@@ -1787,10 +1804,6 @@ footer nav li:not(:last-child)::after {
     flex-direction: column;
     align-items: center;
   }
-  
-  .extra_nom_vote{
-    font-size: 42px;
-  }
 
   .nom{
     font-size: 25px;
@@ -1853,9 +1866,6 @@ footer nav li:not(:last-child)::after {
   .sabl{
     font-size: 20px;
   }
-  .extra_nom_vote{
-    font-size: 72px;
-  }
   .op{
     font-size: 19px;
   }
@@ -1864,9 +1874,6 @@ footer nav li:not(:last-child)::after {
 @media(min-width: 821px) and (max-width: 1024px){
   .sabl{
     font-size: 26px;
-  }
-  .extra_nom_vote{
-    font-size: 85px;
   }
   .op{
     font-size: 22px;

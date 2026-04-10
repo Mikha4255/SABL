@@ -76,26 +76,8 @@
                         тех, кто по-настоящему достоин<br>
                         стать победителем SABL 2026.<br>
                 </p>
-                </div>  
-            </div>
-
-            <div class="sabl2025">
-            <h2>SABL2025</h2>
-                <div class="slideshow">
-                    <div class="image-wrapper">
-                        <img id="rotating-image" src="" alt="Как это было" loading="lazy">
-                    </div>
-                    <div class="slideshow-controls">
-                        <button class="slideshow-btn slideshow-btn--prev">
-                            <img src="вспомогательные_объекты/arrow_for_pictures.png" alt="">
-                        </button>
-                        <div class="slideshow-counter" id="slideshow-counter">1/10</div>
-                        <button class="slideshow-btn slideshow-btn--next">
-                             <img src="вспомогательные_объекты/arrow_for_pictures.png" alt="">
-                        </button>
-                    </div>
-                </div>
-            </div>
+            </div>  
+        </div>
 
             <div class="rays_position">
                 <div class="ray up-left answ1"></div> 
@@ -138,7 +120,29 @@
             <button class="close-modal2">Закрыть</button>
         </div>
     </div>
-
+    <div class="nominee-modal" id="nomineeModal">
+        <div class="nominee-modal-overlay" onclick="closeNomineeModal()"></div>
+        <div class="nominee-modal-content">
+            <button class="close-nominee-modal" onclick="closeNomineeModal()">✕</button>
+            <h2 id="nomineeModalTitle">Номинация</h2>
+            <div id="selectionCounter">Выбрано: 0/2</div>
+            <button id="suggestNomineeBtn">💡 Предложить своего номинанта</button>
+            <div id="nomineesList" class="nominees-list"></div>
+            <div id="nomineeLoading" class="nominee-loading">Загрузка номинантов...</div>
+            <button id="submitVoteBtn" onclick="submitVote(currentNomination)">✅ Подтвердить выбор</button>
+        </div>
+    </div>
+    <div class="fio-modal" id="fioModal">
+        <div class="fio-content">
+            <h2>Введите данные</h2>
+                <input id="lastName" placeholder="Фамилия">
+                <input id="firstName" placeholder="Имя">
+                <input id="userClass" placeholder="Класс (например: 10В)">
+            <button id="fioConfirm">Продолжить</button>
+            <button id="fioClose" class="fio-close-btn">Закрыть</button>
+            <div id="fioError" class="fio-error" style="color: #ff4d00; margin-top: 10px; min-height: 20px"></div>
+        </div>
+    </div>
 
     <div class="nom" id="nom">
 
@@ -147,302 +151,308 @@
             <button class="archive-btn" onclick="showYear(event, '2025')">2025</button>
         </div>
 
-<!-- 2026 год -->
-<div id="year2026" class="archive-year">
-    
-    <h2>ОСНОВНЫЕ НОМИНАЦИИ 2026</h2>
-    <p class="disc">Нажми на карточки, чтобы посмотреть описание номинаций</p>
+        <!-- 2026 год -->
+        <div id="year2026" class="archive-year" >
+            
+            <h2>ОСНОВНЫЕ НОМИНАЦИИ 2026</h2>
+            <p class="disc">Нажми на карточки, чтобы посмотреть описание номинаций</p>
 
-    <div class="most_nom">
-        <div class="nomcard" data-title="SABL KING" data-text="Барень из одного из трёх классов, который имеет авторитет и много делает, чтобы скрасить обычный день" data-img="основные_номинации/sabl_king_disc.png">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo" loading="lazy">
-                <h3>SABL KING</h3>
-                <hr>
-                <p>NONE</p>
+            <div class="most_nom">
+                <div class="nomcard" data-title="SABL KING" data-text="Барень из одного из трёх классов, который имеет авторитет и много делает, чтобы скрасить обычный день" data-img="основные_номинации/sabl_king_disc.png">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo" loading="lazy">
+                        <h3>SABL KING</h3>
+                        <hr>
+                        <p>NONE</p>
+                    </div>
+                    <button class="choose-nominee-btn" onclick="openNomineeModal('SABL KING', this.closest('.nomcard'))">
+                        Выбрать номинанта
+                    </button>
+                </div>
+                <div class="nomcard" data-title="Человек-мем года" data-text="Все смешные моменты и мемы в классе, которые ты знаешь, связаны именно с ним" data-img="основные_номинации/sabl_mem_disc.png">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo mem" loading="lazy">
+                        <h3>Человек-мем года</h3>
+                        <hr>
+                        <p>NONE</p>
+                    </div>
+                    <button class="choose-nominee-btn" onclick="openNomineeModal('Человек-мем года', this.closest('.nomcard'))">
+                        Выбрать номинанта
+                    </button>
+                </div>
+                <div class="nomcard" data-title="SABL QUEEN" data-text="Девушка из одного из трёх классов (но может и тот, кто очень на неё смахивает, не внешностью, если вы поняли о чём мы), которая имеет авторитет и много делает, чтобы скрасить обычный день" data-img="основные_номинации/sabl_queen_disc.png">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo mem" loading="lazy">
+                        <h3>SABL QUEEN</h3>
+                        <hr>
+                        <p>NONE</p>
+                    </div>
+                    <button class="choose-nominee-btn" onclick="openNomineeModal('SABL QUEEN', this.closest('.nomcard'))">
+                        Выбрать номинанта
+                    </button>
+                </div>
+                <div class="nomcard" data-title="Учителя года" data-text="Учителя из 3-ёх классов, которые самые смешные и завозные, о которых можно вспоминать через года" data-img="основные_номинации/sabl_teachers_disc.png">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo mem" loading="lazy">
+                        <h3>Учителя года</h3>
+                        <hr>
+                        <p>NONE</p>
+                    </div>
+                    <button class="choose-nominee-btn" onclick="openNomineeModal('Учителя года', this.closest('.nomcard'))">
+                        Выбрать номинанта
+                    </button>
+                </div>
+                <div class="nomcard" data-title="Bomboclat года" data-text="Самый «взрывной» человек, его зажигательные моменты знают все" data-img="основные_номинации/sabl_bomboclat_disc.png">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo mem" loading="lazy">
+                        <h3>Bomboclat года</h3>
+                        <hr>
+                        <p>NONE</p>
+                    </div> 
+                    <button class="choose-nominee-btn" onclick="openNomineeModal('Bomboclat года', this.closest('.nomcard'))">
+                        Выбрать номинанта
+                    </button>
+                </div>
+                <div class="nomcard" data-title="Лучший завозер" data-text="Его завозы помнят все и их можно назвать легендарными " data-img="основные_номинации/sabl_zavoz_disc.png">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo mem" loading="lazy">
+                        <h3>Лучший завозер</h3>
+                        <hr>
+                        <p>NONE</p>
+                    </div>
+                    <button class="choose-nominee-btn" onclick="openNomineeModal('Лучший завозер', this.closest('.nomcard'))">
+                        Выбрать номинанта
+                    </button>
+                </div>
+                <div class="nomcard" data-title="Прайм года" data-text="Прайм этого человека видели или видят все" data-img="основные_номинации/sabl_praim_disc.png">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo mem" loading="lazy">
+                        <h3>Прайм года</h3>
+                        <hr>
+                        <p>NONE</p>
+                    </div>
+                    <button class="choose-nominee-btn" onclick="openNomineeModal('Прайм года', this.closest('.nomcard'))">
+                        Выбрать номинанта
+                    </button>
+                </div>
+            </div>
+            <h2>ДОПОЛНИТЕЛЬНЫЕ НОМИНАЦИИ 2026</h2>
+
+            <div class="extra_nom">
+                <div class="nomcard" data-title="Событие года"
+                                data-text="Самое запоминающее событие этого учебного года"
+                                data-img="дополнительные_номинации/sabl_dopnom_event_goda.png">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo" loading="lazy">
+                        <h3>Событие года</h3>
+                        <hr>
+                        <p>NONE</p>
+                    </div>
+                    <button class="choose-nominee-btn" onclick="openNomineeModal('Событие года', this.closest('.nomcard'))">
+                        Выбрать номинанта
+                    </button>
+                </div>
+                <div class="nomcard" data-title="Фейл года"
+                                data-text="Самый запоминающийся фейл этого учебного года"
+                                data-img="дополнительные_номинации/sabl_dopnom_feil_goda.png">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo" loading="lazy">
+                        <h3>Фейл года</h3>
+                        <hr>
+                        <p>NONE</p>
+                    </div>
+                    <button class="choose-nominee-btn" onclick="openNomineeModal('Фейл года', this.closest('.nomcard'))">
+                        Выбрать номинанта
+                    </button>
+                </div>
+                <div class="nomcard" data-title="Гений года"
+                                data-text="Самый 'гениальный' человек в этом учебном году"
+                                data-img="дополнительные_номинации/sabl_dopnom_genui_gada.png">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo" loading="lazy">
+                        <h3>Гений года</h3>
+                        <hr>
+                        <p>NONE</p>
+                    </div>
+                    <button class="choose-nominee-btn" onclick="openNomineeModal('Гений года', this.closest('.nomcard'))">
+                        Выбрать номинанта
+                    </button>
+                </div>
+                <div class="nomcard" data-title="Человек-сюрприз года"
+                                data-text="Человек, действия которого непредсказуемы"
+                                data-img="дополнительные_номинации/sabl_dopnom_human_present_goda.png">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo" loading="lazy">
+                        <h3>Человек-сюрприз года</h3>
+                        <hr>
+                        <p>NONE</p>
+                    </div>
+                    <button class="choose-nominee-btn" onclick="openNomineeModal('Человек-сюрприз года', this.closest('.nomcard'))">
+                        Выбрать номинанта
+                    </button>
+                </div>
+                <div class="nomcard" data-title="Стиль года"
+                                data-text="Человек, раздающий стиль в этом учебном году"
+                                data-img="дополнительные_номинации/sabl_dopnom_style_goda.png">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo" loading="lazy">
+                        <h3>Стиль года</h3>
+                        <hr>
+                        <p>NONE</p>
+                    </div>
+                    <button class="choose-nominee-btn" onclick="openNomineeModal('Стиль года', this.closest('.nomcard'))">
+                        Выбрать номинанта
+                    </button>
+                </div>
+                <div class="nomcard" data-title="Харизма года"
+                                data-text="Самый харизматичный человек этого года"
+                                data-img="дополнительные_номинации/sabl_dopnom_xarizma_goda.png">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo" loading="lazy">
+                        <h3>Харизма года</h3>
+                        <hr>
+                        <p>NONE</p>
+                    </div>
+                    <button class="choose-nominee-btn" onclick="openNomineeModal('Харизма года', this.closest('.nomcard'))">
+                        Выбрать номинанта
+                    </button>
+                </div>
             </div>
         </div>
-        <div class="nomcard" data-title="Человек-мем года" data-text="Все смешные моменты и мемы в классе, которые ты знаешь, связаны именно с ним" data-img="основные_номинации/sabl_mem_disc.png">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo mem" loading="lazy">
-                <h3>Человек-мем года</h3>
-                <hr>
-                <p>NONE</p>
-            </div>
-        </div>
-        <div class="nomcard" data-title="SABL QUEEN" data-text="Девушка из одного из трёх классов (но может и тот, кто очень на неё смахивает, не внешностью, если вы поняли о чём мы), которая имеет авторитет и много делает, чтобы скрасить обычный день" data-img="основные_номинации/sabl_queen_disc.png">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo mem" loading="lazy">
-                <h3>SABL QUEEN</h3>
-                <hr>
-                <p>NONE</p>
-            </div>
-        </div>
-        <div class="nomcard" data-title="Учителя года" data-text="Учителя из 3-ёх классов, которые самые смешные и завозные, о которых можно вспоминать через года" data-img="основные_номинации/sabl_teachers_disc.png">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo mem" loading="lazy">
-                <h3>Учителя года</h3>
-                <hr>
-                <p>NONE</p>
-            </div>
-        </div>
-        <div class="nomcard" data-title="Bomboclat года" data-text="Самый «взрывной» человек, его зажигательные моменты знают все" data-img="основные_номинации/sabl_bomboclat_disc.png">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo mem" loading="lazy">
-                <h3>Bomboclat года</h3>
-                <hr>
-                <p>NONE</p>
-            </div> 
-        </div>
-        <div class="nomcard" data-title="Лучший завозер" data-text="Его завозы помнят все и их можно назвать легендарными " data-img="основные_номинации/sabl_zavoz_disc.png">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo mem" loading="lazy">
-                <h3>Лучший завозер</h3>
-                <hr>
-                <p>NONE</p>
-            </div>
-        </div>
-        <div class="nomcard" data-title="Прайм года" data-text="Прайм этого человека видели или видят все" data-img="основные_номинации/sabl_praim_disc.png">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo mem" loading="lazy">
-                <h3>Прайм года</h3>
-                <hr>
-                <p>NONE</p>
-            </div>
-        </div>
-    </div>
-    <!-- <h2 id="vote_for_dop_nom"> ГОЛОСОВАНИЕ ЗА ДОПОЛНИТЕЛЬНЫЕ НОМИНАЦИИ</h2>
-        <div class="fio-modal" id="fioModal">
-            <div class="fio-content">
-                <h2>Введите данные</h2>
-                    <input id="lastName" placeholder="Фамилия">
-                    <input id="firstName" placeholder="Имя">
-                    <input id="userClass" placeholder="Класс (например: 10В)">
-                <button id="fioConfirm">Продолжить</button>
-                <button id="fioClose" class="fio-close-btn">Закрыть</button>
-                <div id="fioError" class="fio-error" style="color: #ff4d00; margin-top: 10px; min-height: 20px;"></div>
-            </div>
-        </div>
-        <div class="modal3">
-            <div class="modal-overlay3"></div>
-            <div class="modal-content3">
-                <h2 class="modal3-title">Выберите 6 номинации. Описание можно посмотреть, нажав на картинку номинации</h2>
-                <p class="counter" id="counter"></p>
-                <div class="all_extra_nom">
-                    <div class="nomination" 
-                        data-title="Событие года"
-                        data-text="Самое запоминающее событие этого учебного года"
-                        data-img="дополнительные_номинации/sabl_dopnom_event_goda.png"
-                        data-nomination="Событие года">
-                        <img class="nomin_photo extra-info" 
-                            src="дополнительные_номинации/sabl_dopnom_event_goda.png">
-                        <button class="choose-btn">Выбрать</button>
+        
+        <div id="year2025" class="archive-year" style="display: none;">
+            
+            <h2>ОСНОВНЫЕ НОМИНАЦИИ 2025</h2>
+            <div class="most_nom">
+                <div class="nomcard">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="основные_номинации/king.jpg" alt="Пока нет" class="nom_photo" loading="lazy">
+                        <h3>SABL KING</h3>
+                        <hr>
+                        <p>Егор Насолдин Потрошитель2000</p>
+                        <p><a href="https://t.me/+tzno-Fd1vqwwZGQy" target="_blank">Телеграм &raquo;</a></p>
                     </div>
                 </div>
-                <button class="confirm-vote" id="confirmVote">Подтвердить голос</button>
-                <button class="close-modal3">Закрыть</button>
+                <div class="nomcard mem">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="основные_номинации/mem.jpeg" alt="Пока нет" class="nom_photo" loading="lazy">
+                        <h3>Человек-мем года</h3>
+                        <hr>
+                        <p>ЛенскийZe</p>
+                        <p><a href="404.html">Телеграм &raquo;</a></p>
+                    </div>
+                </div>
+                <div class="nomcard">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="основные_номинации/queen.jpeg" alt="Пока нет" class="nom_photo" loading="lazy">
+                        <h3>SABL QUEEN</h3>
+                        <hr>
+                        <p>Алексей</p>
+                        <p><a href="404.html">Телеграм &raquo;</a></p>
+                    </div>
+                </div>
+                <div class="nomcard">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="основные_номинации/bomboclat.jpeg" alt="Пока нет" class="nom_photo" loading="lazy">
+                        <h3>Bomboclat года</h3>
+                        <hr>
+                        <p>Чак</p>
+                        <p><a href="404.html">Телеграм &raquo;</a></p>
+                    </div>
+                </div>
+                <div class="nomcard">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="основные_номинации/zavozer.png" alt="Пока нет" class="nom_photo" loading="lazy">
+                        <h3>Лучший завозер</h3>
+                        <hr>
+                        <p>Иван Седов</p>
+                        <p><a href="404.html">Телеграм &raquo;</a></p>
+                    </div>
+                </div>
+                <div class="nomcard">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="основные_номинации/praim.jpg" alt="Пока нет" class="nom_photo" loading="lazy">
+                        <h3>Прайм года</h3>
+                        <hr>
+                        <p>Егор Насолдин Потрошитель2000</p>
+                        <p><a href="https://t.me/+tzno-Fd1vqwwZGQy" target="_blank">Телеграм &raquo;</a></p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <h3 class="extra_nom_vote" id="extra_nom_vote">Выбери 6 дополнительных номинаций премии</h3> -->
-    <h2>ДОПОЛНИТЕЛЬНЫЕ НОМИНАЦИИ 2026</h2>
 
-    <div class="extra_nom">
-        <div class="nomcard" data-title="Событие года"
-                        data-text="Самое запоминающее событие этого учебного года"
-                        data-img="дополнительные_номинации/sabl_dopnom_event_goda.png">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo" loading="lazy">
-                <h3>Событие года</h3>
-                <hr>
-                <p>NONE</p>
+            <h2>ДОПОЛНИТЕЛЬНЫЕ НОМИНАЦИИ 2025</h2>
+            <div class="extra_nom">
+                <div class="nomcard">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="дополнительные_номинации/teacher.jpg" alt="Пока нет" class="nom_photo" loading="lazy">
+                        <h3>Учитель года</h3>
+                        <hr>
+                        <p>Андрей Анатольевич Крылов</p>
+                        <p><a href="https://t.me/lyceum1535/8863" target="_blank">Упоминание &raquo;</a></p>
+                    </div>
+                </div>
+                <div class="nomcard">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="дополнительные_номинации/minecraft.jpg" alt="Пока нет" class="nom_photo" loading="lazy">   
+                        <h3><span class="sma">Лучший майнкрафтер года</span></h3>
+                        <hr> 
+                        <p>Егор Насолдин Потрошитель2000</p>
+                        <p><a href="https://t.me/+tzno-Fd1vqwwZGQy" target="_blank">Телеграм &raquo;</a></p>
+                    </div>
+                </div>
+                <div class="nomcard">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="дополнительные_номинации/feil.png" alt="Пока нет" class="nom_photo" loading="lazy">
+                        <h3>Фейл года</h3>
+                        <hr>
+                        <p>Сочинение Антона Плаксина</p>
+                        <p><a href="404.html">Телеграм &raquo;</a></p>
+                    </div>
+                </div>
+                <div class="nomcard">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="дополнительные_номинации/event.png" alt="Пока нет" class="nom_photo" loading="lazy">   
+                        <h3>Событие года</h3>
+                        <hr>
+                        <p>Арсений на заключительном <br> этапе ВСОШ</p>
+                        <p><a href="404.html">Телеграм &raquo;</a></p>
+                    </div>
+                </div>
+                <div class="nomcard">
+                    <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
+                    <div class="content">
+                        <img src="дополнительные_номинации/ParaGoda.jpg" alt="Пока нет" class="nom_photo" loading="lazy">
+                        <h3>Пара года</h3>
+                        <hr>
+                        <p>Арсений + Вика</p>
+                        <p><a href="404.html">Телеграм &raquo;</a></p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="nomcard" data-title="Фейл года"
-                        data-text="Самый запоминающийся фейл этого учебного года"
-                        data-img="дополнительные_номинации/sabl_dopnom_feil_goda.png">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo" loading="lazy">
-                <h3>Фейл года</h3>
-                <hr>
-                <p>NONE</p>
-            </div>
-        </div>
-        <div class="nomcard" data-title="Гений года"
-                        data-text="Самый 'гениальный' человек в этом учебном году"
-                        data-img="дополнительные_номинации/sabl_dopnom_genui_gada.png">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo" loading="lazy">
-                <h3>Гений года</h3>
-                <hr>
-                <p>NONE</p>
-            </div>
-        </div>
-        <div class="nomcard" data-title="Человек-сюрприз года"
-                        data-text="Человек, действия которого непредсказуемы"
-                        data-img="дополнительные_номинации/sabl_dopnom_human_present_goda.png">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo" loading="lazy">
-                <h3>Человек-сюрприз года</h3>
-                <hr>
-                <p>NONE</p>
-            </div>
-        </div>
-        <div class="nomcard" data-title="Стиль года"
-                        data-text="Человек, раздающий стиль в этом учебном году"
-                        data-img="дополнительные_номинации/sabl_dopnom_style_goda.png">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo" loading="lazy">
-                <h3>Стиль года</h3>
-                <hr>
-                <p>NONE</p>
-            </div>
-        </div>
-        <div class="nomcard" data-title="Харизма года"
-                        data-text="Самый харизматичный человек этого года"
-                        data-img="дополнительные_номинации/sabl_dopnom_xarizma_goda.png">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="вспомогательные_объекты/NONE.png" alt="Пока нет" class="nom_photo" loading="lazy">
-                <h3>Харизма года</h3>
-                <hr>
-                <p>NONE</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="year2025" class="archive-year" style="display: none;">
-    
-    <h2>ОСНОВНЫЕ НОМИНАЦИИ 2025</h2>
-    <div class="most_nom">
-        <div class="nomcard">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="основные_номинации/king.jpg" alt="Пока нет" class="nom_photo" loading="lazy">
-                <h3>SABL KING</h3>
-                <hr>
-                <p>Егор Насолдин Потрошитель2000</p>
-                <p><a href="https://t.me/+tzno-Fd1vqwwZGQy" target="_blank">Телеграм &raquo;</a></p>
-            </div>
-        </div>
-        <div class="nomcard mem">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="основные_номинации/mem.jpeg" alt="Пока нет" class="nom_photo" loading="lazy">
-                <h3>Человек-мем года</h3>
-                <hr>
-                <p>ЛенскийZe</p>
-                <p><a href="404.html">Телеграм &raquo;</a></p>
-            </div>
-        </div>
-        <div class="nomcard">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="основные_номинации/queen.jpeg" alt="Пока нет" class="nom_photo" loading="lazy">
-                <h3>SABL QUEEN</h3>
-                <hr>
-                <p>Алексей</p>
-                <p><a href="404.html">Телеграм &raquo;</a></p>
-            </div>
-        </div>
-        <div class="nomcard">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="основные_номинации/bomboclat.jpeg" alt="Пока нет" class="nom_photo" loading="lazy">
-                <h3>Bomboclat года</h3>
-                <hr>
-                <p>Чак</p>
-                <p><a href="404.html">Телеграм &raquo;</a></p>
-            </div>
-        </div>
-        <div class="nomcard">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="основные_номинации/zavozer.png" alt="Пока нет" class="nom_photo" loading="lazy">
-                <h3>Лучший завозер</h3>
-                <hr>
-                <p>Иван Седов</p>
-                <p><a href="404.html">Телеграм &raquo;</a></p>
-            </div>
-        </div>
-        <div class="nomcard">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="основные_номинации/praim.jpg" alt="Пока нет" class="nom_photo" loading="lazy">
-                <h3>Прайм года</h3>
-                <hr>
-                <p>Егор Насолдин Потрошитель2000</p>
-                <p><a href="https://t.me/+tzno-Fd1vqwwZGQy" target="_blank">Телеграм &raquo;</a></p>
-            </div>
-        </div>
-    </div>
-
-    <h2>ДОПОЛНИТЕЛЬНЫЕ НОМИНАЦИИ 2025</h2>
-    <div class="extra_nom">
-        <div class="nomcard">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="дополнительные_номинации/teacher.jpg" alt="Пока нет" class="nom_photo" loading="lazy">
-                <h3>Учитель года</h3>
-                <hr>
-                <p>Андрей Анатольевич Крылов</p>
-                <p><a href="https://t.me/lyceum1535/8863" target="_blank">Упоминание &raquo;</a></p>
-            </div>
-        </div>
-        <div class="nomcard">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="дополнительные_номинации/minecraft.jpg" alt="Пока нет" class="nom_photo" loading="lazy">   
-                <h3><span class="sma">Лучший майнкрафтер года</span></h3>
-                <hr> 
-                <p>Егор Насолдин Потрошитель2000</p>
-                <p><a href="https://t.me/+tzno-Fd1vqwwZGQy" target="_blank">Телеграм &raquo;</a></p>
-            </div>
-        </div>
-        <div class="nomcard">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="дополнительные_номинации/feil.png" alt="Пока нет" class="nom_photo" loading="lazy">
-                <h3>Фейл года</h3>
-                <hr>
-                <p>Сочинение Антона Плаксина</p>
-                <p><a href="404.html">Телеграм &raquo;</a></p>
-            </div>
-        </div>
-        <div class="nomcard">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="дополнительные_номинации/event.png" alt="Пока нет" class="nom_photo" loading="lazy">   
-                <h3>Событие года</h3>
-                <hr>
-                <p>Арсений на заключительном <br> этапе ВСОШ</p>
-                <p><a href="404.html">Телеграм &raquo;</a></p>
-            </div>
-        </div>
-        <div class="nomcard">
-            <img class="border_frame" src="вспомогательные_объекты/sabl_border.png" alt="border" loading="lazy">
-            <div class="content">
-                <img src="дополнительные_номинации/ParaGoda.jpg" alt="Пока нет" class="nom_photo" loading="lazy">
-                <h3>Пара года</h3>
-                <hr>
-                <p>Арсений + Вика</p>
-                <p><a href="404.html">Телеграм &raquo;</a></p>
-            </div>
-        </div>
-    </div>
-            
+                    
     </div>
         </div>
         <section class="after_before">
@@ -486,7 +496,7 @@
                     <div class="circle">5</div>
                     <div class="text">
                         <strong>Голосования за победителей</strong>
-                        <p>13 апреля 2026 - 30 апреля 2026</p>
+                        <p>13 апреля 2026 - 5 мая 2026</p>
                     </div>
                 </div>
 
@@ -560,7 +570,7 @@
                         <input type="checkbox" id="dropdown-toggle-6" class="dropdown-toggle">
                         <label for="dropdown-toggle-6" class="question-label">Зачем нужен сайт?<span class="plus">+</span></label>
                         <ul class="dropdown-menu">
-                            <li>На сайте будет проходит основные голосования. Ссылки на ПРЯМОЕ голосование в <a href="https://t.me/+J8AarAYAgAY5ZTNi">Телеграм канале</a> не будет, только на сайт в секцию "Голосование", когда она будет доступна.</a></li>
+                            <li>На сайте будет проходит основные голосования. Ссылки на ПРЯМОЕ ГОЛОСОВАНИЕ в <a href="https://t.me/+J8AarAYAgAY5ZTNi">Телеграм канале</a> не будет, только на сайт в секцию «Какое-то Голосование», когда она будет доступна. Этап «Предложение Номинантов» не считается</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -592,10 +602,11 @@
           
     </footer>
     <script src="script.js"></script>
+    <script src="vnojtrejhbhbcdhbhjadgquuiebbcc.js"></script>
     <script src="ajhgfqytyuuwxcbnmz,wjgygiuoihjs.js"></script>
+    <script src="fio_modal.js"></script>
     <script src="aosajsnciilcnqknoqwoijdnbnkicbw.js"></script>
     <script src="jnxbhvgcquughcfhgqgyuhjghkjkh.js"></script>
-    <script src="vnojtrejhbhbcdhbhjadgquuiebbcc.js"></script>
     <script>
         (function() {
             const now = new Date();
@@ -623,7 +634,7 @@
                 {
                     el: document.querySelector('.etap:nth-child(6)'),
                     start: new Date('2026-04-13'),
-                    end: new Date('2026-04-30')
+                    end: new Date('2026-05-05')
                 }
             ];
             stages.forEach(stage => {

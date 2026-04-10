@@ -1,308 +1,376 @@
-// (() => {
-//     const x1 = String.fromCharCode(83,65,66,76) + "2026";
-    
-//     async function f8(t1, p2) {
-//         const e3 = new TextEncoder();
-//         const k4 = await crypto.subtle.importKey("raw", e3.encode(p2), {name:"PBKDF2"}, !1, ["deriveKey"]);
-//         const d5 = await crypto.subtle.deriveKey(
-//             {name:"PBKDF2", salt:e3.encode("sabl_salt_2026"), iterations:1e5, hash:"SHA-256"}, k4,{name:"AES-GCM", length:256},!1,["encrypt"]
-//         );
-//         const i6 = crypto.getRandomValues(new Uint8Array(12));
-//         const c7 = await crypto.subtle.encrypt({name:"AES-GCM", iv:i6}, d5, e3.encode(t1));
-//         return btoa(String.fromCharCode(...i6) + String.fromCharCode(...new Uint8Array(c7)));
-//     }
-//     async function d3(b8, p2) {
-//         const r9 = atob(b8);
-//         const i6 = new Uint8Array(r9.slice(0,12).split('').map(c => c.charCodeAt(0)));
-//         const c7 = new Uint8Array(r9.slice(12).split('').map(c => c.charCodeAt(0)));
-//         const e3 = new TextEncoder();
-//         const k4 = await crypto.subtle.importKey("raw", e3.encode(p2), {name:"PBKDF2"}, !1, ["deriveKey"]);
-//         const d5 = await crypto.subtle.deriveKey(
-//             {name:"PBKDF2", salt:e3.encode("sabl_salt_2026"), iterations:1e5, hash:"SHA-256"},k4,{name:"AES-GCM", length:256},!1,["decrypt"]
-//         );
-//         const t1 = await crypto.subtle.decrypt({name:"AES-GCM", iv:i6}, d5, c7);
-//         return new TextDecoder().decode(t1);
-//     }
-//     const u9 = () => String.fromCharCode(104,116,116,112,115,58,47,47,115,99,104,111,111,108,45,118,111,116,101,45,52,50,45,100,101,102,97,117,108,116,45,114,116,100,98,46,101,117,114,111,112,101,45,119,101,115,116,49,46,102,105,114,101,98,97,115,101,100,97,116,97,98,97,115,101,46,97,112,112,47,118,111,116,101,115,46,106,115,111,110);
-//     const s0 = new Date('2026-02-23T00:00:00+03:00');
-//     const e1 = new Date('2026-03-08T23:59:59+03:00');
-//     const n2 = new Date();
-//     function t19() {
-//         const now = new Date();
-//         if (now < e1) {
-//             const msUntilEnd = e1.getTime() - now.getTime();
-//             setTimeout(() => {
-//                 location.reload();
-//             }, msUntilEnd);
-//         }
-//     }
-//     t19();
-    
-//     function z3() {
-//         const b4 = document.getElementById('extra_nom_vote');
-//         if (!b4) return;
-//         const c5 = new Date();
-//         if (c5 < s0) {
-//             b4.textContent = 'Здесь ты проголосуешь';
-//             b4.style.opacity = '0.5';
-//             b4.style.cursor = 'not-allowed';
-//         } else if (c5 <= e1) {
-//             b4.textContent = 'Выбери 6 дополнительных номинаций премии';
-//             b4.style.opacity = '';
-//             b4.style.cursor = 'pointer';
-//         } else {
-//             b4.textContent = 'Голосование завершено';
-//             b4.style.opacity = '0.5';
-//             b4.style.cursor = 'pointer';
-//     }
-//     }
-//     z3();
-//     if (n2 < s0) {
-//         const t6 = s0.getTime() - n2.getTime();
-//         setTimeout(z3, t6);
-//     }
-    
-//     const k7 = 'extra_nom_user_key';
-//     const i8 = 'extra_nom_in_progress';
-//     const v9 = document.getElementById('extra_nom_vote');
-//     const m0 = document.getElementById('fioModal');
-//     const c1 = document.getElementById('fioConfirm');
-//     const l2 = document.getElementById('fioClose');
-//     const r3 = document.getElementById('fioError');
-//     const m4 = document.querySelector('.modal3');
-//     const o5 = document.querySelector('.modal-overlay3');
-//     const x6 = document.querySelector('.close-modal3');
-//     const n7 = document.querySelectorAll('.nomination');
-//     const t8 = document.getElementById('counter');
-//     const y9 = document.getElementById('confirmVote');
-//     let u0 = null;
-//     let s1 = 0;
-//     const M2 = 6;
-    
-//     function V3(n4) {
-//         const t5 = n4.trim();
-//         if (t5.length < 2) return !1;
-//         return /^[а-яёА-ЯЁ\-']+$/u.test(t5);
-//     }
-//     function C4(c5) {
-//         const t5 = c5.trim().toUpperCase();
-//         return /^([1-9]|1[01])[А-ЯЁ]$/u.test(t5);
-//     }
-//     function E5(m6) {
-//         r3.textContent = m6;
-//     }
-//     function R6() {
-//         r3.textContent = '';
-//     }
-//     function D7() {
-//         v9.textContent = 'Голос учтён';
-//         v9.style.pointerEvents = 'none';
-//         v9.style.opacity = '0.6';
-//     }
-//     function O8() {
-//         document.body.style.overflow = 'hidden';
-//         const s9 = window.scrollY;
-//         document.body.style.position = 'fixed';
-//         document.body.style.top = `-${s9}px`;
-//         document.body.style.width = '100%';
-//         m4.classList.add('active');
-//         setTimeout(() => m4.classList.add('visible'), 200);
-//     }
-//     function P9() {
-//         m4.classList.remove('visible');
-//         setTimeout(() => {
-//             m4.classList.remove('active');
-//             const s9 = parseInt(document.body.style.top || '0') * -1;
-//             document.body.style.position = '';
-//             document.body.style.top = '';
-//             document.body.style.width = '';
-//             document.body.style.overflow = '';
-//             window.scrollTo(0, s9);
-//         }, 300);
-//     }
-//     o5.addEventListener('click', P9);
-//     x6.addEventListener('click', P9);
-    
-//     async function G0() {
-//         try {
-//             const r1 = await fetch(u9());
-//             if (!r1.ok) return {};
-//             const j2 = await r1.json();
-//             if (j2 === null) return {};
-//             if (typeof j2.v === "string") {
-//                 const w3 = await d3(j2.v, x1);
-//                 return JSON.parse(w3);
-//             }
-//             return j2;
-//         } catch {
-//             return {};
-//         }
-//     }
-//     async function H1(q2) {
-//         try {
-//             const w3 = JSON.stringify(q2);
-//             const e4 = await f8(w3, x1);
-//             const r1 = await fetch(u9(), {
-//                 method: 'PUT',
-//                 headers: { 'Content-Type': 'application/json' },
-//                 body: JSON.stringify({ v: e4 })
-//             });
-//             return r1.ok;
-//         } catch {
-//             return !1;
-//         }
-//     }
-    
-//     const B2 = sessionStorage.getItem(k7);
-//     if (B2) {
-//         sessionStorage.setItem(i8, 'true');
-//         G0().then(q2 => {
-//             if (q2[B2]) {
-//                 D7();
-//                 sessionStorage.removeItem(k7);
-//                 sessionStorage.removeItem(i8);
-//             } else {
-//                 u0 = B2;
-//             }
-//         });
-//     }
-//     v9?.addEventListener('click', () => {
-//         const n4 = new Date();
-//         if (n4 > e1) {
-//             window.location.href = '404.html';
-//             return;
-//         }
-//         if (n4 < s0) {
-//             alert('Голосование ещё не началось');
-//             return;
-//         }
+'use strict';
+(() => {
+    const _k = String.fromCharCode(83,65,66,76) + "2026";
+    async function _enc(txt, pwd) {
+        const te = new TextEncoder();
+        const keyMat = await crypto.subtle.importKey("raw", te.encode(pwd), {name:"PBKDF2"}, false, ["deriveKey"]);
+        const aesKey = await crypto.subtle.deriveKey(
+            {name:"PBKDF2", salt:te.encode("sabl_salt_2026"), iterations:1e5, hash:"SHA-256"},
+            keyMat, {name:"AES-GCM", length:256}, false, ["encrypt"]
+        );
+        const iv = crypto.getRandomValues(new Uint8Array(12));
+        const ct = await crypto.subtle.encrypt({name:"AES-GCM", iv}, aesKey, te.encode(txt));
+        return btoa(String.fromCharCode(...iv) + String.fromCharCode(...new Uint8Array(ct)));
+    }
+    async function _dec(b64, pwd) {
+        const bin = atob(b64);
+        const iv = new Uint8Array(bin.slice(0,12).split('').map(c => c.charCodeAt(0)));
+        const ct = new Uint8Array(bin.slice(12).split('').map(c => c.charCodeAt(0)));
+        const te = new TextEncoder();
+        const keyMat = await crypto.subtle.importKey("raw", te.encode(pwd), {name:"PBKDF2"}, false, ["deriveKey"]);
+        const aesKey = await crypto.subtle.deriveKey(
+            {name:"PBKDF2", salt:te.encode("sabl_salt_2026"), iterations:1e5, hash:"SHA-256"},
+            keyMat, {name:"AES-GCM", length:256}, false, ["decrypt"]
+        );
+        const pt = await crypto.subtle.decrypt({name:"AES-GCM", iv}, aesKey, ct);
+        return new TextDecoder().decode(pt);
+    }
+    const _x42 = (path) => String.fromCharCode(
+        104,116,116,112,115,58,47,47,102,105,110,97,108,45,118,111,116,101,45,49,53,51,53,45,100,101,102,97,117,108,116,45,114,116,100,98,46,101,117,114,111,112,101,45,119,101,115,116,49,46,102,105,114,101,98,97,115,101,100,97,116,97,98,97,115,101,46,97,112,112
+    ) + '/' + path;
+    const _n = _x42('nominees.json');
+    const _v = _x42('votes.json');
+    const _s = _x42('suggestions.json');
+    const _m = 2;
+    const _u = 'extra_nom_user_key';
+    const _c = 5 * 60 * 1000;
+    const _voteStart = new Date('2026-04-13T00:00:00+03:00').getTime();
+    const _voteEnd = new Date('2026-05-05T23:59:59+03:00').getTime();
+    function _isVotingActive() {
+        const now = Date.now();
+        return now >= _voteStart && now <= _voteEnd;
+    }
+    function _getVotingStatus() {
+        const now = Date.now();
+        if (now < _voteStart) {
+            const hoursLeft = Math.floor((_voteStart - now) / (1000 * 60 * 60));
+            return { active: false, message: `Голосование начнётся через ${hoursLeft} ч.` };
+        } else if (now > _voteEnd) {
+            return { active: false, message: 'Голосование завершено' };
+        }
+        return { active: true, message: 'Голосование активно' };
+    }
+    let _ac = null;
+    let _ct = 0;
+    async function _lan() {
+        if (_ac && (Date.now() - _ct) < _c) return _ac;
+        const res = await fetch(_n);
+        const data = await res.json();
+        if (data && data.v) {
+            const plain = await _dec(data.v, _k);
+            _ac = JSON.parse(plain);
+        } else {
+            _ac = data || {};
+        }
+        _ct = Date.now();
+        return _ac;
+    }
+    function _gcn(nomination) {
+        const cached = sessionStorage.getItem(`nominees_${nomination}`);
+        const timestamp = sessionStorage.getItem(`nominees_time_${nomination}`);
+        if (cached && timestamp && (Date.now() - parseInt(timestamp)) < _c) {
+            return JSON.parse(cached);
+        }
+        return null;
+    }
+    function _cn(nomination, data) {
+        sessionStorage.setItem(`nominees_${nomination}`, JSON.stringify(data));
+        sessionStorage.setItem(`nominees_time_${nomination}`, Date.now().toString());
+    }
+    async function _ln(nomination) {
+        const cached = _gcn(nomination);
+        if (cached) return cached;
+        try {
+            const allNominees = await _lan();
+            const nominees = [];
+            for (const key in allNominees) {
+                if (allNominees[key].nomination === nomination) {
+                    nominees.push({
+                        id: key,
+                        name: allNominees[key].name,
+                        photo: allNominees[key].photo || 'вспомогательные_объекты/NONE.png',
+                        class: allNominees[key].class || ''
+                    });
+                }
+            }
+            _cn(nomination, nominees);
+            return nominees;
+        } catch (e) {
+            console.error('Ошибка загрузки номинантов:', e);
+            return [];
+        }
+    }
+    function _gcs(nomination) {
+        return JSON.parse(sessionStorage.getItem(`votes_${nomination}`) || '[]');
+    }
+    function _ucb(card, nomination) {
+        const btn = card?.querySelector('.choose-nominee-btn');
+        if (!btn) return;
+        const selected = _gcs(nomination);
+        if (selected.length === 0) {
+            btn.textContent = 'Выбрать номинанта';
+            btn.classList.remove('selected', 'partial');
+        } else if (selected.length === 1) {
+            btn.textContent = 'Выбран 1 из 2';
+            btn.classList.add('partial');
+            btn.classList.remove('selected');
+        } else {
+            btn.textContent = 'Выбрано 2 из 2';
+            btn.classList.add('selected');
+            btn.classList.remove('partial');
+        }
+    } 
+    function _uacb() {
+        document.querySelectorAll('.choose-nominee-btn').forEach(btn => {
+            const card = btn.closest('.nomcard');
+            if (!card) return;
+            const onclick = btn.getAttribute('onclick') || '';
+            const match = onclick.match(/'([^']+)'/);
+            const nomination = match ? match[1] : null;
+            if (nomination) {
+                _ucb(card, nomination);
+            }
+        });
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => setTimeout(_uacb, 100));
+    } else {
+        setTimeout(_uacb, 100);
+    }
+    async function _onm(nomination, card) {
+        const status = _getVotingStatus();
+        if (!status.active) {
+            alert(`⏰ ${status.message}`);
+            return;
+        }     
+        if (!sessionStorage.getItem(_u)) {
+            alert('Сначала представьтесь!');
+            const fioModal = document.getElementById('fioModal');
+            if (fioModal) fioModal.classList.add('active');
+            return;
+        }   
+        const modal = document.getElementById('nomineeModal');
+        const title = document.getElementById('nomineeModalTitle');
+        const list = document.getElementById('nomineesList');
+        const loading = document.getElementById('nomineeLoading');
+        const counter = document.getElementById('selectionCounter');
+        const suggestBtn = document.getElementById('suggestNomineeBtn');
+        if (!modal || !title || !list) return;
+        window.currentNomination = nomination;
+        window.currentCard = card;
+        title.textContent = nomination;
+        counter.textContent = `Выбрано: 0/${_m}`;
+        list.innerHTML = '';
+        loading.classList.add('active');
+        modal.classList.add('active');
         
-//         if (u0) {
-//             O8();
-//             return;
-//         }
-//         m0.classList.add('active');
-//         R6();
-//     });
-    
-//     c1?.addEventListener('click', () => {
-//         const a5 = document.getElementById('lastName').value;
-//         const b6 = document.getElementById('firstName').value;
-//         const c7 = document.getElementById('userClass').value;
-//         R6();
-//         if (!V3(a5)) {
-//             E5('Фамилия должна содержать только буквы и быть не короче 2 символов');
-//             return;
-//         }
-//         if (!V3(b6)) {
-//             E5('Имя должно содержать только буквы и быть не короче 2 символов');
-//             return;
-//         }
-//         if (!C4(c7)) {
-//             E5('Класс должен быть в формате: 5А, 10Б, 11В (цифры + одна заглавная буква)');
-//             return;
-//         }
-//         const d8 = `${a5.trim()} ${b6.trim()}`;
-//         const e9 = c7.trim().toUpperCase();
-//         u0 = `${d8}|${e9}`;
-//         sessionStorage.setItem(k7, u0);
-//         sessionStorage.setItem(i8, 'true');
-//         G0().then(q2 => {
-//             if (q2[u0]) {
-//                 alert('Вы уже голосовали!');
-//                 m0.classList.remove('active');
-//                 D7();
-//             } else {
-//                 m0.classList.remove('active');
-//                 O8();
-//             }
-//         });
-//     });
-    
-//     l2?.addEventListener('click', () => {
-//         m0.classList.remove('active');
-//     });
-    
-//     function F0() {
-//         t8.textContent = `Осталось выбрать: ${M2 - s1}`;
-//     }
-//     F0();
-    
-//     n7.forEach(n4 => {
-//         const b6 = n4.querySelector('.choose-btn');
-//         b6.addEventListener('click', () => {
-//             if (n4.classList.contains('selected')) {
-//                 n4.classList.remove('selected');
-//                 b6.textContent = 'Выбрать';
-//                 s1--;
-//             } else if (s1 < M2) {
-//                 n4.classList.add('selected');
-//                 b6.textContent = 'Убрать';
-//                 s1++;
-//             }
-//             F0();
-//         });
-//     });
-//     y9?.addEventListener('click', () => {
-//         const n4 = new Date();
-//         if (n4 > e1) {
-//             window.location.href = '404.html';
-//             return;
-//         }
+        if (suggestBtn) {
+            suggestBtn.onclick = () => _osm(nomination, card);
+        }
         
-//         if (!u0) {
-//             alert('Ошибка: данные пользователя не найдены');
-//             return;
-//         }
-//         if (s1 !== M2) {
-//             alert(`Нужно выбрать ровно ${M2} номинаций`);
-//             return;
-//         }
-//         const g1 = [];
-//         document.querySelectorAll('.nomination.selected')
-//             .forEach(n4 => g1.push(n4.dataset.nomination));
-//         G0().then(q2 => {
-//             q2[u0] = g1;
-//             H1(q2).then(ok => {
-//                 if (ok) {
-//                     alert('Голос успешно сохранён!');
-//                     P9();
-//                     sessionStorage.removeItem(k7);
-//                     sessionStorage.removeItem(i8);
-//                     D7();
-//                 } else {
-//                     alert('Ошибка при отправке голоса');
-//                 }
-//             });
-//         });
-//     });
-    
-//     const m5 = document.querySelector('.modal2');
-//     const x7 = document.querySelector('.close-modal2');
-//     const t9 = document.querySelector('.modal2-title');
-//     const y0 = document.querySelector('.modal2-text');
-//     const u1 = document.querySelector('.modal2-img');
-//     function I2(t3, x4, u5) { 
-//         t9.textContent = t3;
-//         y0.textContent = x4;
-//         u1.src = u5;
-//         m5.classList.add('active');
-//         setTimeout(() => m5.classList.add('visible'), 200);
-//     }
-//     function J3() {
-//         m5.classList.remove('visible');
-//         setTimeout(() => m5.classList.remove('active'), 300);
-//     }
-//     document.querySelector('.close-modal2')?.addEventListener('click', J3);
-//     document.querySelector('.modal-overlay2')?.addEventListener('click', J3);
-//     document.querySelectorAll('.nomination .extra-info').forEach(img => {
-//         img.addEventListener('click', (e) => {
-//             e.stopPropagation();
-//             const c7 = img.closest('.nomination');
-//             const t3 = c7.dataset.title;
-//             const x4 = c7.dataset.text;
-//             const u5 = c7.dataset.img;
-//             I2(t3, x4, u5);
-//         });
-//     });
-// })();
+        const nominees = await _ln(nomination);
+        const currentSelections = _gcs(nomination);
+        const suggestedNominees = [];
+        
+        currentSelections.forEach(selectedId => {
+            if (selectedId.startsWith('sugg_')) {
+                suggestedNominees.push({
+                    id: selectedId,
+                    name: 'Предложенный номинант',
+                    photo: 'вспомогательные_объекты/NONE.png',
+                    class: '',
+                    isSuggested: true
+                });
+            }
+        });
+        
+        loading.classList.remove('active');
+        const allNomineesToDisplay = [...nominees, ...suggestedNominees];
+        
+        if (allNomineesToDisplay.length === 0) {
+            list.innerHTML = '<p style="color:#ff6f00;text-align:center;">Номинанты ещё не добавлены</p>';
+            return;
+        }
+        allNomineesToDisplay.forEach(nominee => {
+            const isSelected = currentSelections.includes(nominee.id);
+            const cardEl = document.createElement('div');
+            cardEl.className = 'nominee-card' + (isSelected ? ' selected' : '');
+            if (window.currentNomination === 'Фейл года') {
+                cardEl.classList.add('fail-year');
+            } else if (window.currentNomination === 'Событие года') {
+                cardEl.classList.add('event-year');
+            }
+            
+            if (nominee.isSuggested) {
+                cardEl.style.border = '2px dashed #3498db';
+                cardEl.innerHTML = `
+                    <img src="${nominee.photo}" alt="${nominee.name}" class="nominee-photo" loading="lazy">
+                    <div class="nominee-name">${nominee.name} 💡</div>
+                    <div class="nominee-class">Ваше предложение</div>
+                `;
+            } else {
+                cardEl.innerHTML = `
+                    <img src="${nominee.photo}" alt="${nominee.name}" class="nominee-photo" loading="lazy">
+                    <div class="nominee-name">${nominee.name}</div>
+                    <div class="nominee-class">${nominee.class}</div>
+                `;
+            }
+            
+            cardEl.onclick = (e) => {
+                e.stopPropagation();
+                _tns(nomination, nominee.id, cardEl);
+                _usc(nomination);
+                if (card) _ucb(card, nomination);
+            };
+            
+            list.appendChild(cardEl);
+        });
+        
+        _usc(nomination);
+        if (card) _ucb(card, nomination);
+    }
+    function _tns(nomination, nomineeId, cardEl) {
+        let selected = _gcs(nomination);
+        if (selected.includes(nomineeId)) {
+            selected = selected.filter(id => id !== nomineeId);
+            cardEl.classList.remove('selected');
+        } else if (selected.length < _m) {
+            selected.push(nomineeId);
+            cardEl.classList.add('selected');
+        } else {
+            alert(`Можно выбрать не более ${_m} номинантов`);
+            return;
+        }
+        sessionStorage.setItem(`votes_${nomination}`, JSON.stringify(selected));
+    }
+    function _usc(nomination) {
+        const count = _gcs(nomination).length;
+        const el = document.getElementById('selectionCounter');
+        if (el) el.textContent = `Выбрано: ${count}/${_m}`;
+    }
+    async function _sv(nomination) {
+        const status = _getVotingStatus();
+        if (!status.active) {
+            alert(`⏰ ${status.message}`);
+            return;
+        }
+        
+        const votes = _gcs(nomination);
+        if (votes.length === 0) {
+            alert('Выберите хотя бы одного номинанта');
+            return;
+        }
+        const userKey = sessionStorage.getItem(_u);
+        if (!userKey) {
+            alert('Ошибка: данные пользователя не найдены');
+            return;
+        }
+        try {
+            let allVotes = {};
+            const res = await fetch(_v);
+            if (res.ok) {
+                const data = await res.json();
+                if (data && data.v) {
+                    const plain = await _dec(data.v, _k);
+                    allVotes = JSON.parse(plain);
+                } else if (data) {
+                    allVotes = data;
+                }
+            }
+            if (!allVotes[userKey]) {
+                allVotes[userKey] = {
+                    votes: {},
+                    timestamp: new Date().toISOString()
+                };
+            }
+            if (!allVotes[userKey].votes) {
+                const oldVotes = {};
+                for (const key in allVotes[userKey]) {
+                    if (key !== 'timestamp') oldVotes[key] = allVotes[userKey][key];
+                }
+                allVotes[userKey] = {
+                    votes: oldVotes,
+                    timestamp: allVotes[userKey].timestamp || new Date().toISOString()
+                };
+            }
+            allVotes[userKey].votes[nomination] = votes;
+            allVotes[userKey].timestamp = new Date().toISOString();
+            const plain = JSON.stringify(allVotes);
+            const encrypted = await _enc(plain, _k);
+            await fetch(_v, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ v: encrypted })
+            });
+            alert('Голос сохранён! ✅');
+            _cnm();
+        } catch (e) {
+            alert('Ошибка при отправке голоса ❌');
+            console.error(e);
+        }
+    }
+    async function _osm(nomination, card) {
+        const status = _getVotingStatus();
+        if (!status.active) {
+            alert(`⏰ ${status.message}`);
+            return;
+        }
+        
+        const name = prompt(`Предложить номинанта для "${nomination}":\nВведите ФИО:`);
+        if (!name || name.trim().length < 2) return;
+        const userKey = sessionStorage.getItem(_u) || 'anonymous';
+        const suggestion = {
+            nomination,
+            name: name.trim(),
+            suggestedBy: userKey,
+            timestamp: new Date().toISOString(),
+            isCustom: true
+        };
+        try {
+            let allSuggestions = {};
+            const res = await fetch(_s);
+            if (res.ok) {
+                const data = await res.json();
+                if (data && data.v) {
+                    const plain = await _dec(data.v, _k);
+                    allSuggestions = JSON.parse(plain);
+                } else if (data) {
+                    allSuggestions = data;
+                }
+            }
+            const newKey = 'sugg_' + Date.now();
+            allSuggestions[newKey] = suggestion;
+            const plain = JSON.stringify(allSuggestions);
+            const encrypted = await _enc(plain, _k);
+            await fetch(_s, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ v: encrypted })
+            });
+            let selected = _gcs(nomination);
+            if (selected.length < _m) {
+                selected.push(newKey);
+                sessionStorage.setItem(`votes_${nomination}`, JSON.stringify(selected));
+                _usc(nomination);
+                if (card) _ucb(card, nomination);
+                alert('Номинант предложен и добавлен в ваш выбор! ✅');
+                _onm(nomination, card);
+            } else {
+                alert('Номинант предложен! Но у вас уже выбрано 2 кандидата.');
+            }
+        } catch (e) {
+            alert('Ошибка отправки ❌');
+            console.error(e);
+        }
+    }
+    function _cnm() {
+        const modal = document.getElementById('nomineeModal');
+        if (modal) modal.classList.remove('active');
+    }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') _cnm();
+    });
+    window.openNomineeModal = _onm;
+    window.closeNomineeModal = _cnm;
+    window.submitVote = _sv;
+})();
