@@ -36,6 +36,7 @@
     const _c = 5 * 60 * 1000;
     const _voteStart = new Date('2026-04-13T00:00:00+03:00').getTime();
     const _voteEnd = new Date('2026-05-05T23:59:59+03:00').getTime();
+    
     function _isVotingActive() {
         const now = Date.now();
         return now >= _voteStart && now <= _voteEnd;
@@ -52,6 +53,7 @@
     }
     let _ac = null;
     let _ct = 0;
+    
     async function _lan() {
         if (_ac && (Date.now() - _ct) < _c) return _ac;
         const res = await fetch(_n);
@@ -65,6 +67,7 @@
         _ct = Date.now();
         return _ac;
     }
+    
     function _gcn(nomination) {
         const cached = sessionStorage.getItem(`nominees_${nomination}`);
         const timestamp = sessionStorage.getItem(`nominees_time_${nomination}`);
@@ -73,10 +76,12 @@
         }
         return null;
     }
+    
     function _cn(nomination, data) {
         sessionStorage.setItem(`nominees_${nomination}`, JSON.stringify(data));
         sessionStorage.setItem(`nominees_time_${nomination}`, Date.now().toString());
     }
+    
     async function _ln(nomination) {
         const cached = _gcn(nomination);
         if (cached) return cached;
@@ -100,9 +105,74 @@
             return [];
         }
     }
+    async function _lvf(userKey) {
+        try {
+            const res = await fetch(_v);
+            if (res.ok) {
+                const data = await res.json();
+                if (data && data.v) {
+                    const plain = await _dec(data.v, _k);
+                    const allVotes = JSON.parse(plain);
+                    if (allVotes[userKey]) {
+                        return allVotes[userKey].votes || allVotes[userKey];
+                    }
+                } else if (data && data[userKey]) {
+                    return data[userKey].votes || data[userKey];
+                }
+            }
+            return {};
+        } catch (e) {
+            console.error('Ошибка загрузки голосов:', e);
+            return {};
+        }
+    }
+    async function _svf(userKey, votes) {
+        try {
+            let allVotes = {};
+            const res = await fetch(_v);
+            if (res.ok) {
+                const data = await res.json();
+                if (data && data.v) {
+                    const plain = await _dec(data.v, _k);
+                    allVotes = JSON.parse(plain);
+                } else if (data) {
+                    allVotes = data;
+                }
+            }
+            if (!allVotes[userKey]) {
+                allVotes[userKey] = { votes: {}, timestamp: new Date().toISOString() };
+            }
+            if (!allVotes[userKey].votes) {
+                const oldVotes = {};
+                for (const key in allVotes[userKey]) {
+                    if (key !== 'timestamp') oldVotes[key] = allVotes[userKey][key];
+                }
+                allVotes[userKey] = { votes: oldVotes, timestamp: allVotes[userKey].timestamp || new Date().toISOString() };
+            }
+            allVotes[userKey].votes = votes;
+            allVotes[userKey].timestamp = new Date().toISOString();
+            const plain = JSON.stringify(allVotes);
+            const encrypted = await _enc(plain, _k);
+            await fetch(_v, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ v: encrypted })
+            });
+            return true;
+        } catch (e) {
+            console.error('Ошибка сохранения голосов:', e);
+            return false;
+        }
+    }
+    
     function _gcs(nomination) {
         return JSON.parse(sessionStorage.getItem(`votes_${nomination}`) || '[]');
     }
+    
+    function _scs(nomination, votes) {
+        sessionStorage.setItem(`votes_${nomination}`, JSON.stringify(votes));
+    }
+    
     function _ucb(card, nomination) {
         const btn = card?.querySelector('.choose-nominee-btn');
         if (!btn) return;
@@ -119,7 +189,7 @@
             btn.classList.add('selected');
             btn.classList.remove('partial');
         }
-    } 
+    }
     function _uacb() {
         document.querySelectorAll('.choose-nominee-btn').forEach(btn => {
             const card = btn.closest('.nomcard');
@@ -132,30 +202,48 @@
             }
         });
     }
+    async function _luv() {
+        const userKey = sessionStorage.getItem(_u);
+        if (!userKey) return;
+        const firebaseVotes = await _lvf(userKey);
+        for (const nomination in firebaseVotes) {
+            const votes = Array.isArray(firebaseVotes[nomination]) ? firebaseVotes[nomination] : [firebaseVotes[nomination]];
+            _scs(nomination, votes);
+        }
+        _uacb();
+    }
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => setTimeout(_uacb, 100));
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(_uacb, 100);
+            setTimeout(_luv, 200);
+        });
     } else {
         setTimeout(_uacb, 100);
+        setTimeout(_luv, 200);
     }
     async function _onm(nomination, card) {
         const status = _getVotingStatus();
         if (!status.active) {
             alert(`⏰ ${status.message}`);
             return;
-        }     
+        }
+        
         if (!sessionStorage.getItem(_u)) {
             alert('Сначала представьтесь!');
             const fioModal = document.getElementById('fioModal');
             if (fioModal) fioModal.classList.add('active');
             return;
-        }   
+        }
+        
         const modal = document.getElementById('nomineeModal');
         const title = document.getElementById('nomineeModalTitle');
         const list = document.getElementById('nomineesList');
         const loading = document.getElementById('nomineeLoading');
         const counter = document.getElementById('selectionCounter');
         const suggestBtn = document.getElementById('suggestNomineeBtn');
+        
         if (!modal || !title || !list) return;
+        
         window.currentNomination = nomination;
         window.currentCard = card;
         title.textContent = nomination;
@@ -191,10 +279,12 @@
             list.innerHTML = '<p style="color:#ff6f00;text-align:center;">Номинанты ещё не добавлены</p>';
             return;
         }
+        
         allNomineesToDisplay.forEach(nominee => {
             const isSelected = currentSelections.includes(nominee.id);
             const cardEl = document.createElement('div');
             cardEl.className = 'nominee-card' + (isSelected ? ' selected' : '');
+            
             if (window.currentNomination === 'Фейл года') {
                 cardEl.classList.add('fail-year');
             } else if (window.currentNomination === 'Событие года') {
@@ -222,7 +312,6 @@
                 _usc(nomination);
                 if (card) _ucb(card, nomination);
             };
-            
             list.appendChild(cardEl);
         });
         
@@ -241,7 +330,7 @@
             alert(`Можно выбрать не более ${_m} номинантов`);
             return;
         }
-        sessionStorage.setItem(`votes_${nomination}`, JSON.stringify(selected));
+        _scs(nomination, selected);
     }
     function _usc(nomination) {
         const count = _gcs(nomination).length;
@@ -254,7 +343,6 @@
             alert(`⏰ ${status.message}`);
             return;
         }
-        
         const votes = _gcs(nomination);
         if (votes.length === 0) {
             alert('Выберите хотя бы одного номинанта');
@@ -265,50 +353,18 @@
             alert('Ошибка: данные пользователя не найдены');
             return;
         }
-        try {
-            let allVotes = {};
-            const res = await fetch(_v);
-            if (res.ok) {
-                const data = await res.json();
-                if (data && data.v) {
-                    const plain = await _dec(data.v, _k);
-                    allVotes = JSON.parse(plain);
-                } else if (data) {
-                    allVotes = data;
-                }
-            }
-            if (!allVotes[userKey]) {
-                allVotes[userKey] = {
-                    votes: {},
-                    timestamp: new Date().toISOString()
-                };
-            }
-            if (!allVotes[userKey].votes) {
-                const oldVotes = {};
-                for (const key in allVotes[userKey]) {
-                    if (key !== 'timestamp') oldVotes[key] = allVotes[userKey][key];
-                }
-                allVotes[userKey] = {
-                    votes: oldVotes,
-                    timestamp: allVotes[userKey].timestamp || new Date().toISOString()
-                };
-            }
-            allVotes[userKey].votes[nomination] = votes;
-            allVotes[userKey].timestamp = new Date().toISOString();
-            const plain = JSON.stringify(allVotes);
-            const encrypted = await _enc(plain, _k);
-            await fetch(_v, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ v: encrypted })
-            });
+        let allUserVotes = await _lvf(userKey);
+        allUserVotes[nomination] = votes;
+        const saved = await _svf(userKey, allUserVotes);
+        
+        if (saved) {
             alert('Голос сохранён! ✅');
             _cnm();
-        } catch (e) {
+        } else {
             alert('Ошибка при отправке голоса ❌');
-            console.error(e);
         }
     }
+    
     async function _osm(nomination, card) {
         const status = _getVotingStatus();
         if (!status.active) {
@@ -350,7 +406,7 @@
             let selected = _gcs(nomination);
             if (selected.length < _m) {
                 selected.push(newKey);
-                sessionStorage.setItem(`votes_${nomination}`, JSON.stringify(selected));
+                _scs(nomination, selected);
                 _usc(nomination);
                 if (card) _ucb(card, nomination);
                 alert('Номинант предложен и добавлен в ваш выбор! ✅');
@@ -363,13 +419,17 @@
             console.error(e);
         }
     }
+    
     function _cnm() {
         const modal = document.getElementById('nomineeModal');
         if (modal) modal.classList.remove('active');
     }
+    
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') _cnm();
     });
+    
+    // === ЭКСПОРТ ===
     window.openNomineeModal = _onm;
     window.closeNomineeModal = _cnm;
     window.submitVote = _sv;
