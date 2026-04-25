@@ -35,7 +35,7 @@
     const _u = 'extra_nom_user_key';
     const _c = 5 * 60 * 1000;
     const _voteStart = new Date('2026-04-13T00:00:00+03:00').getTime();
-    const _voteEnd = new Date('2026-05-05T23:59:59+03:00').getTime();
+    const _voteEnd = new Date('2026-05-03T23:59:59+03:00').getTime();
     
     function _isVotingActive() {
         const now = Date.now();
