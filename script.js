@@ -35,7 +35,7 @@ const stages = [
         name: "Премия",
         start: new Date('2026-05-28T00:00:00+03:00').getTime(),
         end: new Date('2026-05-30T23:59:59+03:00').getTime(),
-        activeMessage: "🎉 Онлайн-премия идёт!"
+        activeMessage: "🎉 Онлайн-премия скоро!"
     },
     {
         name: "Награждение",
