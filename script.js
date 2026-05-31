@@ -82,7 +82,7 @@ function updateTimer() {
         targetTime = current.stage.start;
         messageText = 'До следующего этапа осталось:';
     } else {
-        messageEl.textContent = 'SABL2026 завершён';
+        messageEl.textContent = 'SABL2026 прошёл, до встречи';
         messageEl.style.color = '#ff6600';
         countdownEl.textContent = '';
         if (warningEl) warningEl.style.display = 'none';

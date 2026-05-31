@@ -194,11 +194,12 @@ hr {
     top: 12%;
 }
 .p2{
-    left: 20%;
+    left: 25%;
     top: 18%;
 }
 
 .p3{
+    font-size: 22px;
     left: 50px;
     top: 70%;
 }
@@ -574,6 +575,10 @@ hr {
 
 .nomcard hr { 
     border: none; border-top: 2px solid rgba(255, 95, 31, 0.799)
+}
+
+.nomcard p{
+  font-size: 25px;
 }
 
 .nomcard a{
@@ -1694,12 +1699,12 @@ footer nav li:not(:last-child)::after {
   }
 
   .p1{
-    left: 15%;
+    left: 10%;
   }
   
   .p2{
     top: 4%;
-    left: 55%;
+    left: 42%;
   }
 
   .p3{
