@@ -549,6 +549,13 @@ hr {
   font-size: 25px;
 }
 
+#eventgoda2026 .content .nom_photo,
+#feilgoda2026 .content .nom_photo {
+  border: none;
+  width: 200px;
+  height: 200px;
+}
+
 .content hr{
   width: 75%;
 }
