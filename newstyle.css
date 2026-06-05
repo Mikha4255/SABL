@@ -163,11 +163,9 @@ hr {
 
 .img1{
     position: absolute;
-    height: 460px;
+    height: 420px;
     right: 5%;
-    top: 140px;
-    box-shadow: 0px 0px 42px #ff6f00,
-                inset 0px 0px 42px #ff6600;
+    top: 80px;
 }
 
 .img1:hover{
@@ -1734,7 +1732,7 @@ footer nav li:not(:last-child)::after {
 
   .img1{
     top: 25%;
-    left: 25%;
+    right: 13%;
     height: 250px;
     box-shadow: none;
   }
@@ -1917,7 +1915,7 @@ footer nav li:not(:last-child)::after {
 
   .img1{
     top: 40%;
-    height: 300px;
+    height: 250px;
     box-shadow: none;
   }
 
