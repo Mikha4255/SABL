@@ -3,9 +3,585 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SABL - главная премия 3 классов</title>
+    <title>SABL2026 - главная премия 3 классов</title> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comforter&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bellota:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=DM+Serif+Text:ital@0;1&display=swap">
+    <link rel="icon" type="image/png" sizes="64x64" href="вспомогательные_объекты/sabl_web.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body style="background-image: url('https://avatars.mds.yandex.net/i?id=9a8e2ac3e8f5820da77c579da4b23d104e814bd1-7052560-images-thumbs&n=13'); background-size: 90%;">
-    
+<body>
+    <div class="fixed">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="#about">О премии</a> </li>
+                    <li><a href="#nom">Номинации</a></li> 
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <main>
+        <div>
+            <div class="main_info">
+                <img class="prikol" src="вспомогательные_объекты/prikol_1.png" loading="lazy" alt="прикол">
+                <img class="prikol6" src="вспомогательные_объекты/prikol_6.png" loading="lazy" alt="прикол">
+                <div class="pictures">
+                    <a class="main-logo" href="https://t.me/+J8AarAYAgAY5ZTNi" target="_blank">
+                        <img src="вспомогательные_объекты/Logo_sabl_2026_2027.png" loading="lazy" alt="лого">
+                    </a>
+                    <img class="main-part" id="about" src="вспомогательные_объекты/main_part.png" alt="1535">
+                </div>
+                <hr class="top-bottom">
+                <div class="sabl">
+                    <h1><span>&reg;</span>Strange Academics <br>
+                         of Biology<br>
+                        and Literature</h1>
+                    <p> Премия, которой не должно быть третий год. <br>
+                        Отмечай достижения и выбери<br>
+                        тех, кто по-настоящему достоин<br>
+                        стать победителем SABL.<br>
+                    </p>
+                </div>
+
+                <a class="qwer" href="https://t.me/+J8AarAYAgAY5ZTNi" target="_blank">Узнать <br> больше</a>
+            </div>
+        </div>
+
+        <section class="return-panel section-frame" aria-labelledby="return-title">
+            <img class="prikol2" src="вспомогательные_объекты/prikol_2.png" loading="lazy" alt="прикол">
+            <div>
+                <p class="kicker">Ну что-то сверху обычно пишут</p>
+                <h2 id="return-title">Карточка <span>дня</span></h2>
+            </div>
+            <div class="weekly-card">
+                <div class="weekly-label">SABL / СЛУЧАЙНАЯ ИСТОРИЯ</div>
+                <div id="weekly-card-content"></div>
+                <button class="text-button" id="new-story-button" type="button">Открыть другую историю <span>↗</span></button>
+            </div>
+        </section>
+        <hr>
+        <div id="nom">
+            <h1>НОМИНАЦИИ</h1>
+            <img class="prikol3" src="вспомогательные_объекты/prikol_3.png" loading="lazy" alt="прикол">
+            <img class="prikol7" src="вспомогательные_объекты/prikol_7.png" loading="lazy" alt="прикол">
+            <div class="archive" >
+                <h2>Посмотреть любой год</h2>
+                <div class="all-years">
+                    <button class="archive-btn" onclick="showYear(event, '2027')">2027</button>
+                    <button class="archive-btn" onclick="showYear(event, '2026')">2026</button>
+                    <button class="archive-btn" onclick="showYear(event, '2025')">2025</button>
+                </div>
+            </div>
+
+            <div id="year2027">
+                <div class="switch">
+                    <button class="switch-btn" onclick="showNom(event, 'main')">Основные</button>
+                    <button class="switch-btn" onclick="showNom(event, 'dop')">Дополнительные</button>
+                </div>
+                <div class="main-noms">
+                    <h2>ОСНОВНЫЕ НОМИНАЦИИ</h2>
+                    <div class="nomins">
+                        <article class="nomcard">
+                            <div class="image"> <img src="вспомогательные_объекты/NONE.png" alt="NONE"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    SABL KING <br>
+                                    <span>NONE</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="вспомогательные_объекты/NONE.png" alt="NONE"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    SABL QUEEN <br>
+                                    <span>NONE</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="вспомогательные_объекты/NONE.png" alt="NONE"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Человек-мем года <br>
+                                    <span>NONE</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="вспомогательные_объекты/NONE.png" alt="NONE"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Учителя года <br>
+                                    <span>NONE</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="вспомогательные_объекты/NONE.png" alt="NONE"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Bomboclat года <br>
+                                    <span>NONE</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="вспомогательные_объекты/NONE.png" alt="NONE"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Лучший завозёр <br>
+                                    <span>NONE</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="вспомогательные_объекты/NONE.png" alt="NONE"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Прайм года <br>
+                                    <span>NONE</span>
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="dop-noms">
+                    <h2>ДОПОЛНИТЕЛЬНЫЕ НОМИНАЦИИ</h2>
+
+                </div>
+
+            </div>
+
+            <div id="year2026" style="display: none;">
+                <div class="switch">
+                    <button class="switch-btn" onclick="showNom(event, 'main')">Основные</button>
+                    <button class="switch-btn" onclick="showNom(event, 'dop')">Дополнительные</button>
+                </div>
+                
+                <div class="main-noms">
+                    <h2>ПОБЕДИТЕЛИ ОСНОВНЫЕ НОМИНАЦИИ 2026</h2>
+                    <div class="nomins">
+                        <article class="nomcard">
+                            <div class="image"> <img src="основные_номинации_2026/ivan_kop.png" alt="Копылов"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    SABL KING <br>
+                                    <span>Иван Копылов</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="основные_номинации_2026/axmadulin_alex.png" alt="Ахмадулин"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    SABL QUEEN <br>
+                                    <span>Алексей Ахмадулин</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="основные_номинации_2026/anton_plaxin.png" alt="Плаксин"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Человек-мем года <br>
+                                    <span>Антон Плаксин</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="основные_номинации_2026/camorodov_maksim.jpg" alt="Самородов"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Учитель года <br>
+                                    <span>Самородов Максим Андреевич</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="основные_номинации_2026/egor_chak.png" alt="Скрипчак"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Bomboclat года <br>
+                                    <span>Егор Скрипчак</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="основные_номинации_2026/artem_kopneenko.png" alt="Корниенко"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Лучший завозёр <br>
+                                    <span>Артём Корниенко</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="основные_номинации_2026/ivan_kop.png" alt="Копылов"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Прайм года <br>
+                                    <span>Иван Копылов</span>
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                
+                <div class="dop-noms">
+                    <h2>ПОБЕДИТЕЛИ ДОПОЛНИТЕЛЬНЫЕ НОМИНАЦИИ 2026</h2>
+                    <div class="nomins">
+                        <article class="nomcard">
+                            <div id="event-goda" class="image"> <img src="дополнительные_номинации_2026/sobutia_goda.png" alt="Событие"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Событие года <br>
+                                    <span>Стена в чём-то перед НВЛ</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div id="feil-goda" class="image"> <img src="дополнительные_номинации_2026/feil_goda.png" alt="Фейл"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Фейл года <br>
+                                    <span>Перенос НВЛ на 2 месяца</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="дополнительные_номинации_2026/maksim_tolmochov.png" alt="Толмачёв"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Гений года <br>
+                                    <span>Максим Толмачёв</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="дополнительные_номинации_2026/pak_anotolia.png" alt="Анатолий"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Человек-сюрприз года <br>
+                                    <span>Пак Анатолий</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="дополнительные_номинации_2026/oleg_bondarenko.png" alt="Бондаренко"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Стиль года <br>
+                                    <span>Олег Бондаренко</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="дополнительные_номинации_2026/ilay_perov.png" alt="Перов"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Харизма года <br>
+                                    <span>Илья Перов</span>
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="year2025" style="display: none;">
+                <div class="switch">
+                    <button class="switch-btn" onclick="showNom(event, 'main')">Основные</button>
+                    <button class="switch-btn" onclick="showNom(event, 'dop')">Дополнительные</button>
+                </div>
+                <div class="main-noms">
+                    <h2>ПОБЕДИТЕЛИ ОСНОВНЫЕ НОМИНАЦИИ 2025</h2>
+                    <div class="nomins">
+                        <article class="nomcard">
+                            <div class="image"> <img src="основные_номинации_2025/king.jpg" alt="Насолдин"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    SABL KING <br>
+                                    <span>Егор Насолдин Потрошитель2000</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="основные_номинации_2025/queen.jpeg" alt="Ахмадулин"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    SABL QUEEN <br>
+                                    <span>Алексей Ахмадулин</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="основные_номинации_2025/mem.jpeg" alt="ЛенскийZe"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Человек-мем года <br>
+                                    <span>ЛенскийZe</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="основные_номинации_2025/bomboclat.jpeg" alt="Чак"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Bomboclat года <br>
+                                    <span>Чак</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="основные_номинации_2025/zavozer.png" alt="Седов"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Лучший завозёр <br>
+                                    <span>Иван Седов</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="основные_номинации_2025/praim.jpg" alt="Насолдин"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Прайм года <br>
+                                    <span>Егор Насолдин Потрошитель2000</span>
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+
+                
+                <div class="dop-noms">
+                    <h2>ПОБЕДИТЕЛИ ДОПОЛНИТЕЛЬНЫЕ НОМИНАЦИИ 2025</h2>
+                    <div class="nomins">
+                        <article class="nomcard">
+                            <div class="image"> <img src="дополнительные_номинации_2025/teacher.jpg" alt="Учитель"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Учитель года <br>
+                                    <span>Андрей Анатольевич Крылов</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="дополнительные_номинации_2025/minecraft.jpg" alt="майнкрафтер"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Лучший майнкрафтер года <br>
+                                    <span>Егор Насолдин Потрошитель2000</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="дополнительные_номинации_2025/feil.png" alt="Фейл"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Фейл года <br>
+                                    <span>Сочинение Антона Плаксинав</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="дополнительные_номинации_2025/event.jpg" alt="Событие"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Событие года <br>
+                                    <span>Арсений на заключительном этапе ВСОШ</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="дополнительные_номинации_2025/ParaGoda.jpg" alt="Пара"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.jpg" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Пара года <br>
+                                    <span>Арсений + Вика</span>
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        
+        <div class="prikol_div">
+            <img class="prikol4" src="вспомогательные_объекты/prikol_4.png" loading="lazy" alt="прикол">
+            <img class="prikol8" src="вспомогательные_объекты/prikol_4.png" loading="lazy" alt="прикол">
+        </div>
+
+        <div class="faq" id="faq">
+            <h2>FAQ</h2>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Что такое SABL?
+                    <span class="faq-icon">+</span>
+                </button>
+
+                <div class="faq-answer">
+                    <p>
+                        SABL — ежегодная премия, посвящённая
+                        самым ярким и запоминающимся людям наших классов.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Зачем это?
+                    <span class="faq-icon">+</span>
+                </button>
+
+                <div class="faq-answer">
+                    <p>
+                        По приколу, по рофлу
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Как проходит голосование?
+                    <span class="faq-icon">+</span>
+                </button>
+
+                <div class="faq-answer">
+                    <p>
+                        Каждый ученик может отдать свой голос
+                        за понравившихся номинантов в представленных
+                        основных и дополнительных номинациях. Голосование проходит на сайте
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Когда объявят победителей?
+                    <span class="faq-icon">+</span>
+                </button>
+
+                <div class="faq-answer">
+                    <p>
+                        Победители будут объявлены на
+                        церемонии награждения SABL. <br>
+                        Скорее всего церемония будет онлайн, так как офлайн организатор не знает как делать. <br>
+                        <a href="https://t.me/+J8AarAYAgAY5ZTNi" target="_blank">#Организатордебил</a>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+            
+    <div class="prikol_div_1">   
+        <img class="prikol5" src="вспомогательные_объекты/prikol_5.png" loading="lazy" alt="прикол">
+    </div>
+
+    <footer>
+        <div>
+            <div>
+                <img class="img_contack", src="вспомогательные_объекты/for_contacs.png", alt="contacks" loading="lazy">
+            </div>
+            <div class="contack">
+                <p>
+                    Полезные ссылки
+                </p>
+                <ul>
+                    <li><a href="https://t.me/+J8AarAYAgAY5ZTNi" target="_blank">Телеграм канал</a></li> 
+                    <li><a href="http://mint.cloudpub.ru/channel/SABL" target="_blank">MINT канал</a></li> 
+                    <li><a href="mailto:sablaward1535@gmail.com" target="_blank"></a>Cвязь с организаторами по почте: sablaward1535@gmail.com</a></li>
+                    <li><a href="404.html">Первый Спонсор</a></li>
+                    <li><a href="https://t.me/LeftView" target="_blank">Второй Спонсор</a></li>
+                    <li><a href="https://t.me/joper5" target="_blank">Третий Спонсор</a></li>
+                    <li><a href="https://i.pinimg.com/originals/5e/fb/38/5efb38bb7c1c6bf87e84d39c21643c82.jpg?nii=t" target="_blank">Четвёртый Спонсор</a></li>
+                    <li><a href="https://disk.yandex.ru/i/4OpLfF8TMFqYwA" target="_blank">Правила Премии SABL</a></li>
+                </ul>
+                <p class="melki">
+                    &copy; <span>SABL</span>. Все права защищены. Все картинки сгенерированы нейросетью GPT.<br>
+                    Любое совпадение с реальными людьми - чистая случайность.<br>
+                    Мы никого не оскорбляем, это всё по приколу. <br>
+                    Премия, которой не должно быть третий год.
+                </p>
+            </div>
+        </div>
+    </footer>  
+
+    <script src="script.js"></script>
 </body>
 </html>
