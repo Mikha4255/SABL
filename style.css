@@ -641,3 +641,225 @@ footer div{
     color: var(--orange-light);
     transition: all 0.3s ease;
 }
+
+
+/* ДЛЯ ГОЛОСОВАНИЙ */
+.dop-noms { text-align: center; padding: 40px 20px; }
+.vote-desc { color: var(--cream); font-size: 18px; margin-bottom: 20px; line-height: 1.5; }
+
+.vote-btn {
+    padding: 15px 40px; background: var(--orange); color: var(--back);
+    border: none; border-radius: 30px; font-size: 20px; font-weight: bold;
+    cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(255, 77, 0, 0.3);
+}
+.vote-btn:hover { transform: scale(1.05); background: var(--orange-light); }
+
+/* Модалки */
+.vote-modal {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1000; align-items: center; justify-content: center;
+}
+.vote-modal.active { display: flex; }
+
+.vote-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(7, 4, 1, 0.92); backdrop-filter: blur(6px);
+}
+
+.vote-content {
+    position: relative; background: var(--ink-light);
+    border: 3px solid var(--orange); border-radius: 24px;
+    padding: 35px; width: 92%; max-width: 650px;
+    max-height: 90vh; overflow-y: auto; color: var(--yellow);
+    box-shadow: 0 0 40px rgba(255, 77, 0, 0.25);
+    scrollbar-width: thin; scrollbar-color: var(--orange) var(--ink-light2);
+}
+
+/* Адаптив для телефонов */
+@media (max-width: 600px) {
+    .vote-content { 
+        padding: 25px 20px; 
+        border-radius: 18px; 
+        width: 96%; 
+        max-height: 85vh;
+    }
+    .nominees-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+    .suggest-form { flex-direction: column; }
+    .vote-content h3 { font-size: 22px; }
+    .nom-card { font-size: 16px !important; min-height: 55px !important; padding: 12px 8px !important; }
+}
+
+.auth-content { max-width: 420px; text-align: center; }
+
+.vote-close {
+    position: absolute; top: 18px; right: 18px;
+    background: transparent; border: none; color: var(--muted);
+    font-size: 28px; cursor: pointer; transition: color 0.3s;
+    width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+}
+.vote-close:hover { color: var(--orange); background: rgba(255,77,0,0.1); }
+
+.vote-content h3 {
+    color: var(--orange); margin-bottom: 20px;
+    font-family: "DM Serif Text", serif; font-size: 26px;
+}
+
+/* Авторизация */
+#authForm input {
+    width: 100%; padding: 14px; margin: 10px 0;
+    background: var(--back); border: 2px solid var(--line);
+    border-radius: 12px; color: var(--cream); font-size: 17px;
+    font-family: "Bellota", system-ui;
+}
+#authForm input:focus { outline: none; border-color: var(--orange); }
+
+.submit-auth-btn {
+    width: 100%; padding: 14px; margin-top: 18px;
+    background: var(--orange); color: var(--back);
+    border: none; border-radius: 12px; font-size: 19px;
+    font-weight: bold; cursor: pointer; font-family: "Bellota", system-ui;
+}
+.auth-error { color: var(--red-light); font-size: 15px; min-height: 22px; margin-top: 8px; font-family: "Bellota", system-ui; }
+
+/* Голосование */
+.vote-counter {
+    font-size: 20px; color: var(--orange-light); margin-bottom: 18px;
+    font-weight: bold; font-family: "Bellota", system-ui; text-align: center;
+}
+
+.suggest-form { display: flex; gap: 10px; margin-bottom: 20px; }
+.suggest-form input {
+    flex: 1; padding: 12px; background: var(--back);
+    border: 2px solid var(--line); border-radius: 12px;
+    color: var(--cream); font-size: 16px; font-family: "Bellota", system-ui;
+}
+.suggest-form button {
+    padding: 12px 24px; background: var(--orange2); color: var(--back);
+    border: none; border-radius: 12px; font-weight: bold; cursor: pointer;
+    font-family: "Bellota", system-ui; white-space: nowrap;
+}
+.suggest-error { color: var(--red-light); font-size: 14px; margin-top: 6px; min-height: 20px; font-family: "Bellota", system-ui; }
+
+.nominees-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 14px; margin-bottom: 24px; max-height: 420px;
+    overflow-y: auto; padding-right: 8px;
+}
+
+.nom-card {
+    background: var(--ink-light2) !important;
+    border: 2px solid var(--line) !important;
+    border-radius: 14px; padding: 16px 12px;
+    text-align: center; cursor: pointer; transition: all 0.25s;
+    font-size: 17px !important; color: var(--cream) !important;
+    user-select: none; font-family: "Bellota", system-ui;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 64px; line-height: 1.35; word-break: break-word;
+}
+
+.nom-card:hover {
+    border-color: var(--orange) !important;
+    color: var(--orange-light) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(255, 77, 0, 0.2);
+}
+
+.nom-card.selected {
+    background: var(--orange) !important;
+    color: var(--back) !important;
+    border-color: var(--orange) !important;
+    font-weight: bold;
+    box-shadow: 0 0 18px rgba(255, 77, 0, 0.45);
+}
+
+.nom-card.user-suggested {
+    border-style: dashed !important;
+    border-color: var(--orange2) !important;
+    position: relative;
+    color: var(--orange2) !important;
+}
+
+.nom-card.user-suggested::after {
+    content: '✕';
+    position: absolute;
+    top: -10px; right: -10px;
+    width: 24px; height: 24px;
+    background: var(--red);
+    color: white;
+    border-radius: 50%;
+    font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0.8;
+}
+.nom-card.user-suggested:hover::after { opacity: 1; transform: scale(1.1); }
+
+.nom-card.user-suggested.selected {
+    background: var(--orange2) !important;
+    color: var(--back) !important;
+    border-color: var(--orange2) !important;
+}
+
+.submit-vote-btn {
+    width: 100%; padding: 16px; background: #2ecc71; color: var(--back);
+    border: none; border-radius: 14px; font-size: 21px;
+    font-weight: bold; cursor: pointer; transition: all 0.3s;
+    font-family: "Bellota", system-ui;
+}
+.submit-vote-btn:hover:not(:disabled) { background: #27ae60; transform: scale(1.02); }
+.submit-vote-btn:disabled { background: var(--muted); cursor: not-allowed; opacity: 0.5; }
+
+body.modal-open {
+    overflow: hidden !important;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.vote-overlay {
+    cursor: pointer;
+}
+
+.vote-content {
+    cursor: default;
+}
+
+.quick-vote-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px auto;
+    padding: 16px 40px;
+    background: var(--orange);
+    color: var(--back);
+    border: none;
+    border-radius: 50px;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: "Bellota", system-ui;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(255, 77, 0, 0.4);
+    transition: all 0.3s ease;
+    animation: pulse-orange 2.5s infinite;
+}
+
+.quick-vote-btn:hover {
+    transform: scale(1.05) translateY(-3px);
+    background: var(--orange-light);
+    box-shadow: 0 8px 30px rgba(255, 77, 0, 0.6);
+}
+
+@keyframes pulse-orange {
+    0% { box-shadow: 0 0 0 0 rgba(255, 77, 0, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 77, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 77, 0, 0); }
+}
+
+@media (max-width: 700px) {
+    .quick-vote-btn {
+        font-size: 18px;
+        padding: 14px 25px;
+        width: 90%;
+        justify-content: center;
+    }
+}

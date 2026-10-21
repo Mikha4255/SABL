@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SABL2026 - главная премия 3 классов</title> 
+    <title>SABL2027 - главная премия 3 классов</title> 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comforter&display=swap">
@@ -38,6 +38,9 @@
                     </a>
                     <img class="main-part" id="about" src="вспомогательные_объекты/main_part.png" alt="1535">
                 </div>
+                <button class="quick-vote-btn" onclick="goToVoting2027()">
+                    🗳️ Перейти к голосованию 2027
+                </button>
                 <hr class="top-bottom">
                 <div class="sabl">
                     <h1><span>&reg;</span>Strange Academics <br>
@@ -167,10 +170,55 @@
                     </div>
                 </div>
 
-                <div class="dop-noms">
-                    <h2>ДОПОЛНИТЕЛЬНЫЕ НОМИНАЦИИ</h2>
+                <div class="dop-noms" id="dop-vote-2027">
+                    <h2>🗳️ Голосование за дополнительные номинации</h2>
+                    <p class="vote-desc">Выбери 6 номинаций или предложи свои! Твой выбор сохранится на любом устройстве.</p>
+                    
+                    <!-- Кнопка входа / голосования -->
+                    <button class="vote-btn" id="openVoteBtn">Начать голосование</button>
+                    
+                    <!-- Модалка авторизации -->
+                    <div class="vote-modal auth-modal" id="authModal">
+                        <div class="vote-overlay"></div>
+                        <div class="vote-content auth-content">
+                            <button class="vote-close" id="closeAuthBtn">✕</button>
+                            <h3>🔐 Вход в систему голосования</h3>
+                            <form id="authForm">
+                                <input type="text" id="authName" placeholder="Фамилия Имя" required autocomplete="off">
+                                <input type="text" id="authClass" placeholder="Класс (например: 11В)" required autocomplete="off">
+                                <input type="password" id="authPass" placeholder="Пароль" required>
+                                <div class="auth-error" id="authError"></div>
+                                <button type="submit" class="submit-auth-btn">Войти / Зарегистрироваться</button>
+                            </form>
+                        </div>
+                    </div>
 
+                    <!-- Модалка голосования -->
+                    <div class="vote-modal" id="voteModal">
+                        <div class="vote-overlay"></div>
+                        <div class="vote-content">
+                            <button class="vote-close" id="closeVoteBtn">✕</button>
+                            <h3>Выбери 6 дополнительных номинаций</h3>
+                            
+                            <!-- Счётчик -->
+                            <div class="vote-counter" id="voteCounter">Выбрано: 0/6</div>
+                            
+                            <!-- Форма предложения -->
+                            <div class="suggest-form">
+                                <input type="text" id="suggestNomInput" placeholder="Предложить свою номинацию..." maxlength="50">
+                                <button id="suggestNomBtn">➕ Добавить</button>
+                                <div class="suggest-error" id="suggestError"></div>
+                            </div>
+                            
+                            <!-- Список номинаций -->
+                            <div class="nominees-grid" id="nomineesGrid"></div>
+                            
+                            <!-- Кнопка подтверждения -->
+                            <button class="submit-vote-btn" id="submitVoteBtn">✅ Подтвердить выбор</button>
+                        </div>
+                    </div>
                 </div>
+
 
             </div>
 
@@ -583,5 +631,6 @@
     </footer>  
 
     <script src="script.js"></script>
+    <script src="vote.js"></script>
 </body>
 </html>
