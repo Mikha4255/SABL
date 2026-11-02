@@ -116,17 +116,15 @@ nav ul li a:hover{
 .pictures {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
     width: 85%;
     padding: 25px;
+    margin: 0px auto;
     position: relative;
     background-color: #110903;
 }
 
 .main-logo img{
-    width: 80%;
-    filter: drop-shadow(var(--drop-orange));
+    width: 67%;
     transition: all 0.42s ease;
 }
 
@@ -135,7 +133,8 @@ nav ul li a:hover{
 }
 
 .main-part{
-    width: 50%;
+    width: 40%;
+    height: 40%;
     pointer-events: none;
     box-shadow: var(--shadow);
 }
