@@ -6,7 +6,7 @@ const NOMS_LIST_PATH = String.fromCharCode(47,110,111,109,115,95,50,48,50,55,95,
 const LOCAL_AUTH_KEY = String.fromCharCode(115,97,98,108,50,48,50,55,95,97,117,116,104,95,117,115,101,114);
 
 const VOTE_START_TIME = new Date('2026-10-26T00:00:00+03:00').getTime();
-const VOTE_END_TIME = new Date('2026-11-06T23:59:59+03:00').getTime();
+const VOTE_END_TIME = new Date('2026-11-13T23:59:59+03:00').getTime();
 
 function getVotingPhase() {
     const now = Date.now();

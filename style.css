@@ -123,6 +123,11 @@ nav ul li a:hover{
     background-color: #110903;
 }
 
+.main-logo{
+    width: 67%;
+    transition: all 0.42s ease;
+}
+
 .main-logo img{
     width: 67%;
     transition: all 0.42s ease;
