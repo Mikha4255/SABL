@@ -13,8 +13,17 @@
     <link rel="icon" type="image/png" sizes="64x64" href="вспомогательные_объекты/sabl_web.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="cabinet.css">
 </head>
 <body>
+    <button id="cabinetBtn" type="button">👤 Кабинет</button>
+
+    <div id="cabinetOverlay">
+        <button id="cabinetClose" type="button" aria-label="Закрыть кабинет">✕</button>
+        <div class="cab-panel">
+            <div id="cabinetBody"></div>
+        </div>
+    </div>
     <div class="fixed">
         <header>
             <nav>
@@ -38,9 +47,9 @@
                     </a>
                     <img class="main-part" id="about" src="вспомогательные_объекты/main_part.png" alt="1535">
                 </div>
-                <button class="quick-vote-btn" onclick="goToVoting2027()">
+                <!-- <button class="quick-vote-btn" onclick="goToVoting2027()">
                     🗳️ Перейти к голосованию 2027
-                </button>
+                </button> -->
                 <hr class="top-bottom">
                 <div class="sabl">
                     <h1><span>&reg;</span>Strange Academics <br>
@@ -140,17 +149,6 @@
                             <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.png" alt="logo" loading="lazy">
                             <div class="nom_info">
                                 <p>
-                                    Bomboclat года <br>
-                                    <span>NONE</span>
-                                </p>
-                            </div>
-                        </article>
-
-                        <article class="nomcard">
-                            <div class="image"> <img src="вспомогательные_объекты/NONE.png" alt="NONE"> </div>
-                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.png" alt="logo" loading="lazy">
-                            <div class="nom_info">
-                                <p>
                                     Лучший завозёр <br>
                                     <span>NONE</span>
                                 </p>
@@ -170,14 +168,14 @@
                     </div>
                 </div>
 
-                <div class="dop-noms" id="dop-vote-2027">
-                    <h2>🗳️ Голосование за дополнительные номинации</h2>
-                    <p class="vote-desc">Выбери 6 номинаций или предложи свои! Твой выбор сохранится на любом устройстве.</p>
+                <div class="dop-noms">
+                    <h2>Дополнительные номинации</h2>
+                    <!-- <p class="vote-desc">Выбери 6 номинаций или предложи свои! Твой выбор сохранится на любом устройстве.</p>
                     
-                    <!-- Кнопка входа / голосования -->
-                    <button class="vote-btn" id="openVoteBtn">Начать голосование</button>
-                    
-                    <!-- Модалка авторизации -->
+                     Кнопка входа / голосования
+                    <button class="vote-btn" id="openVoteBtn">Начать голосование</button> -->
+
+                    <!-- Модалка авторизации
                     <div class="vote-modal auth-modal" id="authModal">
                         <div class="vote-overlay"></div>
                         <div class="vote-content auth-content">
@@ -191,34 +189,92 @@
                                 <button type="submit" class="submit-auth-btn">Войти / Зарегистрироваться</button>
                             </form>
                         </div>
-                    </div>
-
-                    <!-- Модалка голосования -->
-                    <div class="vote-modal" id="voteModal">
+                    </div>-->
+                    <!-- <div class="vote-modal" id="voteModal">
                         <div class="vote-overlay"></div>
                         <div class="vote-content">
                             <button class="vote-close" id="closeVoteBtn">✕</button>
                             <h3>Выбери 6 дополнительных номинаций</h3>
-                            
-                            <!-- Счётчик -->
                             <div class="vote-counter" id="voteCounter">Выбрано: 0/6</div>
-                            
-                            <!-- Форма предложения -->
                             <div class="suggest-form">
                                 <input type="text" id="suggestNomInput" placeholder="Предложить свою номинацию..." maxlength="50">
                                 <button id="suggestNomBtn">➕ Добавить</button>
                                 <div class="suggest-error" id="suggestError"></div>
                             </div>
-                            
-                            <!-- Список номинаций -->
                             <div class="nominees-grid" id="nomineesGrid"></div>
-                            
-                            <!-- Кнопка подтверждения -->
                             <button class="submit-vote-btn" id="submitVoteBtn">✅ Подтвердить выбор</button>
                         </div>
-                    </div>
-                </div>
+                    </div> -->
+                    <div class="nomins">
+                        <article class="nomcard">
+                            <div class="image"> <img src="вспомогательные_объекты/NONE.png" alt="NONE"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.png" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Воздухан года <br>
+                                    <span>NONE</span>
+                                </p>
+                            </div>
+                        </article>
 
+                        <article class="nomcard">
+                            <div class="image"> <img src="вспомогательные_объекты/NONE.png" alt="NONE"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.png" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Событие года <br>
+                                    <span>NONE</span>
+                                </p>
+                            </div>
+                        </article>
+
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="вспомогательные_объекты/NONE.png" alt="NONE"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.png" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Харизма года <br>
+                                    <span>NONE</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="вспомогательные_объекты/NONE.png" alt="NONE"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.png" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Пара года <br>
+                                    <span>NONE</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="вспомогательные_объекты/NONE.png" alt="NONE"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.png" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    ПАРТИЯ ГОДА <br>
+                                    <span>NONE</span>
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="nomcard">
+                            <div class="image"> <img src="вспомогательные_объекты/NONE.png" alt="NONE"> </div>
+                            <img class="sabl_card_logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.png" alt="logo" loading="lazy">
+                            <div class="nom_info">
+                                <p>
+                                    Стиль года <br>
+                                    <span>NONE</span>
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+
+                </div>
 
             </div>
 
@@ -632,5 +688,6 @@
 
     <script src="script.js"></script>
     <script src="vote.js"></script>
+    <script src="cabinet.js"></script>
 </body>
 </html>

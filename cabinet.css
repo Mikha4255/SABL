@@ -1,0 +1,95 @@
+/* ===== Кнопка «Кабинет» — фикс в левом верхнем углу ===== */
+#cabinetBtn{
+  position: fixed; top: 16px; left: 16px; z-index: 40;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px;
+  background: var(--ink-light); color: var(--orange2);
+  border: 3px solid var(--orange2); border-radius: 30px;
+  font-family: "Bellota", system-ui; font-size: 18px; font-weight: 700;
+  cursor: pointer; transition: all .35s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,.5);
+}
+#cabinetBtn:hover{ background: var(--orange2); color: var(--back); transform: scale(1.06) rotate(-1.5deg); }
+
+/* ===== Полноэкранный кабинет ===== */
+#cabinetOverlay{
+  display: none; position: fixed; inset: 0; z-index: 1000;
+  background: rgba(7,4,1,.95); backdrop-filter: blur(8px);
+  overflow-y: auto;
+}
+#cabinetOverlay.active{ display: block; animation: cabFade .25s ease; }
+@keyframes cabFade{ from{opacity:0} to{opacity:1} }
+
+#cabinetClose{
+  position: fixed; top: 16px; right: 20px; z-index: 1001;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--ink-light); border: 2px solid var(--orange);
+  color: var(--orange2); font-size: 24px; cursor: pointer; transition: all .3s;
+}
+#cabinetClose:hover{ background: var(--orange); color: var(--back); transform: rotate(90deg); }
+
+.cab-panel{
+  max-width: 960px; margin: 0 auto; padding: 90px 22px 60px;
+  color: var(--cream); font-family: "Bellota", system-ui;
+}
+.cab-panel h2{ color: var(--orange); font-family: "DM Serif Text", serif; font-size: 40px; margin: 0; }
+
+/* Вход */
+.cab-login{
+  max-width: 430px; margin: 8vh auto 0; background: var(--ink-light);
+  border: 3px solid var(--orange); border-radius: 24px; padding: 34px 28px; text-align: center;
+}
+.cab-login input{
+  width: 100%; padding: 13px; margin: 9px 0; background: var(--back);
+  border: 2px solid var(--line); border-radius: 12px; color: var(--cream);
+  font-size: 16px; font-family: "Bellota", system-ui;
+}
+.cab-login input:focus{ outline: none; border-color: var(--orange); }
+.cab-login button{
+  width: 100%; padding: 14px; margin-top: 14px; background: var(--orange);
+  color: var(--back); border: none; border-radius: 12px; font-size: 18px;
+  font-weight: 700; cursor: pointer; font-family: "Bellota", system-ui;
+}
+.cab-error{ color: var(--red-light); min-height: 20px; font-size: 14px; }
+
+/* Профиль */
+.cab-id{ display: flex; align-items: center; gap: 18px; margin-bottom: 30px; }
+.cab-avatar{
+  width: 84px; height: 84px; border-radius: 50%; flex-shrink: 0;
+  background: var(--orange); color: var(--back); font-size: 40px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  font-family: "DM Serif Text", serif; box-shadow: 0 0 25px rgba(255,77,0,.35);
+}
+.cab-class{
+  display: inline-block; margin-top: 6px; padding: 4px 14px;
+  border: 2px solid var(--orange2); border-radius: 20px; color: var(--orange2); font-size: 15px;
+}
+.cab-section{ margin: 26px 0; }
+.cab-section h3{ color: var(--orange2); font-size: 22px; margin-bottom: 14px; }
+.cab-awards{ display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+.cab-award-card{
+  background: var(--ink-light2); border: 2px solid var(--yellow); border-radius: 16px;
+  padding: 18px; position: relative; transform: rotate(.4deg); transition: transform .3s;
+}
+.cab-award-card:hover{ transform: rotate(0) translateY(-3px); }
+.cab-award-card .year{ position: absolute; top: 10px; right: 12px; color: var(--muted); font-size: 13px; }
+.cab-award-card p{ color: var(--yellow); font-size: 18px; font-weight: 700; margin: 0; }
+.cab-empty{ color: var(--muted); font-size: 16px; }
+.cab-votes{ display: flex; flex-wrap: wrap; gap: 10px; }
+.cab-chip{
+  padding: 8px 16px; background: var(--ink-light2); border: 2px solid var(--orange2);
+  border-radius: 20px; color: var(--cream); font-size: 15px;
+}
+.cab-logout{
+  margin-top: 34px; padding: 12px 26px; background: transparent;
+  border: 2px solid var(--red-light); color: var(--red-light); border-radius: 14px;
+  font-size: 16px; cursor: pointer; font-family: "Bellota", system-ui; transition: all .3s;
+}
+.cab-logout:hover{ background: var(--red-light); color: var(--cream); }
+
+@media (max-width: 600px){
+  .cab-panel{ padding: 80px 14px 40px; }
+  .cab-panel h2{ font-size: 30px; }
+  .cab-awards{ grid-template-columns: 1fr 1fr; }
+  #cabinetBtn{ padding: 10px 16px; font-size: 15px; }
+}

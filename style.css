@@ -379,8 +379,8 @@ hr {
 .nomins{
     display: flex;
     flex-wrap: nowrap;
-    gap: 70px;
     padding: 40px 10px;
+    gap: 32px;
     overflow-x: auto;
     overflow-y: hidden;
     width: 100%;
@@ -406,12 +406,11 @@ hr {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 50px;
     cursor: pointer;
     background-color: var(--ink-light);
-    width: 360px;
-    height: 580px;
-    padding: 10px;
+    width: 180px;
+    height: 460px;
+    padding: 20px;
     border: 3px solid var(--orange2);
     border-radius: 20px;
     position: relative;
@@ -419,8 +418,8 @@ hr {
 }
 
 .image{
-    height: 280px;
-    margin: 15px;
+    width: auto;
+    height: 220px;
     overflow: hidden;
     background-color: var(--back);
     border: 3px solid var(--orange);
@@ -433,7 +432,7 @@ hr {
 }
 
 .image img{
-    width: 280px; height: 280px;
+    width: 220px; height: 220px;
     object-fit: cover;
     filter: grayscale(.75) contrast(1.04);
     transition: all 0.42s ease;
@@ -442,9 +441,9 @@ hr {
 .sabl_card_logo{
     position: static;
     position: absolute;
-    height: 100px;
-    width: 120px;
-    left: 10px;
+    height: 70px;
+    width: 70px;
+    left: 0px;
 }
 
 .nom_info{
@@ -453,7 +452,8 @@ hr {
 }
 
 .nom_info p{
-    font-size: 45px;
+    margin-top: 20px;
+    font-size: 30px;
     font-weight: bold;
     font-family: "Caveat", cursive;
     text-align: center;
@@ -462,7 +462,7 @@ hr {
 .nom_info p span{
     display: block;
     margin-top: 20px;
-    font-size: 30px;
+    font-size: 25px;
     font-family: "Bellota", system-ui;
 }
 
@@ -648,7 +648,7 @@ footer div{
 
 
 /* ДЛЯ ГОЛОСОВАНИЙ */
-.dop-noms { text-align: center; padding: 40px 20px; }
+.dop-noms { text-align: center;}
 .vote-desc { color: var(--cream); font-size: 18px; margin-bottom: 20px; line-height: 1.5; }
 
 .vote-btn {
