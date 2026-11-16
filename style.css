@@ -335,7 +335,7 @@ hr {
     font-size: 18px;
     font-weight: bold;
     position: relative;
-    z-index: 20;
+    z-index: 15;
     transition: all 0.42s ease;
 }
 
