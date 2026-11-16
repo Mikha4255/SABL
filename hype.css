@@ -1,0 +1,48 @@
+#hypeHome{width:min(92%,700px);margin:26px auto 6px;}
+#hypeHome[hidden]{display:none;}
+.hype-loading{text-align:center;color:var(--muted);font-family:"Bellota",system-ui;font-size:16px;padding:18px;border:2px dashed var(--line);border-radius:18px;}
+
+.hype-card{position:relative;overflow:hidden;padding:30px 26px;border:3px solid var(--orange);border-radius:24px;background:radial-gradient(600px 260px at 15% 0%,rgba(255,77,0,.16),transparent 60%),radial-gradient(500px 240px at 90% 100%,rgba(212,175,55,.12),transparent 60%),linear-gradient(135deg,var(--ink-light),var(--ink-light2));display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;animation:hypeIn .5s ease;box-shadow:var(--shadow);}
+@keyframes hypeIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hype-card::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(320px 160px at 50% 30%,rgba(255,111,0,.14),transparent 70%);animation:hypePulse 3.2s ease-in-out infinite;}
+@keyframes hypePulse{0%,100%{opacity:.5}50%{opacity:1}}
+.hype-card.on{border-color:var(--orange);box-shadow:0 0 34px rgba(212,175,55,.22);}
+.hype-title{font-family:"Bellota",system-ui;font-weight:700;letter-spacing:.14em;color:var(--orange2);font-size:13px;text-transform:uppercase;margin-bottom:6px;}
+.hype-gauge{width:100%;max-width:360px;display:block;margin:0 auto;}
+.hype-track{fill:none;stroke:rgba(242,230,212,.12);stroke-width:12;stroke-linecap:round;}
+.hype-arc{fill:none;stroke-width:12;stroke-linecap:round;stroke-dasharray:251.327;transition:stroke-dashoffset 1.2s cubic-bezier(.22,.9,.3,1);}
+.hype-needle{transform-box:view-box;transform-origin:100px 100px;transition:transform 1.2s cubic-bezier(.22,.9,.3,1);}
+.hype-needle line{stroke:var(--cream);stroke-width:3;stroke-linecap:round;}
+.hype-needle circle{fill:var(--orange);}
+.hype-tick42{stroke:var(--yellow);stroke-width:2.5;}
+.hype-tick42-t{fill:var(--yellow);font:700 9px "Bellota",system-ui;text-anchor:middle;}
+.hype-tick67{stroke:var(--red-light);stroke-width:2.5;}
+.hype-tick67-t{fill:var(--red-light);font:700 9px "Bellota",system-ui;text-anchor:middle;}
+.hype-num{font-family:"DM Serif Text",serif;font-size:72px;line-height:1;color:var(--cream);margin-top:-6px;}
+.hype-card.on .hype-num{color:var(--yellow);text-shadow:0 0 22px rgba(212,175,55,.55);}
+.hype-label{font-family:"Caveat",cursive;font-size:36px;margin-top:4px;}
+.hype-label.on{color:var(--orange-light);}
+.hype-label.off{color:var(--muted);}
+.hype-curse{color:var(--red-light);font-size:14px;margin-top:2px;}
+.hype-timer{margin-top:12px;font-size:12px;color:var(--muted);font-family:"Bellota",system-ui;}
+.hype-timer b{color:var(--orange2);font-variant-numeric:tabular-nums;}
+.hype-spark{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--clr);pointer-events:none;animation:hypeSpark .9s ease-out forwards;}
+@keyframes hypeSpark{from{transform:translate(0,0);opacity:1}to{transform:translate(var(--dx),var(--dy));opacity:0}}
+
+/* Замок для гостей */
+.hype-locked{position:relative;overflow:hidden;padding:34px 26px;border:3px dashed var(--orange2);border-radius:24px;background:radial-gradient(500px 220px at 50% 0%,rgba(255,111,0,.12),transparent 65%),linear-gradient(135deg,var(--ink-light),var(--ink-light2));display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;animation:hypeIn .5s ease;}
+.hype-lock-icon{font-size:46px;filter:drop-shadow(0 0 14px rgba(255,111,0,.45));animation:lockFloat 3s ease-in-out infinite;}
+@keyframes lockFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.hype-locked-title{font-family:"DM Serif Text",serif;font-size:30px;color:var(--orange);}
+.hype-locked p{color:var(--cream);font-size:16px;max-width:430px;line-height:1.5;font-family:"Bellota",system-ui;}
+#hypeLoginBtn{padding:14px 34px;background:var(--orange);color:var(--back);border:none;border-radius:30px;font-size:18px;font-weight:700;font-family:"Bellota",system-ui;cursor:pointer;transition:all .3s ease;box-shadow:0 4px 18px rgba(255,77,0,.35);}
+#hypeLoginBtn:hover{background:var(--orange-light);transform:scale(1.06) rotate(-1deg);}
+
+/* скроллбар кабинета в стиле сайта */
+#cabinetOverlay{scrollbar-width:thin;scrollbar-color:var(--orange2) var(--ink-light);}
+#cabinetOverlay::-webkit-scrollbar{width:10px;}
+#cabinetOverlay::-webkit-scrollbar-track{background:var(--ink-light);}
+#cabinetOverlay::-webkit-scrollbar-thumb{background:var(--orange2);border-radius:5px;}
+#cabinetOverlay::-webkit-scrollbar-thumb:hover{background:var(--orange);}
+
+@media (max-width:760px){.hype-card{padding:22px 16px;}.hype-num{font-size:54px;}.hype-label{font-size:28px;}.hype-locked-title{font-size:24px;}}

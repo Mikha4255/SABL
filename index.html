@@ -10,10 +10,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bellota:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=DM+Serif+Text:ital@0;1&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Cinzel+Decorative:wght@400;700;900&display=swap">
     <link rel="icon" type="image/png" sizes="64x64" href="вспомогательные_объекты/sabl_web.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="cabinet.css">
+    <link rel="stylesheet" href="hype.css">
+    <link rel="stylesheet" href="sabl.css">
 </head>
 <body>
     <button id="cabinetBtn" type="button">👤 Кабинет</button>
@@ -50,16 +53,26 @@
                 <!-- <button class="quick-vote-btn" onclick="goToVoting2027()">
                     🗳️ Перейти к голосованию 2027
                 </button> -->
+                <section id="hypeHome" hidden></section>
                 <hr class="top-bottom">
                 <div class="sabl">
-                    <h1><span>&reg;</span>Strange Academics <br>
-                         of Biology<br>
-                        and Literature</h1>
-                    <p> Премия, которой не должно быть третий год. <br>
-                        Отмечай достижения и выбери<br>
-                        тех, кто по-настоящему достоин<br>
-                        стать победителем SABL.<br>
-                    </p>
+                    <span class="sabl-bg" aria-hidden="true">SABL</span>
+                    <div class="sabl-head">
+                        <p class="sabl-kicker">Ежегодная премия · 1535 · сезон 2027</p>
+                        <div class="sabl-seal" aria-hidden="true"><i>®</i><b>SABL</b><small>EST. 2025</small></div>
+                    </div>
+                    <h1>
+                        <span class="l1">Strange Academics</span>
+                        <span class="l2">of Biology <em>&amp;</em> Literature</span>
+                    </h1>
+                    <p class="sabl-tag">Премия, которой не должно быть третий год.</p>
+                    <p class="sabl-copy">Одна школа. Три класса. <strong>Ноль здравого смысла.</strong> Отмечай легендарные завозы, мемы и харизму — и решай, чьи имена войдут в <em>зал славы SABL</em>.</p>
+                    <div class="sabl-ticker" aria-hidden="true">
+                        <div class="sabl-ticker-track">
+                            <span>SABL KING<i>✦</i>SABL QUEEN<i>✦</i>ЧЕЛОВЕК-МЕМ ГОДА<i>✦</i>УЧИТЕЛЯ ГОДА<i>✦</i>ЛУЧШИЙ ЗАВОЗЁР<i>✦</i>ПРАЙМ ГОДА<i>✦</i>ВОЗДУХАН ГОДА<i>✦</i>ХАРИЗМА ГОДА<i>✦</i>СТИЛЬ ГОДА<i>✦</i>СОБЫТИЕ ГОДА<i>✦</i>ПАРА ГОДА<i>✦</i>ПАРТИЯ ГОДА<i>✦</i></span>
+                            <span>SABL KING<i>✦</i>SABL QUEEN<i>✦</i>ЧЕЛОВЕК-МЕМ ГОДА<i>✦</i>УЧИТЕЛЯ ГОДА<i>✦</i>ЛУЧШИЙ ЗАВОЗЁР<i>✦</i>ПРАЙМ ГОДА<i>✦</i>ВОЗДУХАН ГОДА<i>✦</i>ХАРИЗМА ГОДА<i>✦</i>СТИЛЬ ГОДА<i>✦</i>СОБЫТИЕ ГОДА<i>✦</i>ПАРА ГОДА<i>✦</i>ПАРТИЯ ГОДА<i>✦</i></span>
+                        </div>
+                    </div>
                 </div>
 
                 <a class="qwer" href="https://t.me/+J8AarAYAgAY5ZTNi" target="_blank">Узнать <br> больше</a>
@@ -689,5 +702,6 @@
     <script src="script.js"></script>
     <script src="vote.js"></script>
     <script src="cabinet.js"></script>
+    <script src="hype.js"></script>
 </body>
 </html>

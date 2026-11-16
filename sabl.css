@@ -1,0 +1,134 @@
+/* ===== АФИША SABL ===== */
+.sabl{
+  position:relative; overflow:hidden; text-align:left;
+  width:min(96%,1600px); /* хочешь строго 80% — поставь width:80%; */
+  margin:38px auto 12px;
+  padding:clamp(34px,4.6vw,64px) clamp(22px,4.5vw,64px) 0;
+  border:3px solid var(--orange); border-radius:24px;
+  background:linear-gradient(160deg,#170a04,#241209 60%,#1a0c05);
+  box-shadow:0 22px 45px rgba(255,77,0,.16);
+  transform:rotate(-.35deg); transition:transform .4s ease, box-shadow .4s ease;
+}
+.sabl:hover{ transform:rotate(0deg); box-shadow:0 26px 55px rgba(255,77,0,.26); }
+.sabl::before{
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(460px 260px at 12% 0%, rgba(255,77,0,.18), transparent 65%),
+    radial-gradient(420px 240px at 95% 100%, rgba(255,111,0,.12), transparent 65%);
+}
+.sabl::after{
+  content:''; position:absolute; inset:0; pointer-events:none; opacity:.5;
+  background:repeating-linear-gradient(0deg, rgba(242,230,212,.03) 0 1px, transparent 1px 3px);
+}
+.sabl > *{ position:relative; z-index:1; }
+.sabl-bg{
+  position:absolute; z-index:0; right:-12px; bottom:-38px; pointer-events:none; user-select:none;
+  font-family:"Cinzel Decorative",serif; font-weight:900;
+  font-size:clamp(130px,23vw,260px); line-height:1;
+  color:transparent; -webkit-text-stroke:1px rgba(255,77,0,.16);
+  animation:sablDrift 12s ease-in-out infinite alternate;
+}
+@keyframes sablDrift{ from{ transform:translateX(0); } to{ transform:translateX(-14px); } }
+
+.sabl-head{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:4px; }
+.sabl p{ display:block; margin:0; transition:color .4s ease; }
+.sabl p:hover{ color:inherit; }
+.sabl-kicker{
+  display:flex; align-items:center; gap:10px;
+  font-family:"Bellota",system-ui; font-weight:700; font-size:13px;
+  letter-spacing:.24em; text-transform:uppercase; color:var(--orange2);
+  animation:sablFade .6s ease both;
+}
+.sabl-kicker::before{ content:''; width:30px; height:2px; background:var(--orange); }
+.sabl-kicker:hover{ color:var(--orange2); }
+
+.sabl-seal{
+  flex-shrink:0; width:110px; height:110px; border-radius:50%;
+  border:2px dashed var(--orange2); background:rgba(255,77,0,.07);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
+  color:var(--orange-light); transform:rotate(8deg); transition:transform .4s ease;
+  animation:sablSeal 4s ease-in-out infinite;
+}
+.sabl-seal:hover{ transform:rotate(-6deg) scale(1.08); }
+.sabl-seal i{ font-style:normal; font-family:"Cinzel",serif; font-size:34px; line-height:1; }
+.sabl-seal b{ font-family:"Bellota",system-ui; font-size:13px; letter-spacing:.22em; }
+.sabl-seal small{ font-size:8px; letter-spacing:.14em; color:var(--muted); }
+@keyframes sablSeal{ 0%,100%{ box-shadow:0 0 0 rgba(255,77,0,0); } 50%{ box-shadow:0 0 20px rgba(255,77,0,.3); } }
+
+.sabl h1{
+  margin:18px 0 6px; position:relative;
+  font-family:"Cinzel Decorative",serif; font-weight:900;
+  font-size:clamp(46px,6.8vw,104px); line-height:1.02; letter-spacing:.01em;
+  color:var(--cream); filter:drop-shadow(5px 5px 0 rgba(255,77,0,.30));
+}
+.sabl h1 span{
+  position:static; left:auto; display:block; font-size:inherit;
+  animation:sablLine .7s cubic-bezier(.2,.8,.2,1) both;
+}
+.sabl h1 .l1{ animation-delay:.05s; }
+.sabl h1 .l2{
+  font-family:"Cinzel",serif; font-weight:600; font-style:normal;
+  font-size:.3em; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--orange-light); margin-top:12px; filter:none; animation-delay:.18s;
+}
+.sabl h1 .l2 em{ font-style:normal; color:var(--orange); }
+@keyframes sablLine{ from{ opacity:0; transform:translateY(26px) skewY(2deg); } to{ opacity:1; transform:none; } }
+
+.sabl-tag{
+  width:fit-content; margin:22px 0 14px; padding:2px 12px;
+  font-family:"Caveat",cursive; font-size:clamp(28px,3.2vw,42px); color:var(--orange-light);
+  transform:rotate(-1.2deg); transition:transform .3s ease;
+  background-image:linear-gradient(100deg, rgba(255,77,0,.34), rgba(255,111,0,.30));
+  background-repeat:no-repeat; background-position:0 62%; background-size:0% 72%;
+  animation:sablFade .6s .3s ease both, sablMark .9s .55s ease forwards;
+}
+.sabl-tag:hover{ color:var(--orange-light); transform:rotate(0deg) scale(1.02); }
+@keyframes sablMark{ to{ background-size:100% 72%; } }
+
+.sabl-copy{
+  max-width:760px; margin:0 0 30px;
+  font-family:"Bellota",system-ui; font-size:clamp(18px,1.7vw,23px);
+  line-height:1.65; color:var(--paper);
+  animation:sablFade .7s .35s ease both;
+}
+.sabl-copy:hover{ color:var(--cream); }
+.sabl-copy strong{ color:var(--orange2); }
+.sabl-copy em{
+  font-family:"Cinzel",serif; font-style:normal; font-weight:700;
+  letter-spacing:.06em; color:var(--orange-light);
+}
+@keyframes sablFade{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:none; } }
+
+.sabl-ticker{
+  border-top:2px solid var(--line); padding:16px 0 20px; overflow:hidden;
+  animation:sablFade .7s .5s ease both;
+}
+.sabl-ticker-track{ display:flex; width:max-content; animation:sablTicker 26s linear infinite; }
+.sabl-ticker:hover .sabl-ticker-track{ animation-play-state:paused; }
+.sabl-ticker span{
+  white-space:nowrap; font-family:"Bellota",system-ui; font-weight:700;
+  font-size:13px; letter-spacing:.22em; color:var(--orange2);
+}
+.sabl-ticker i{ font-style:normal; color:var(--orange-light); padding:0 14px; }
+@keyframes sablTicker{ to{ transform:translateX(-50%); } }
+
+@media (max-width:700px){
+  .sabl{ width:94%; padding:22px 16px 0; transform:none; }
+  .sabl h1{ font-size:clamp(28px,8.4vw,44px); margin:12px 0 4px; }
+  .sabl h1 span{ position:static; left:auto; }
+  .sabl h1 .l2{ font-size:.34em; letter-spacing:.14em; margin-top:8px; }
+  .sabl-seal{ width:64px; height:64px; }
+  .sabl-seal i{ font-size:22px; }
+  .sabl-seal b{ font-size:9px; }
+  .sabl-seal small{ font-size:6px; }
+  .sabl-kicker{ font-size:10px; letter-spacing:.16em; }
+  .sabl-tag{ font-size:24px; margin:16px 0 10px; }
+  .sabl-copy{ font-size:16px; margin-bottom:22px; }
+  .sabl-ticker{ padding:12px 0 14px; }
+  .sabl-ticker span{ font-size:10px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .sabl, .sabl *, .sabl *::before, .sabl *::after{ animation:none !important; transition:none !important; }
+  .sabl-tag{ background-size:100% 72%; }
+}
