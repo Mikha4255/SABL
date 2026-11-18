@@ -114,34 +114,34 @@ nav ul li a:hover{
 
 
 .pictures {
-    display: flex;
-    flex-direction: row;
+    display: flex; align-items: center; justify-content: center;
     width: 85%;
-    padding: 25px;
-    margin: 0px auto;
-    position: relative;
-    background-color: #110903;
+}
+
+.pictures a{
+    width: 40%;
+    margin: 0 auto;
+    transition: all 0.42s ease;
 }
 
 .main-logo{
-    width: 67%;
+    width: 100%;
+    margin: 0 auto;
+    display: block;
     transition: all 0.42s ease;
 }
 
-.main-logo img{
-    width: 67%;
-    transition: all 0.42s ease;
-}
-
-.main-logo img:hover{
-    transform: rotate(.6deg) scale(1.03);
+.main-logo:hover{
+    transform: rotate(2deg) scale(1.03);
 }
 
 .main-part{
-    width: 40%;
-    height: 40%;
-    pointer-events: none;
-    box-shadow: var(--shadow);
+    width: 100%;
+    transition: all 0.42s ease;
+}
+
+.main-part:hover{
+    transform: rotate(-2deg) scale(1.03);
 }
 
 .sabl{
