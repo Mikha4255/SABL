@@ -101,3 +101,30 @@
     border-width:2px;
   }
 }
+
+.cab-tabs{display:flex;gap:8px;margin:0 0 14px;}
+.cab-tabs button{flex:1;padding:10px;background:var(--back);border:2px solid var(--line);border-radius:12px;color:var(--muted);font:700 15px "Bellota",system-ui;cursor:pointer;transition:all .25s;}
+.cab-tabs button.on{border-color:var(--orange);color:var(--orange2);background:rgba(255,77,0,.08);}
+.cab-help{margin-top:14px;font-size:13px;color:var(--muted);line-height:1.5;}
+.cab-help a{color:var(--orange-light);text-decoration:underline;}
+.cab-award-pic{width:100%;aspect-ratio:1/1;overflow:hidden;border:2px solid var(--orange);border-radius:12px;margin-bottom:10px;background:var(--back);}
+.cab-award-pic img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(.5);transition:filter .3s,transform .3s;}
+.cab-award-card:hover .cab-award-pic img{filter:grayscale(0);transform:scale(1.04);}
+.cab-award-card.has-pic{padding:12px;}
+.cab-award-card.has-pic p{font-size:15px;color:var(--cream);margin:0;text-align:center;}
+.cab-award-card.has-pic .year{top:16px;right:16px;background:rgba(7,4,1,.75);padding:2px 8px;border-radius:10px;}
+
+.cab-award-card:not(.has-pic){
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; gap:8px; min-height:240px;
+  background:radial-gradient(240px 160px at 50% 30%, rgba(212,175,55,.08), transparent 70%), var(--ink-light2);
+}
+.cab-award-card:not(.has-pic)::before{
+  content:'✦'; font-size:40px; line-height:1; color:rgba(212,175,55,.4);
+  text-shadow:0 0 18px rgba(212,175,55,.35);
+}
+.cab-award-card:not(.has-pic) p{ font-size:20px; max-width:90%; }
+.cab-award-card:not(.has-pic)::after{
+  content:'без герба, но с почётом'; font-family:"Caveat",cursive;
+  font-size:16px; color:var(--muted);
+}

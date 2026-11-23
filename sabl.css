@@ -50,8 +50,8 @@
   animation:sablSeal 4s ease-in-out infinite;
 }
 .sabl-seal:hover{ transform:rotate(-6deg) scale(1.08); }
-.sabl-seal i{ font-style:normal; font-family:"Cinzel",serif; font-size:34px; line-height:1; }
-.sabl-seal b{ font-family:"Bellota",system-ui; font-size:13px; letter-spacing:.22em; }
+.sabl-seal i{ font-style:normal; font-family:"Cinzel",serif; font-size:42px; line-height:1; }
+.sabl-seal b{ font-family:"Bellota",system-ui; font-size:18px; font-weight: bold; letter-spacing:.22em; }
 .sabl-seal small{ font-size:8px; letter-spacing:.14em; color:var(--muted); }
 @keyframes sablSeal{ 0%,100%{ box-shadow:0 0 0 rgba(255,77,0,0); } 50%{ box-shadow:0 0 20px rgba(255,77,0,.3); } }
 

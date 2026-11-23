@@ -314,8 +314,8 @@ hr {
 }
 
 #nom h1{
-    color: var(--orange);
     font-size: 55px;
+    color: var(--orange);
     margin: 20px;
 }
 
