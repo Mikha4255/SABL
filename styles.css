@@ -68,30 +68,6 @@
         margin: 20px auto;
     }
 
-    .return-panel {
-        grid-template-columns: 1fr;
-        padding: 30px 15px;
-        gap: 20px;
-    }
-
-    .return-panel h2 {
-        font-size: 32px;
-    }
-
-    .weekly-card {
-        min-height: auto;
-        padding: 20px;
-        transform: rotate(1deg);
-    }
-
-    .weekly-card h3 {
-        font-size: 24px;
-    }
-
-    .prikol2 {
-        display: none;
-    }
-
     #nom h1 {
         font-size: 32px;
         margin: 10px;
@@ -225,7 +201,6 @@
     }
 }
 
-
 @media (min-width: 701px) and (max-width: 820px) {
     header {
         width: 100%;
@@ -261,19 +236,6 @@
     .qwer {
         width: 180px;
         font-size: 22px;
-    }
-
-    .return-panel {
-        padding: 60px 30px;
-        gap: 5vw;
-    }
-
-    .return-panel h2 {
-        font-size: 40px;
-    }
-
-    .weekly-card h3 {
-        font-size: 32px;
     }
 
     #nom h1 {
@@ -371,19 +333,6 @@
 
     .sabl p {
         font-size: 22px;
-    }
-
-    .return-panel {
-        padding: 80px 30px;
-        gap: 5vw;
-    }
-
-    .return-panel h2 {
-        font-size: 48px;
-    }
-
-    .weekly-card h3 {
-        font-size: 36px;
     }
 
     .nomins > * {

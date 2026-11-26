@@ -1,11 +1,7 @@
 'use strict';
 
-/* ⚙️ ТУТ ССЫЛКА НА ТВОЮ ЛИЧКУ В ТЕЛЕГРАМ (для «забыл пароль») — замени юзернейм на свой */
 const CAB_ORG_TG = 'https://t.me/sergeev_m1kha1l';
-/* ⚙️ Папка с картинками наград */
 const CAB_PIC_DIR = 'nom_pic_2027/';
-/* ⚙️ ТУТ ДОБАВЛЯТЬ СООТВЕТСТВИЯ: 'название номинации маленькими буквами' → файл из nom_pic_2027.
-   Нет в списке и нет поля «Картинка» в админке — карточка текстовая, как раньше. */
 const CAB_NOM_PICS = {
   'sabl king': 'sabl-king.png',
   'sabl queen': 'sabl-queen.png',
@@ -29,31 +25,79 @@ function cabPicFor(a){
 }
 
 const CAB_URL = String.fromCharCode(104,116,116,112,115,58,47,47,118,111,116,101,45,49,53,51,53,45,115,97,98,108,45,100,101,102,97,117,108,116,45,114,116,100,98,46,101,117,114,111,112,101,45,119,101,115,116,49,46,102,105,114,101,98,97,115,101,100,97,116,97,98,97,115,101,46,97,112,112);
-const CAB_AUTH = '/auth_2027', CAB_AWARDS = '/awards_2027', CAB_VOTES = '/votes_2027_dop';
+const CAB_AUTH = '/auth_2027', CAB_AWARDS = '/awards_2027';
 const CAB_LS = 'sabl2027_auth_user';
 let cabKey = localStorage.getItem(CAB_LS) || null;
 
 async function cabGet(p){ try{ const r = await fetch(CAB_URL+p); return r.ok ? r.json() : null; }catch(e){ return null; } }
-async function cabPut(p,d){ try{ const r = await fetch(CAB_URL+p,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}); return r.ok; }catch(e){ return false; } }
+async function cabPut(p,d){
+  try{
+    const r = await fetch(CAB_URL+p,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
+    if(!r.ok){
+      const body = await r.text().catch(()=>'');
+      console.error('Firebase write error', r.status, body);
+      alert('Запись отклонена. Код: '+r.status+(r.status===401||r.status===403 ? ' → нет ".write" для этого узла в Rules' : ''));
+    }
+    return r.ok;
+  }catch(e){ console.error(e); alert('Сетевая ошибка: '+e.message); return false; }
+}
 function cabToArray(x){ if(!x) return []; if(Array.isArray(x)) return x; return Object.keys(x).sort((a,b)=>Number(a)-Number(b)).map(k=>x[k]); }
 function cabEsc(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
 function cabOpen(){ document.getElementById('cabinetOverlay').classList.add('active'); document.body.classList.add('modal-open'); cabRender(); }
 function cabClose(){ document.getElementById('cabinetOverlay').classList.remove('active'); document.body.classList.remove('modal-open'); }
 
+function cabSpark(hist){
+  if(!hist.length) return '<p class="cab-empty">График появится после первого обновления хайпа.</p>';
+  if(hist.length===1) return '<p class="cab-empty">Одна точка: '+hist[0].v+'. График наберётся за следующие окна (16 окон ≈ сутки).</p>';
+  const W=320,H=96,P=10;
+  const vs=hist.map(h=>h.v);
+  const min=Math.min.apply(null,vs), max=Math.max.apply(null,vs);
+  const span=Math.max(1,max-min);
+  const pts=vs.map((v,i)=>[P+i*(W-2*P)/(vs.length-1), H-P-(v-min)*(H-2*P)/span]);
+  const line=pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+  const area=line+' '+(W-P)+','+(H-P)+' '+P+','+(H-P);
+  return '<div class="cab-spark"><svg viewBox="0 0 '+W+' '+H+'">'+
+    '<defs><linearGradient id="cabSparkGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(255,77,0,.45)"/><stop offset="1" stop-color="rgba(255,77,0,0)"/></linearGradient></defs>'+
+    '<line x1="'+P+'" y1="'+(H-P)+'" x2="'+(W-P)+'" y2="'+(H-P)+'" class="cab-spark-base"/>'+
+    '<polygon points="'+area+'" fill="url(#cabSparkGrad)"/>'+
+    '<polyline points="'+line+'" class="cab-spark-line"/>'+
+    pts.map((p,i)=>'<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="'+(i===pts.length-1?4:2.2)+'" class="cab-spark-dot'+(i===pts.length-1?' last':'')+'"/>').join('')+
+    '</svg><div class="cab-spark-meta"><span>мин '+min+'</span><span>макс '+max+'</span><span>сейчас '+vs[vs.length-1]+'</span><span>'+hist.length+' окон ≈ '+Math.round(hist.length*1.5)+' ч</span></div></div>';
+}
+
 async function cabRender(){
   const body = document.getElementById('cabinetBody');
   if(!cabKey){ cabRenderLogin(body); return; }
   const enc = encodeURIComponent(cabKey);
-  const [auth, awards, votes] = await Promise.all([cabGet(CAB_AUTH+'/'+enc+'.json'), cabGet(CAB_AWARDS+'/'+enc+'.json'), cabGet(CAB_VOTES+'/'+enc+'.json')]);
+  const [auth, awards, hypeRec, profile, authAll] = await Promise.all([
+    cabGet(CAB_AUTH+'/'+enc+'.json'),
+    cabGet(CAB_AWARDS+'/'+enc+'.json'),
+    cabGet('/hype_2027/'+enc+'.json'),
+    cabGet('/profiles_2027/'+enc+'.json'),
+    cabGet('/auth_2027.json')
+  ]);
+  const userNames = Object.keys(authAll||{}).map(k=>k.split('|')[0]);
   if(auth === null || auth === undefined){ cabKey=null; localStorage.removeItem(CAB_LS); cabRenderLogin(body); return; }
   const [fio, cls] = cabKey.split('|');
-  const myAwards = cabToArray(awards), myVotes = cabToArray(votes);
+  const myAwards = cabToArray(awards);
+  const anon = !!(profile && profile.anon);
+  let crest = null, bestW = -1;
+  myAwards.forEach(a=>{
+    const p = cabPicFor(a); if(!p) return;
+    const w = (typeof hypeBonusFor==='function') ? hypeBonusFor(a.nom) : 3;
+    if(w>bestW){ bestW=w; crest=p; }
+  });
+  const hist = (hypeRec && Array.isArray(hypeRec.hist) && hypeRec.hist.length) ? hypeRec.hist
+             : (hypeRec && typeof hypeRec.v==='number' ? [{b:hypeRec.bucket, v:hypeRec.v}] : []);
+  const alias = window.exAlias ? window.exAlias(cabKey) : 'Анонимус';
+
   body.innerHTML = `
     <div class="cab-id">
-      <div class="cab-avatar">${cabEsc((fio.trim()[0]||'?').toUpperCase())}</div>
-      <div><h2>${cabEsc(fio)}</h2><span class="cab-class">${cabEsc(cls||'')}</span></div>
+      <div class="cab-avatar${crest?' has-crest':''}"><span>${cabEsc((fio.trim()[0]||'?').toUpperCase())}</span>${crest?`<img src="${cabEsc(crest)}" alt="" onerror="this.parentNode.classList.remove('has-crest');this.remove();">`:''}</div>
+      <div><h2>${cabEsc(fio)}</h2><span class="cab-class">${cabEsc(cls||'')}</span>${anon?'<span class="cab-anon-badge">🕶 инкогнито</span>':''}</div>
     </div>
+    <div class="cab-section"><h3>📈 График хайпа</h3>${cabSpark(hist)}</div>
     <div class="cab-section"><h3>🏆 Мои награды</h3>
       ${ myAwards.length ? `<div class="cab-awards">${myAwards.map(a=>{
           const pic = cabPicFor(a);
@@ -65,11 +109,46 @@ async function cabRender(){
         }).join('')}</div>`
         : `<p class="cab-empty">Пока пусто. Награды выдаёт организатор через админ-панель 😉</p>` }
     </div>
-    <div class="cab-section"><h3>🗳 Моё голосование 2027</h3>
-      ${ myVotes.length ? `<div class="cab-votes">${myVotes.map(v=>`<span class="cab-chip">${cabEsc(v)}</span>`).join('')}</div>` : `<p class="cab-empty">Голос в базе не найден.</p>` }
+    <div class="cab-section"><h3>💬 Отправить цитату</h3>
+      <form id="cabQuoteForm" class="cab-quote-form">
+        <textarea id="cabQuoteText" maxlength="200" placeholder="Цитата, которую класс будет помнить (до 200 символов)" required></textarea>
+        <input type="text" id="cabQuoteAuthor" list="cabQuoteAuthors" maxlength="60" placeholder="Чья цитата? Оставь пустым — будет твоя">
+        <datalist id="cabQuoteAuthors">${userNames.map(n=>`<option value="${cabEsc(n)}">`).join('')}</datalist>
+        <button type="submit">Отправить на модерацию</button>
+      </form>
+      <p class="cab-empty" style="margin-top:10px">После отправки цитата появится в общем архиве после одобрения организатором. Полный список цитат доступен только в админ-панели.</p>
+    </div>
+    <div class="cab-section"><h3>🕶 Приватность</h3>
+      <div class="cab-privacy">
+        <label class="cab-switch"><input type="checkbox" id="cabAnon" ${anon?'checked':''}><i></i></label>
+        <div><p>Скрывать имя в топе недели</p><p class="cab-empty">В топе ты будешь виден как «${cabEsc(alias)}». Никто не узнает, что это ты. Кроме тех, кто знает.</p></div>
+      </div>
     </div>
     <button class="cab-logout" id="cabLogoutBtn">Выйти</button>`;
+
   document.getElementById('cabLogoutBtn').addEventListener('click', ()=>{ cabKey=null; localStorage.removeItem(CAB_LS); cabRenderLogin(body); });
+
+  document.getElementById('cabQuoteForm').addEventListener('submit', async e=>{
+    e.preventDefault();
+    const text = document.getElementById('cabQuoteText').value.trim();
+    if(!text) return;
+    const author = document.getElementById('cabQuoteAuthor').value.trim() || fio;
+    const list = cabToArray(await cabGet('/quotes_pending_2027.json'));
+    list.push({ text, author, key: cabKey, t: Date.now() });
+    const ok = await cabPut('/quotes_pending_2027.json', list);
+    if(ok){
+      document.getElementById('cabQuoteText').value = '';
+      document.getElementById('cabQuoteAuthor').value = '';
+      cabRender();
+    }
+  });
+  
+  document.getElementById('cabAnon').addEventListener('change', async e=>{
+    if(await cabPut('/profiles_2027/'+enc+'.json', { anon: e.target.checked })){
+      if(window.exRefreshTop) window.exRefreshTop();
+      cabRender();
+    }
+  });
 }
 
 function cabRenderLogin(body){
@@ -112,7 +191,6 @@ function cabRenderLogin(body){
     const key = `${name}|${cls}`, enc = encodeURIComponent(key);
     const stored = await cabGet(CAB_AUTH+'/'+enc+'.json');
     const exists = stored !== null && stored !== undefined;
-
     if(mode === 'login'){
       if(!exists){ err.textContent='❌ Аккаунт не найден. Проверь ФИО и класс (или зарегистрируйся, если тебя нет в списке).'; return; }
       if(String(stored) !== pass){ err.textContent='❌ Неверный пароль'; return; }

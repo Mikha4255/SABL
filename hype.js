@@ -17,6 +17,7 @@ const HYPE_THRESHOLD = 42;
 const HYPE_CURSED = 67;
 const HYPE_WINDOW_MS = 5400000;
 const HYPE_ARC = 251.327;
+/* ===================================================== */
 
 const HYPE_URL = String.fromCharCode(104,116,116,112,115,58,47,47,118,111,116,101,45,49,53,51,53,45,115,97,98,108,45,100,101,102,97,117,108,116,45,114,116,100,98,46,101,117,114,111,112,101,45,119,101,115,116,49,46,102,105,114,101,98,97,115,101,100,97,116,97,98,97,115,101,46,97,112,112);
 const HYPE_LS = 'sabl2027_auth_user';
@@ -31,14 +32,15 @@ function hypeEsc(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&
 function hypeToArray(x){ if(!x) return []; if(Array.isArray(x)) return x; return Object.keys(x).sort((a,b)=>Number(a)-Number(b)).map(k=>x[k]); }
 function hypeFmt(ms){ const s=Math.max(0,Math.floor(ms/1000)),p=n=>String(n).padStart(2,'0'); return p(Math.floor(s/3600))+':'+p(Math.floor(s%3600/60))+':'+p(s%60); }
 
-function hypeCompute(key, awards, now){
-  const bucket = Math.floor(now/HYPE_WINDOW_MS);
-  const rng = hypeMulberry32(hypeXmur3(key+'#'+bucket)());
-  const n = awards.length;
+/* Общий роллер: им пользуются и личный хайп, и топ недели */
+window.hypeRoll = function(key, salt, awards){
+  const rng = hypeMulberry32(hypeXmur3(key + salt)());
+  const list = (awards||[]).map(a => typeof a==='string' ? {nom:a} : a);
+  const n = list.length;
   const dice = Math.min(1+n, HYPE_MAX_DICE);
   let base = 0;
   for(let i=0;i<dice;i++){ const r=Math.floor(rng()*101); if(r>base) base=r; }
-  let bonus = 0; awards.forEach(a=>{ bonus += hypeBonusFor(a.nom); }); bonus = Math.min(bonus, HYPE_BONUS_CAP);
+  let bonus = 0; list.forEach(a=>{ bonus += hypeBonusFor(a.nom); }); bonus = Math.min(bonus, HYPE_BONUS_CAP);
   let v;
   if(n >= 2){
     const floor = Math.min(HYPE_FLOOR_START + HYPE_FLOOR_STEP*(n-2) + Math.round(bonus/3), HYPE_FLOOR_CAP);
@@ -48,7 +50,13 @@ function hypeCompute(key, awards, now){
   } else {
     v = Math.round(Math.pow(base/100, HYPE_ZERO_POWER)*80);
   }
-  return { v: Math.max(0,Math.min(100,v)), bucket, t: now };
+  return Math.max(0, Math.min(100, v));
+};
+window.hypeRng = function(seed){ return hypeMulberry32(hypeXmur3(seed)()); };
+
+function hypeCompute(key, awards, now){
+  const bucket = Math.floor(now/HYPE_WINDOW_MS);
+  return { v: window.hypeRoll(key, '#'+bucket, awards), bucket, t: now };
 }
 
 function hypeTier(v){
@@ -70,6 +78,8 @@ async function hypeLoad(key){
   const now = Date.now(), bucket = Math.floor(now/HYPE_WINDOW_MS);
   if(st && st.bucket===bucket && typeof st.v==='number') return st;
   const rec = hypeCompute(key, awards, now);
+  const prev = (st && Array.isArray(st.hist)) ? st.hist.filter(h=>h && typeof h.v==='number' && h.b!==bucket) : [];
+  rec.hist = prev.concat([{b:bucket, v:rec.v}]).slice(-16);
   try{ await fetch(HYPE_URL+'/hype_2027/'+enc+'.json',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(rec)}); }catch(e){ console.error('hype save',e); }
   return rec;
 }

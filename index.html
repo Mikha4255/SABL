@@ -11,12 +11,20 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=DM+Serif+Text:ital@0;1&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Cinzel+Decorative:wght@400;700;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&display=swap">
     <link rel="icon" type="image/png" sizes="64x64" href="вспомогательные_объекты/sabl_web.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="cabinet.css">
     <link rel="stylesheet" href="hype.css">
     <link rel="stylesheet" href="sabl.css">
+    <link rel="stylesheet" href="extras.css">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#ff4d00">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SABL">
+    <link rel="apple-touch-icon" href="вспомогательные_объекты/icon-192.png">
 </head>
 <body>
     <button id="cabinetBtn" type="button">👤 Кабинет</button>
@@ -42,16 +50,18 @@
     <main>
         <div>
             <div class="main_info">
+                <div class="sabl-panels">
+                    <section id="quoteHome"></section>
+                    <section id="horoscopeHome" hidden></section>
+                </div>
                 <img class="prikol" src="вспомогательные_объекты/prikol_1.png" loading="lazy" alt="прикол">
                 <img class="prikol6" src="вспомогательные_объекты/prikol_6.png" loading="lazy" alt="прикол">
                 <div class="pictures">
                     <a href="https://t.me/+J8AarAYAgAY5ZTNi"><img class="main-logo" src="вспомогательные_объекты/Logo_sabl_2026_2027.png" loading="lazy" alt="лого"></a>
                     <a href="https://t.me/+J8AarAYAgAY5ZTNi"><img class="main-part" id="about" src="вспомогательные_объекты/main_part.png" alt="1535"></a>
                 </div>
-                <!-- <button class="quick-vote-btn" onclick="goToVoting2027()">
-                    🗳️ Перейти к голосованию 2027
-                </button> -->
                 <section id="hypeHome" hidden></section>
+                <section id="horoscopeHome" hidden></section>
                 <hr class="top-bottom">
                 <div class="sabl">
                     <span class="sabl-bg" aria-hidden="true">SABL</span>
@@ -72,23 +82,12 @@
                         </div>
                     </div>
                 </div>
-
+                <section id="quoteHome"></section>
                 <a class="qwer" href="https://t.me/+J8AarAYAgAY5ZTNi" target="_blank">Узнать <br> больше</a>
             </div>
         </div>
 
-        <section class="return-panel section-frame" aria-labelledby="return-title">
-            <img class="prikol2" src="вспомогательные_объекты/prikol_2.png" loading="lazy" alt="прикол">
-            <div>
-                <p class="kicker">Ну что-то сверху обычно пишут</p>
-                <h2 id="return-title">Карточка <span>дня</span></h2>
-            </div>
-            <div class="weekly-card">
-                <div class="weekly-label">SABL / СЛУЧАЙНАЯ ИСТОРИЯ</div>
-                <div id="weekly-card-content"></div>
-                <button class="text-button" id="new-story-button" type="button">Открыть другую историю <span>↗</span></button>
-            </div>
-        </section>
+        <section id="topWeek"></section>
         <hr>
         <div id="nom">
             <h1>НОМИНАЦИИ</h1>
@@ -181,41 +180,6 @@
 
                 <div class="dop-noms">
                     <h2>Дополнительные номинации</h2>
-                    <!-- <p class="vote-desc">Выбери 6 номинаций или предложи свои! Твой выбор сохранится на любом устройстве.</p>
-                    
-                     Кнопка входа / голосования
-                    <button class="vote-btn" id="openVoteBtn">Начать голосование</button> -->
-
-                    <!-- Модалка авторизации
-                    <div class="vote-modal auth-modal" id="authModal">
-                        <div class="vote-overlay"></div>
-                        <div class="vote-content auth-content">
-                            <button class="vote-close" id="closeAuthBtn">✕</button>
-                            <h3>🔐 Вход в систему голосования</h3>
-                            <form id="authForm">
-                                <input type="text" id="authName" placeholder="Фамилия Имя" required autocomplete="off">
-                                <input type="text" id="authClass" placeholder="Класс (например: 11В)" required autocomplete="off">
-                                <input type="password" id="authPass" placeholder="Пароль" required>
-                                <div class="auth-error" id="authError"></div>
-                                <button type="submit" class="submit-auth-btn">Войти / Зарегистрироваться</button>
-                            </form>
-                        </div>
-                    </div>-->
-                    <!-- <div class="vote-modal" id="voteModal">
-                        <div class="vote-overlay"></div>
-                        <div class="vote-content">
-                            <button class="vote-close" id="closeVoteBtn">✕</button>
-                            <h3>Выбери 6 дополнительных номинаций</h3>
-                            <div class="vote-counter" id="voteCounter">Выбрано: 0/6</div>
-                            <div class="suggest-form">
-                                <input type="text" id="suggestNomInput" placeholder="Предложить свою номинацию..." maxlength="50">
-                                <button id="suggestNomBtn">➕ Добавить</button>
-                                <div class="suggest-error" id="suggestError"></div>
-                            </div>
-                            <div class="nominees-grid" id="nomineesGrid"></div>
-                            <button class="submit-vote-btn" id="submitVoteBtn">✅ Подтвердить выбор</button>
-                        </div>
-                    </div> -->
                     <div class="nomins">
                         <article class="nomcard">
                             <div class="image"> <img src="вспомогательные_объекты/NONE.png" alt="NONE"> </div>
@@ -238,7 +202,6 @@
                                 </p>
                             </div>
                         </article>
-
 
                         <article class="nomcard">
                             <div class="image"> <img src="вспомогательные_объекты/NONE.png" alt="NONE"> </div>
@@ -701,5 +664,6 @@
     <script src="vote.js"></script>
     <script src="cabinet.js"></script>
     <script src="hype.js"></script>
+    <script src="extras.js"></script>
 </body>
 </html>
